@@ -6,6 +6,24 @@ export const restaurants = [
         'location':'Feria', 
         'desc':'Hamburgesas de Pollo',
         'horario':'10am - 4pm',
+        'menu': [{
+            'id': 'burger',
+            'name': 'Holy Burger',
+            'price': '9$',
+            'desc': 'Hamburgesa de pollo con tocineta'
+        },
+        {
+            'id': 'tender',
+            'name': 'Tenders',
+            'price': '5$',
+            'desc': 'Tenders de pollo' 
+        },
+        {
+            'id': 'honeyGarlic',
+            'name': 'Honey & Garlic',
+            'price': '10$',
+            'desc': 'Hamburgesa de pollo con nuestra salsa de Honey & Garlic' 
+        }]
     },
     {
         'id': 'granier',

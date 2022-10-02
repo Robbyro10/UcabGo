@@ -3,10 +3,8 @@ import { RestaurantList } from "../components/RestaurantList";
 
 export const UcabGoPage = () => {
   return (
-    <>
-      <ul>
-        <RestaurantList />
-      </ul>
-    </>
+    <ul>
+      <RestaurantList />
+    </ul>
   );
 };

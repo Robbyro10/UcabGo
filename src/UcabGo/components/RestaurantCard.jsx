@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const RestaurantCard = ({ id, name, location, desc, horario }) => {
+export const RestaurantCard = ({ id, name, location, desc, horario, menu }) => {
   const restaurantImageUrl = `/assets/restaurants/${id}.jpg`;
   return (
     <div className="col-lg-4 col-xs-10">
