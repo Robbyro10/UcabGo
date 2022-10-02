@@ -48,7 +48,7 @@ export const restaurants = [
     },
     {
         'id': 'pizza',
-        'name':'Pizza Caracas', 
+        'name':'Full Pizza', 
         'location':'Feria', 
         'desc':'Comida italiana',
         'horario':'9am - 3pm',
