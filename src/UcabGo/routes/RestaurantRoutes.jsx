@@ -1,8 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
-import { RestaurantPage } from "../pages/RestaurantPage";
-import { UcabGoPage } from "../pages/UcabGoPage";
+import { OrderPage, RestaurantPage, UcabGoPage } from "../pages";
 
 export const RestaurantRoutes = () => {
   return (
@@ -13,6 +12,7 @@ export const RestaurantRoutes = () => {
         <Routes>
           <Route path="/ucabgo" element={<UcabGoPage />} />
           <Route path="restaurant/:id" element={<RestaurantPage />} />
+          <Route path="order/:id" element={<OrderPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
         </Routes>
       </div>

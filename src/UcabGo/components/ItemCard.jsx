@@ -13,7 +13,10 @@ export const ItemCard = ({ id, name, price, desc }) => {
           <h2 className="card-title">{name}</h2>
           <p>{desc}</p>
           <p>{price}</p>
-          <button className="btn btn-success">Select</button>
+
+          <Link to={`/order/${id}`} className="btn btn-success">
+            Select
+          </Link>
         </div>
       </div>
     </div>

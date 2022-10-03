@@ -1,10 +1,13 @@
-import { NavBar } from "../components/NavBar";
-import { RestaurantList } from "../components/RestaurantList";
+import { RestaurantList } from "../components";
 
 export const UcabGoPage = () => {
   return (
-    <ul>
-      <RestaurantList />
-    </ul>
+    <>
+      <h1>Order something!</h1>
+      <hr />
+      <ul>
+        <RestaurantList />
+      </ul>
+    </>
   );
 };
