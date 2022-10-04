@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
 
-export const ItemCard = ({ id, name, price, desc }) => {
-  const restaurantImageUrl = `/assets/restaurants/holy.jpg`;
+export const ItemCard = ({ itemId, name, price, desc }) => {
+  const restaurantImageUrl = `/assets/restaurants/${itemId}.jpg`;
+  console.log(itemId);
 
   return (
     <div className="card mb-4">
       <div className="row">
-        <div className="col-md-4">
-          <img src={restaurantImageUrl} className="img-fluid" alt={name} />
+        <div className="col-4">
+          <img src={restaurantImageUrl} className="card-img-top" alt={name} />
         </div>
-        <div className="col-md-8 mb-2">
+        <div className="col-8 mb-2">
           <h2 className="card-title">{name}</h2>
           <p>{desc}</p>
           <p>{price}</p>
 
-          <Link to={`/order/${id}`} className="btn btn-success">
+          <Link to={`/order/${itemId}`} className="btn btn-outline-success">
             Select
           </Link>
         </div>

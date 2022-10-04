@@ -11,7 +11,7 @@ export const RestaurantCard = ({ id, name, location, desc, horario, menu }) => {
           <p className="card-text">{desc}</p>
           <p className="card-text">Ubicacion: {location}</p>
           <p className="card-text">Horario: {horario}</p>
-          <Link to={`/restaurant/${id}`} className="btn btn-primary">
+          <Link to={`/restaurant/${id}`} className="btn btn-outline-primary">
             More
           </Link>
         </div>

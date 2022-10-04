@@ -7,7 +7,7 @@ export const ItemList = ({ restaurant }) => {
     <div className="container">
       <div className="row">
         {menu?.map((item) => (
-          <ItemCard key={item.id} {...item} />
+          <ItemCard key={item.itemId} {...item} />
         ))}
       </div>
     </div>
