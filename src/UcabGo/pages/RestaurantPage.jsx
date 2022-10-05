@@ -17,8 +17,6 @@ export const RestaurantPage = () => {
     return <Navigate to="/ucabgo" />;
   }
 
-  const restaurantImageUrl = `/assets/restaurants/${id}.jpg`;
-
   return (
     <>
       <h1>{restaurant.name}</h1>
@@ -30,9 +28,6 @@ export const RestaurantPage = () => {
 
       <ItemList restaurant={restaurant} />
 
-      {/* {restaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.id} {...restaurant} />
-        ))} */}
       <button onClick={onBack} className="btn btn-outline-primary">
         Back
       </button>

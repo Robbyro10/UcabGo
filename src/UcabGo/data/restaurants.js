@@ -7,22 +7,22 @@ export const restaurants = [
         'desc':'Hamburgesas de Pollo',
         'horario':'10am - 4pm',
         'menu': [{
-            'itemId': 'holy',
+            'itemId': 'holy-holy',
             'name': 'Holy Burger',
             'price': '9$',
-            'desc': 'Hamburgesa de pollo con tocineta'
+            'desc': 'Hamburgesa de pollo con tocineta',
         },
         {
-            'itemId': 'tender',
+            'itemId': 'holy-tender',
             'name': 'Tenders',
             'price': '5$',
-            'desc': 'Tenders de pollo' 
+            'desc': 'Tenders de pollo', 
         },
         {
-            'itemId': 'honeyGarlic',
+            'itemId': 'holy-honeyGarlic',
             'name': 'Honey & Garlic',
             'price': '10$',
-            'desc': 'Hamburgesa de pollo con nuestra salsa de Honey & Garlic' 
+            'desc': 'Hamburgesa de pollo con nuestra salsa de Honey & Garlic',
         }]
     },
     {
