@@ -11,18 +11,21 @@ export const restaurants = [
             'name': 'Holy Burger',
             'price': '9$',
             'desc': 'Hamburgesa de pollo con tocineta',
+            'bestSeller': 'true',
         },
         {
             'itemId': 'holy-tender',
             'name': 'Tenders',
             'price': '5$',
             'desc': 'Tenders de pollo', 
+            'bestSeller': 'true',
         },
         {
             'itemId': 'holy-honeyGarlic',
             'name': 'Honey & Garlic',
             'price': '10$',
             'desc': 'Hamburgesa de pollo con nuestra salsa de Honey & Garlic',
+            'bestSeller': 'false',
         }]
     },
     {

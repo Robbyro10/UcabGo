@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { ItemList } from "../components";
+import { ItemList, RestaurantModal } from "../components";
 import { getRestaurantById } from "../helpers/getRestaurantById";
 
 export const RestaurantPage = () => {
@@ -17,14 +18,28 @@ export const RestaurantPage = () => {
     return <Navigate to="/ucabgo" />;
   }
 
+  const [adding, setAdding] = useState(false);
+
   return (
     <>
       <h1>{restaurant.name}</h1>
 
       <p>{restaurant.desc}</p>
       <hr />
-      <p>{restaurant.location}</p>
-      <p>{restaurant.horario}</p>
+      <p>
+        <b>Ubicacion: </b>
+        {restaurant.location}
+      </p>
+      <p>
+        <b>Horario: </b>
+        {restaurant.horario}
+      </p>
+
+      <button className="btn btn-primary mb-3" onClick={() => setAdding(true)}>
+        Agregar Item
+      </button>
+
+      {adding === true && <RestaurantModal />}
 
       <ItemList restaurant={restaurant} />
 

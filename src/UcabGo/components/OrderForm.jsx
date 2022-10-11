@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { getMenuItem } from "../helpers/getItemById";
 import { getRestaurantById } from "../helpers/getRestaurantById";
+import { SuccessPage } from "../pages/SuccessPage";
 
 export const OrderForm = ({ itemId }) => {
   const navigate = useNavigate();
@@ -13,8 +14,13 @@ export const OrderForm = ({ itemId }) => {
   const onBack = () => {
     navigate(-1);
   };
+
+  const handleSubmit = () => {
+    navigate("/order/success");
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-group row">
         <label htmlFor="ubicacion" className="col-sm-2 col-form-label">
           Ubicacion
