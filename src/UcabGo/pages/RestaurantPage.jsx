@@ -11,7 +11,7 @@ export const RestaurantPage = () => {
   const navigate = useNavigate();
 
   const onBack = () => {
-    navigate(-1);
+    navigate("/ucabgo");
   };
 
   if (!restaurant) {

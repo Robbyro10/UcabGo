@@ -15,6 +15,7 @@ export const RestaurantRoutes = () => {
           <Route path="/restaurant/:id" element={<RestaurantPage />} />
           <Route path="order/:itemId/" element={<OrderPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
+          <Route path="/*" element={<Navigate to="/ucabgo" />} />
           <Route path="/order/success" element={<SuccessPage />} />
         </Routes>
       </div>
