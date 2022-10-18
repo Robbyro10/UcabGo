@@ -19,8 +19,11 @@ export const ItemCard = ({ itemId, name, price, desc, bestSeller }) => {
           <p>{price}</p>
 
           {userType === "client" ? (
-            <Link to={`/order/${itemId}`} className="btn btn-outline-success">
-              Seleccionar
+            <Link
+              to={`/restaurant/item/${itemId}`}
+              className="btn btn-outline-success"
+            >
+              Más
             </Link>
           ) : (
             <button className="btn btn-outline-primary">Editar</button>

@@ -41,7 +41,11 @@ export const RestaurantPage = () => {
 
       {adding === true && <RestaurantModal />}
 
-      <ItemList restaurant={restaurant} />
+      {!restaurant.menu ? (
+        <h1>No hay items en este restaurante</h1>
+      ) : (
+        <ItemList restaurant={restaurant} />
+      )}
 
       <button onClick={onBack} className="btn btn-outline-primary">
         Back

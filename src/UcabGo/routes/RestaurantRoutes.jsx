@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar, Footer } from "../components";
 import { OrderPage, RestaurantPage, UcabGoPage } from "../pages";
+import { ItemPage } from "../pages/ItemPage";
 import { SuccessPage } from "../pages/SuccessPage";
 
 export const RestaurantRoutes = () => {
@@ -14,6 +15,7 @@ export const RestaurantRoutes = () => {
           <Route path="/ucabgo" element={<UcabGoPage />} />
           <Route path="/restaurant/:id" element={<RestaurantPage />} />
           <Route path="order/:itemId/" element={<OrderPage />} />
+          <Route path="restaurant/item/:itemId/" element={<ItemPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
           <Route path="/*" element={<Navigate to="/ucabgo" />} />
           <Route path="/order/success" element={<SuccessPage />} />

@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMenuItem } from "../helpers/getItemById";
 import { getRestaurantById } from "../helpers/getRestaurantById";
-import { SuccessPage } from "../pages/SuccessPage";
 
 export const OrderForm = ({ itemId }) => {
   const navigate = useNavigate();
@@ -15,8 +15,24 @@ export const OrderForm = ({ itemId }) => {
     navigate(-1);
   };
 
-  const handleSubmit = () => {
-    navigate("/order/success");
+  const [formValues, setFormValues] = useState({
+    ubicacion: "Modulos",
+    desc: "La parte de afuera de laboratorios",
+    pago: "Efectivo",
+    apariencia: "Tengo una camisa roja y un bluejean",
+  });
+
+  const onInputChanged = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    // navigate("/order/success");
+    event.preventDefault();
+    console.log(formValues);
   };
 
   return (
@@ -26,7 +42,13 @@ export const OrderForm = ({ itemId }) => {
           Ubicacion
         </label>
         <div className="col-sm-10">
-          <select className="form-control" required>
+          <select
+            className="form-control"
+            name="ubicacion"
+            value={formValues.ubicacion}
+            onChange={onInputChanged}
+            required
+          >
             <option>Modulos</option>
             <option>Laboratorios</option>
             <option>Feria</option>
@@ -48,6 +70,9 @@ export const OrderForm = ({ itemId }) => {
             type="text"
             className="form-control"
             placeholder="Descripcion detallada de su ubicacion"
+            name="desc"
+            value={formValues.desc}
+            onChange={onInputChanged}
             required
           />
         </div>
@@ -63,9 +88,9 @@ export const OrderForm = ({ itemId }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="paymentMethod"
-                id="gridRadios1"
+                name="pago"
                 value="Efectivo"
+                onChange={onInputChanged}
                 required
               />
               <label className="form-check-label" htmlFor="gridRadios1">
@@ -76,9 +101,9 @@ export const OrderForm = ({ itemId }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="paymentMethod"
-                id="gridRadios2"
+                name="pago"
                 value="Pago Movil"
+                onChange={onInputChanged}
               />
               <label className="form-check-label" htmlFor="gridRadios2">
                 Pago Movil
@@ -88,9 +113,9 @@ export const OrderForm = ({ itemId }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="paymentMethod"
-                id="tarjeta"
-                value="Tarjeta"
+                name="pago"
+                value="tarjeta"
+                onChange={onInputChanged}
               />
               <label className="form-check-label" htmlFor="tarjeta">
                 Tarjeta
@@ -110,6 +135,9 @@ export const OrderForm = ({ itemId }) => {
             className="form-control"
             id="apariencia"
             placeholder="Ej. vestimenta, pantalon, etc."
+            name="apariencia"
+            value={formValues.apariencia}
+            onChange={onInputChanged}
             required
           />
         </div>

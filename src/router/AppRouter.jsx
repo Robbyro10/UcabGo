@@ -4,14 +4,18 @@ import { UcabGoPage } from "../UcabGo";
 import { RestaurantRoutes } from "../UcabGo/routes/RestaurantRoutes";
 
 export const AppRouter = () => {
-  const authStatus = "authenticated";
+  const authStatus = "not-authenticated";
 
   return (
     <>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        {authStatus === "not-authenticated" ? (
+          <Route path="/login" element={<LoginPage />} />
+        ) : (
+          <Route path="/*" element={<RestaurantRoutes />} />
+        )}
 
-        <Route path="/*" element={<RestaurantRoutes />} />
+        <Route path="/*" element={<Navigate to="/login" />} />
       </Routes>
     </>
   );
