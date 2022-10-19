@@ -1,17 +1,12 @@
 
 import { createSlice } from '@reduxjs/toolkit'
+import { restaurants } from '../../UcabGo/data/restaurants'
 
-const tempProduct = {
-    'itemId': 'holy-holy',
-    'name': 'Holy Burger',
-    'price': '9$',
-    'desc': 'Hamburgesa de pollo con tocineta',
-    'bestSeller': 'true',
-}
+const tempData = restaurants;
 
 const initialState = {
-    products: [
-        tempProduct
+    restaurants: [
+        tempData
     ],
 
 
