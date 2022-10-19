@@ -4,7 +4,7 @@ import { UcabGoPage } from "../UcabGo";
 import { RestaurantRoutes } from "../UcabGo/routes/RestaurantRoutes";
 
 export const AppRouter = () => {
-  const authStatus = "not-authenticated";
+  const authStatus = "authenticated";
 
   return (
     <>

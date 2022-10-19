@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import { useUiStore } from "../../hooks";
 
 const customStyles = {
   content: {
@@ -15,7 +16,8 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const RestaurantModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const { isProductModalOpen, closeProductModal } = useUiStore();
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
     nombre: "Holy Burger",
@@ -31,18 +33,19 @@ export const RestaurantModal = () => {
   };
 
   const onCloseModal = () => {
-    setIsOpen(false);
+    closeProductModal();
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
+    setFormSubmitted(true);
 
     console.log(formValues);
   };
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isProductModalOpen}
       onRequestClose={onCloseModal}
       style={customStyles}
       className="modal"

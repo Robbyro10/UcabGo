@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useUiStore } from "../../hooks";
 import { ItemList, RestaurantModal } from "../components";
 import { getRestaurantById } from "../helpers/getRestaurantById";
 
@@ -7,6 +7,8 @@ export const RestaurantPage = () => {
   const { id } = useParams();
 
   const restaurant = getRestaurantById(id);
+
+  const { openProductModal } = useUiStore();
 
   const navigate = useNavigate();
 
@@ -17,8 +19,6 @@ export const RestaurantPage = () => {
   if (!restaurant) {
     return <Navigate to="/ucabgo" />;
   }
-
-  const [adding, setAdding] = useState(false);
 
   return (
     <>
@@ -35,11 +35,14 @@ export const RestaurantPage = () => {
         {restaurant.horario}
       </p>
 
-      <button className="btn btn-primary mb-3" onClick={() => setAdding(true)}>
-        Agregar Item
+      <button
+        className="btn btn-primary mb-3"
+        onClick={() => openProductModal()}
+      >
+        Agregar Producto
       </button>
 
-      {adding === true && <RestaurantModal />}
+      <RestaurantModal />
 
       {!restaurant.menu ? (
         <h1>No hay items en este restaurante</h1>
