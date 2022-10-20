@@ -1,8 +1,10 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { getProductById } from "../helpers";
 
 export const ItemPage = () => {
-  const { itemId } = useParams();
+  const { _id } = useParams();
 
+  const { name, desc, price } = getProductById(_id);
   const navigate = useNavigate();
 
   const onBack = () => {
@@ -12,8 +14,10 @@ export const ItemPage = () => {
   return (
     <>
       <h1>Item Page</h1>
-      <p>{itemId}</p>
-      <Link to={`/order/${itemId}`} className="btn btn-outline-success">
+      <p>{name}</p>
+      <p>{desc}</p>
+      <p>{price}</p>
+      <Link to={`/order/${_id}`} className="btn btn-outline-success">
         Select
       </Link>
 

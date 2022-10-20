@@ -1,6 +1,7 @@
+import { useUcabGoStore } from "../../hooks";
 
-import { restaurants } from '../data/restaurants'
 
 export const getRestaurantById = (id) => {
-    return restaurants.find( restaurant => restaurant.id === id)
+    const { restaurants } = useUcabGoStore();
+    return restaurants.find( restaurant => restaurant._id === id)
 }

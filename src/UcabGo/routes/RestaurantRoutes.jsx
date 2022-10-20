@@ -13,9 +13,9 @@ export const RestaurantRoutes = () => {
       <div className="container">
         <Routes>
           <Route path="/ucabgo" element={<UcabGoPage />} />
-          <Route path="/restaurant/:id" element={<RestaurantPage />} />
-          <Route path="order/:itemId/" element={<OrderPage />} />
-          <Route path="restaurant/item/:itemId/" element={<ItemPage />} />
+          <Route path="/restaurant/:_id" element={<RestaurantPage />} />
+          <Route path="order/:_id/" element={<OrderPage />} />
+          <Route path="restaurant/item/:_id/" element={<ItemPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
           <Route path="/*" element={<Navigate to="/ucabgo" />} />
           <Route path="/order/success" element={<SuccessPage />} />

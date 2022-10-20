@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const ItemCard = ({ itemId, name, price, desc, bestSeller }) => {
-  const itemImageUrl = `/assets/restaurants/${itemId.split("-")[1]}.jpg`;
+export const ItemCard = ({ _id, name, price, desc, bestSeller }) => {
+  const itemImageUrl = `/assets/restaurants/${_id.split("-")[1]}.jpg`;
 
   const userType = "client"; //change to set admin mode
 
@@ -20,7 +19,7 @@ export const ItemCard = ({ itemId, name, price, desc, bestSeller }) => {
 
           {userType === "client" ? (
             <Link
-              to={`/restaurant/item/${itemId}`}
+              to={`/restaurant/item/${_id}`}
               className="btn btn-outline-success"
             >
               Más

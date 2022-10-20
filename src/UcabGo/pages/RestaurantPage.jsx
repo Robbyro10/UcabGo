@@ -1,14 +1,13 @@
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useUiStore } from "../../hooks";
-import { ItemList, RestaurantModal } from "../components";
-import { getRestaurantById } from "../helpers/getRestaurantById";
+import { useUcabGoStore } from "../../hooks";
+import { FabAddNew, ItemList, RestaurantModal } from "../components";
+import { getProductsByRestaurant, getRestaurantById } from "../helpers";
 
 export const RestaurantPage = () => {
-  const { id } = useParams();
+  const { _id } = useParams();
 
-  const restaurant = getRestaurantById(id);
-
-  const { openProductModal } = useUiStore();
+  const restaurant = getRestaurantById(_id);
+  const products = getProductsByRestaurant(restaurant);
 
   const navigate = useNavigate();
 
@@ -35,16 +34,11 @@ export const RestaurantPage = () => {
         {restaurant.horario}
       </p>
 
-      <button
-        className="btn btn-primary mb-3"
-        onClick={() => openProductModal()}
-      >
-        Agregar Producto
-      </button>
+      <FabAddNew />
 
-      <RestaurantModal />
+      <RestaurantModal restaurant={restaurant.name} />
 
-      {!restaurant.menu ? (
+      {!products ? (
         <h1>No hay items en este restaurante</h1>
       ) : (
         <ItemList restaurant={restaurant} />

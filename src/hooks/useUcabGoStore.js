@@ -1,15 +1,30 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { onAddNewProduct } from "../store/ucabGo/ucabGoSlice";
 
 
 export const useUcabGoStore = () => {
 
-    const { restaurants } = useSelector( state => state.ucabGo);
+    const dispatch = useDispatch();
+    const { restaurants, products } = useSelector( state => state.ucabGo);
+
+    const startSavingProduct = async( product ) => {
+      // TODO: llegar al backend
+
+      if ( product._id){
+        // Updating
+      } else {
+        // creating
+        dispatch(onAddNewProduct({ ...product, _id: new Date().getTime()}));
+      }
+    }
 
   return {
     //* Propiedades
-    restaurants
+    restaurants,
+    products,
 
     //* Metodos
+    startSavingProduct,
     
   }
 }

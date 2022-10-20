@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getMenuItem } from "../helpers/getItemById";
-import { getRestaurantById } from "../helpers/getRestaurantById";
+import { getProductById, getRestaurantById } from "../helpers";
 
-export const OrderForm = ({ itemId }) => {
+export const OrderForm = ({ id }) => {
   const navigate = useNavigate();
 
-  const id = itemId.split("-")[0];
-  const restaurant = getRestaurantById(id);
-  const { name, desc, price } = getMenuItem(restaurant.menu, itemId);
-  const itemImageUrl = `/assets/restaurants/${itemId.split("-")[1]}.jpg`;
+  const { name, desc, price } = getProductById(id);
+  const itemImageUrl = `/assets/restaurants/${id.split("-")[1]}.jpg`;
 
   const onBack = () => {
     navigate(-1);

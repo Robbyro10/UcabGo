@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-export const RestaurantCard = ({ id, name, location, desc, horario, menu }) => {
-  const restaurantImageUrl = `/assets/restaurants/${id}.jpg`;
+export const RestaurantCard = ({ _id, name, location, desc, horario }) => {
+  const restaurantImageUrl = `/assets/restaurants/${_id}.jpg`;
   return (
     <div className="col-lg-4">
       <div className="card mb-3">
-        <Link to={`/restaurant/${id}`}>
+        <Link to={`/restaurant/${_id}`}>
           <img className="card-img-top" src={restaurantImageUrl} alt={name} />
         </Link>
         <div className="card-body">
@@ -13,7 +13,7 @@ export const RestaurantCard = ({ id, name, location, desc, horario, menu }) => {
           <p className="card-text">{desc}</p>
           <p className="card-text">Ubicacion: {location}</p>
           <p className="card-text">Horario: {horario}</p>
-          <Link to={`/restaurant/${id}`} className="btn btn-outline-primary">
+          <Link to={`/restaurant/${_id}`} className="btn btn-outline-primary">
             Seleccionar
           </Link>
         </div>

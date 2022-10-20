@@ -1,13 +1,14 @@
-import { restaurants } from "../data/restaurants";
+import { useUcabGoStore } from "../../hooks";
 import { ItemCard } from "./ItemCard";
 
 export const ItemList = ({ restaurant }) => {
-  const menu = restaurant.menu;
+  const { products } = useUcabGoStore();
+
   return (
     <div className="container">
       <div className="row">
-        {menu?.map((item) => (
-          <ItemCard key={item.itemId} {...item} />
+        {products?.map((product) => (
+          <ItemCard key={product._id} {...product} />
         ))}
       </div>
     </div>

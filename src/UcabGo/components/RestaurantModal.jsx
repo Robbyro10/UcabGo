@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { useUiStore } from "../../hooks";
+import { useUcabGoStore, useUiStore } from "../../hooks";
 
 const customStyles = {
   content: {
@@ -15,14 +15,17 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export const RestaurantModal = () => {
+export const RestaurantModal = ({ restaurant }) => {
   const { isProductModalOpen, closeProductModal } = useUiStore();
+  const { startSavingProduct } = useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    nombre: "Holy Burger",
-    precio: 10,
-    desc: "Una descripcion basica del producto",
+    nombre: "",
+    precio: "",
+    desc: "",
+    restaurant,
+    img: "",
   });
 
   const onInputChanged = ({ target }) => {
@@ -36,10 +39,12 @@ export const RestaurantModal = () => {
     closeProductModal();
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
 
+    await startSavingProduct(formValues);
+    closeProductModal();
     console.log(formValues);
   };
 
@@ -101,6 +106,9 @@ export const RestaurantModal = () => {
             className="form-control"
             type="file"
             accept="image/png, image/jpeg"
+            name="img"
+            value={formValues.img}
+            onChange={onInputChanged}
           />
         </div>
 

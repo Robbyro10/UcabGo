@@ -6,8 +6,8 @@ export const RestaurantList = () => {
   return (
     <div className="container">
       <div className="row">
-        {restaurants[0].map((restaurant) => (
-          <RestaurantCard key={restaurant.id} {...restaurant} />
+        {restaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant._id} {...restaurant} />
         ))}
       </div>
     </div>
