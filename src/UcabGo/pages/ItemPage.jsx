@@ -4,7 +4,7 @@ import { getProductById } from "../helpers";
 export const ItemPage = () => {
   const { _id } = useParams();
 
-  const { name, desc, price } = getProductById(_id);
+  const { name, desc, price, img } = getProductById(_id);
   const navigate = useNavigate();
 
   const onBack = () => {
@@ -14,10 +14,19 @@ export const ItemPage = () => {
   return (
     <>
       <h1>Item Page</h1>
-      <p>{name}</p>
+      <br />
+      <img
+        className="img-thumbnail mb-5"
+        style={{ width: "70vw" }}
+        src={img}
+        alt={desc}
+      />
+      <h1>{name}</h1>
       <p>{desc}</p>
-      <p>{price}</p>
-      <Link to={`/order/${_id}`} className="btn btn-outline-success">
+      <p>
+        <b>{price}</b>
+      </p>
+      <Link to={`/order/${_id}`} className="btn btn-outline-success mr-2">
         Select
       </Link>
 

@@ -21,8 +21,8 @@ export const RestaurantModal = ({ restaurant }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    nombre: "",
-    precio: "",
+    name: "",
+    price: "",
     desc: "",
     restaurant,
     img: "",
@@ -45,7 +45,6 @@ export const RestaurantModal = ({ restaurant }) => {
 
     await startSavingProduct(formValues);
     closeProductModal();
-    console.log(formValues);
   };
 
   return (
@@ -67,8 +66,8 @@ export const RestaurantModal = ({ restaurant }) => {
             className="form-control"
             placeholder="Nombre"
             autoComplete="off"
-            name="nombre"
-            value={formValues.nombre}
+            name="name"
+            value={formValues.name}
             onChange={onInputChanged}
           />
         </div>
@@ -79,8 +78,8 @@ export const RestaurantModal = ({ restaurant }) => {
             type="number"
             className="form-control"
             placeholder="Precio"
-            name="precio"
-            value={formValues.precio}
+            name="price"
+            value={formValues.price}
             onChange={onInputChanged}
           />
         </div>

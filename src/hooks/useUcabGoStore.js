@@ -10,7 +10,7 @@ export const useUcabGoStore = () => {
     const startSavingProduct = async( product ) => {
       // TODO: llegar al backend
 
-      if ( product._id){
+      if ( product._id ){
         // Updating
       } else {
         // creating

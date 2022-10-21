@@ -5,8 +5,8 @@ import { getProductById, getRestaurantById } from "../helpers";
 export const OrderForm = ({ id }) => {
   const navigate = useNavigate();
 
-  const { name, desc, price } = getProductById(id);
-  const itemImageUrl = `/assets/restaurants/${id.split("-")[1]}.jpg`;
+  const { name, desc, price, img } = getProductById(id);
+  const itemImageUrl = img;
 
   const onBack = () => {
     navigate(-1);

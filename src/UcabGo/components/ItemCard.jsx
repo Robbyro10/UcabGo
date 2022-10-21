@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-export const ItemCard = ({ _id, name, price, desc, bestSeller }) => {
-  const itemImageUrl = `/assets/restaurants/${_id.split("-")[1]}.jpg`;
+export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
+  const itemImageUrl = img;
 
   const userType = "client"; //change to set admin mode
 

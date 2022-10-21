@@ -3,6 +3,7 @@ import { useUcabGoStore } from "../../hooks/useUcabGoStore";
 
 export const RestaurantList = () => {
   const { restaurants } = useUcabGoStore();
+
   return (
     <div className="container">
       <div className="row">
