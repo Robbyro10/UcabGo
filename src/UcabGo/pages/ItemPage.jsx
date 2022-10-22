@@ -13,25 +13,20 @@ export const ItemPage = () => {
 
   return (
     <>
-      <h1>Item Page</h1>
-      <br />
-      <img
-        className="img-thumbnail mb-5"
-        style={{ width: "70vw" }}
-        src={img}
-        alt={desc}
-      />
       <h1>{name}</h1>
+      <br />
+      <img className="img" style={{ width: "70vw" }} src={img} alt={desc} />
+      <hr />
       <p>{desc}</p>
       <p>
-        <b>{price}</b>
+        Precio: <b>{price}$</b>
       </p>
       <Link to={`/order/${_id}`} className="btn btn-outline-success mr-2">
-        Select
+        Pedir
       </Link>
 
       <button onClick={onBack} className="btn btn-outline-danger">
-        Back
+        Atras
       </button>
     </>
   );

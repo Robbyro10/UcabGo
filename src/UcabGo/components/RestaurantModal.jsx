@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useUcabGoStore, useUiStore } from "../../hooks";
 
@@ -17,7 +17,7 @@ Modal.setAppElement("#root");
 
 export const RestaurantModal = ({ restaurant }) => {
   const { isProductModalOpen, closeProductModal } = useUiStore();
-  const { startSavingProduct } = useUcabGoStore();
+  const { startSavingProduct, activeProduct } = useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -27,6 +27,12 @@ export const RestaurantModal = ({ restaurant }) => {
     restaurant,
     img: "",
   });
+
+  useEffect(() => {
+    if (activeProduct !== null) {
+      setFormValues({ ...activeProduct });
+    }
+  }, [activeProduct]);
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -42,9 +48,11 @@ export const RestaurantModal = ({ restaurant }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
+    console.log(formValues);
 
     await startSavingProduct(formValues);
     closeProductModal();
+    setFormSubmitted(false);
   };
 
   return (
@@ -69,11 +77,12 @@ export const RestaurantModal = ({ restaurant }) => {
             name="name"
             value={formValues.name}
             onChange={onInputChanged}
+            required
           />
         </div>
 
         <div className="form-group mb-2">
-          <label>Precio</label>
+          <label>Precio ($)</label>
           <input
             type="number"
             className="form-control"
@@ -81,6 +90,7 @@ export const RestaurantModal = ({ restaurant }) => {
             name="price"
             value={formValues.price}
             onChange={onInputChanged}
+            required
           />
         </div>
 

@@ -9,7 +9,7 @@ export const OrderForm = ({ id }) => {
   const itemImageUrl = img;
 
   const onBack = () => {
-    navigate(-1);
+    navigate(-2);
   };
 
   const [formValues, setFormValues] = useState({
@@ -158,7 +158,7 @@ export const OrderForm = ({ id }) => {
             Confirmar Pedido!
           </button>
           <button className="btn btn-danger ml-3" onClick={onBack}>
-            Atras
+            Cancelar
           </button>
         </div>
       </div>

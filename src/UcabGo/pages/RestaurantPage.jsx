@@ -1,5 +1,4 @@
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useUcabGoStore } from "../../hooks";
 import { FabAddNew, ItemList, RestaurantModal } from "../components";
 import { getProductsByRestaurant, getRestaurantById } from "../helpers";
 
@@ -8,8 +7,8 @@ export const RestaurantPage = () => {
 
   const restaurant = getRestaurantById(_id);
   const products = getProductsByRestaurant(restaurant);
-
   const navigate = useNavigate();
+  const userType = "restaurant";
 
   const onBack = () => {
     navigate("/ucabgo");
@@ -34,7 +33,7 @@ export const RestaurantPage = () => {
         {restaurant.horario}
       </p>
 
-      <FabAddNew />
+      {userType !== "client" && <FabAddNew />}
 
       <RestaurantModal restaurant={restaurant.name} />
 
@@ -45,7 +44,7 @@ export const RestaurantPage = () => {
       )}
 
       <button onClick={onBack} className="btn btn-outline-primary">
-        Back
+        Atrás
       </button>
     </>
   );
