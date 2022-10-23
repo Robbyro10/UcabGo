@@ -13,13 +13,15 @@ const loginFormFields = {
 const registerFormFields = {
   registerName: "",
   registerPhone: "",
+  rif: "",
+  desc: "",
   registerEmail: "",
   registerPassword: "",
   registerPassword2: "",
 };
 
-export const LoginPage = () => {
-  const { startLogin, startRegister, errorMessage } = useAuthStore();
+export const LoginStorePage = () => {
+  const { startLogin, startRegister, errorMessage } = useAuthStore("stores");
 
   const {
     loginEmail,
@@ -29,6 +31,8 @@ export const LoginPage = () => {
   const {
     registerName,
     registerPhone,
+    rif,
+    desc,
     registerEmail,
     registerPassword,
     registerPassword2,
@@ -51,6 +55,8 @@ export const LoginPage = () => {
       password: registerPassword,
       name: registerName,
       phone: registerPhone,
+      rif,
+      desc,
     });
   };
 
@@ -64,13 +70,13 @@ export const LoginPage = () => {
     <div className="container login-container">
       <div className="row">
         <div className="col-md-6 login-form-1">
-          <h3>Ingreso Cliente</h3>
+          <h3>Ingreso Establecimiento</h3>
           <form onSubmit={loginSubmit}>
             <div className="form-group mb-2">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Correo UCAB"
+                placeholder="Correo"
                 name="loginEmail"
                 value={loginEmail}
                 onChange={onLoginInputChange}
@@ -87,20 +93,26 @@ export const LoginPage = () => {
               />
             </div>
             <div className="form-group mb-2">
-              <input type="submit" className="btnSubmit" value="Login" />
+              <input
+                type="submit"
+                className="btnSubmit bg-success"
+                value="Login"
+              />
             </div>
           </form>
-          <Link to="/loginStablishment">Registro establecimiento</Link>
+          <Link to="/login" className="text-success">
+            Registro cliente
+          </Link>
         </div>
 
-        <div className="col-md-6 login-form-2">
-          <h3>Registro Cliente</h3>
+        <div className="col-md-6 login-form-2 bg-success">
+          <h3>Registro Establecimiento</h3>
           <form onSubmit={registerSubmit}>
             <div className="form-group mb-2">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Nombre"
+                placeholder="Nombre del Establecimiento"
                 name="registerName"
                 value={registerName}
                 onChange={onRegisterInputChange}
@@ -118,9 +130,29 @@ export const LoginPage = () => {
             </div>
             <div className="form-group mb-2">
               <input
+                type="text"
+                className="form-control"
+                placeholder="RIF"
+                name="rif"
+                value={rif}
+                onChange={onRegisterInputChange}
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Descripcion breve del establecimiento"
+                name="desc"
+                value={desc}
+                onChange={onRegisterInputChange}
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
                 type="email"
                 className="form-control"
-                placeholder="Correo UCAB"
+                placeholder="Correo"
                 name="registerEmail"
                 value={registerEmail}
                 onChange={onRegisterInputChange}
@@ -149,7 +181,11 @@ export const LoginPage = () => {
             </div>
 
             <div className="d-grid gap-2">
-              <input type="submit" className="btnSubmit" value="Crear cuenta" />
+              <input
+                type="submit"
+                className="btnSubmit text-success"
+                value="Crear cuenta"
+              />
             </div>
           </form>
         </div>

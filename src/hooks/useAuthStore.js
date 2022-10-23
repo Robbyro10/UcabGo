@@ -4,7 +4,7 @@ import { ucabGoApi } from '../api'
 import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice';
 
 
-export const useAuthStore = () => {
+export const useAuthStore = (type = 'clients') => {
 
     const { status, user, errorMessage } = useSelector( state => state.auth);
     const dispatch = useDispatch();
@@ -14,10 +14,10 @@ export const useAuthStore = () => {
 
         try {
 
-            const { data } = await ucabGoApi.post('/clients', {email, password})
+            const { data } = await ucabGoApi.post(`/${type}`, {email, password})
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type: 'client'}));
+            dispatch( onLogin({ name: data.name, uid: data.uid, type}));
             
         } catch (error) {
             dispatch( onLogout('Credenciales incorrectas'));
@@ -27,15 +27,15 @@ export const useAuthStore = () => {
         }  
     }
 
-    const startRegister = async({ email, password, name, phone }) => {
+    const startRegister = async({ email, password, name, phone, rif, desc}) => {
         dispatch(onChecking());
 
         try {
 
-            const { data } = await ucabGoApi.post('/clients/new', {email, name, password, phone});
+            const { data } = await ucabGoApi.post(`/${type}/new`, {email, name, password, phone, rif, desc});
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type: 'client' }));
+            dispatch( onLogin({ name: data.name, uid: data.uid, type }));
 
         } catch (error) {
             dispatch( onLogout(error.response.data?.msg || '--'));
@@ -50,10 +50,10 @@ export const useAuthStore = () => {
         if ( !token ) return dispatch(onLogout());
 
         try {
-            const { data } = await ucabGoApi.get('/clients/renew');
+            const { data } = await ucabGoApi.get(`/${type}/renew`);
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime() );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type: 'client' }));
+            dispatch( onLogin({ name: data.name, uid: data.uid, type }));
         } catch (error) {
             localStorage.clear();
             dispatch(onLogout());

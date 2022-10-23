@@ -45,7 +45,7 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
             <p>{desc}</p>
             <p>{price}$</p>
 
-            {user.type === "client" ? (
+            {user.type === "clients" ? (
               <Link
                 to={`/restaurant/item/${_id}`}
                 className="btn btn-outline-success"
