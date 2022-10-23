@@ -1,8 +1,7 @@
-import { useUcabGoStore, useUiStore } from "../../hooks";
+import { useUiStore } from "../../hooks";
 
 export const FabAddNew = () => {
   const { openProductModal } = useUiStore();
-  const {} = useUcabGoStore();
 
   const handleClickNew = () => {
     openProductModal();

@@ -7,6 +7,15 @@ const ucabGoApi = axios.create({
     baseURL: VITE_API_URL
 });
 
-// Configurar interceptores
+// TODO: Configurar interceptores
+ucabGoApi.interceptors.request.use( config => {
+
+    config.headers = {
+        ...config.headers,
+        'x-token': localStorage.getItem('token')
+    }
+
+    return config;
+})
 
 export default ucabGoApi;

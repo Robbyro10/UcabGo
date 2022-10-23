@@ -1,26 +1,32 @@
-const initialState = {
-    status: "checking", //authenticated, not-authenticated
-    user: {},
-    errorMessage: undefined,
-  };
-  
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "onChecking":
-        return {
-          status: "checking",
-          user: {},
-          errorMessage: undefined,
-        };
-      case "onLogin":
-        return {
-          status: "authenticated",
-          user: action.payload,
-          errorMessage: undefined,
-        };
-      default:
-        throw new Error();
-    }
-  };
+import { createSlice } from "@reduxjs/toolkit";
 
-  // No se que hacer con esto :(
+export const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    status: 'checking',
+    user: {},
+    errorMessage: undefined
+  },
+  reducers: {
+    onChecking: ( state ) => {
+      state.status = "checking";
+      state.user = {};
+      state.errorMessage = undefined;
+    },
+    onLogin: (state, {payload}) => {
+      state.status = 'authenticated';
+      state.user = payload;
+      state.errorMessage = undefined;
+    },
+    onLogout: (state, {payload}) => {
+      state.status = "not-authenticated";
+      state.user = {};
+      state.errorMessage = payload;
+    },
+    clearErrorMessage: (state) => {
+      state.errorMessage = undefined;
+    }
+  }
+})
+
+export const { onChecking, onLogin, onLogout, clearErrorMessage } = authSlice.actions;

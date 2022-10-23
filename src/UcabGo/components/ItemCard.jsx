@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useUcabGoStore, useUiStore } from "../../hooks";
+import { useAuthStore, useUcabGoStore, useUiStore } from "../../hooks";
 import { getProductById } from "../helpers";
 import { RestaurantModal } from "./RestaurantModal";
 
@@ -7,7 +7,7 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
   const itemImageUrl = img;
   const { openProductModal } = useUiStore();
   const { setActiveProduct, startDeleteEvent } = useUcabGoStore();
-  const userType = "admin"; //change to set admin mode
+  const { user } = useAuthStore();
 
   const onEdit = () => {
     // Still figuring this out
@@ -45,7 +45,7 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
             <p>{desc}</p>
             <p>{price}$</p>
 
-            {userType === "client" ? (
+            {user.type === "client" ? (
               <Link
                 to={`/restaurant/item/${_id}`}
                 className="btn btn-outline-success"
