@@ -34,7 +34,7 @@ export const RestaurantPage = () => {
         {restaurant.horario}
       </p>
 
-      {user.type !== "client" && <FabAddNew />}
+      {user.type !== "clients" && <FabAddNew />}
 
       <RestaurantModal restaurant={restaurant.name} />
 
@@ -44,7 +44,7 @@ export const RestaurantPage = () => {
         <ItemList restaurant={restaurant} />
       )}
 
-      <button onClick={onBack} className="btn btn-outline-primary">
+      <button onClick={onBack} className="btn btn-outline-primary mb-5">
         Atrás
       </button>
     </>

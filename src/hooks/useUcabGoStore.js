@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
+import { ucabGoApi } from "../api";
 import { onAddNewProduct, onDeleteProduct, onSetActiveProduct, onUpdateProduct } from "../store/ucabGo/ucabGoSlice";
 
 
 export const useUcabGoStore = () => {
 
     const dispatch = useDispatch();
-    const { restaurants, products, activeProduct } = useSelector( state => state.ucabGo);
+    const { restaurants, products, activeProduct, orders } = useSelector( state => state.ucabGo);
+    const { user } = useSelector(state => state.auth)
 
     const setActiveProduct = ( product ) => {
       dispatch( onSetActiveProduct(product) )
@@ -19,7 +21,8 @@ export const useUcabGoStore = () => {
         dispatch(onUpdateProduct({...product}))
       } else {
         // creating
-        dispatch(onAddNewProduct({ ...product, _id: new Date().getTime()}));
+        const { data } = await ucabGoApi.post('/products', product);
+        dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
       }
     }
 
@@ -34,6 +37,7 @@ export const useUcabGoStore = () => {
     restaurants,
     products,
     hasProductSelected: !!activeProduct,
+    orders,
 
     //* Metodos
     setActiveProduct,

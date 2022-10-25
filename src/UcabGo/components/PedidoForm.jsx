@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProductById, getRestaurantById } from "../helpers";
 
-export const OrderForm = ({ id }) => {
+export const PedidoForm = ({ id }) => {
   const navigate = useNavigate();
 
   const { name, desc, price, img } = getProductById(id);

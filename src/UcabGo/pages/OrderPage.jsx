@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { OrderForm } from "../components/OrderForm";
+import { PedidoForm } from "../components";
 
 export const OrderPage = () => {
   const { _id } = useParams();
@@ -8,7 +8,7 @@ export const OrderPage = () => {
       <h1>Casi Listo!</h1>
       <hr />
 
-      <OrderForm id={_id} />
+      <PedidoForm id={_id} />
     </>
   );
 };

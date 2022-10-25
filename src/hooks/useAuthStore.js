@@ -17,6 +17,7 @@ export const useAuthStore = (type = 'clients') => {
             const { data } = await ucabGoApi.post(`/${type}`, {email, password})
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
+            localStorage.setItem('type', type );
             dispatch( onLogin({ name: data.name, uid: data.uid, type}));
             
         } catch (error) {
@@ -35,6 +36,7 @@ export const useAuthStore = (type = 'clients') => {
             const { data } = await ucabGoApi.post(`/${type}/new`, {email, name, password, phone, rif, desc});
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
+            localStorage.setItem('type', type );
             dispatch( onLogin({ name: data.name, uid: data.uid, type }));
 
         } catch (error) {
