@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
-import { RestaurantList, OrderList } from "../components";
+import { StoreList, OrderList } from "../components";
 
 export const UcabGoPage = () => {
   const { user } = useAuthStore();
@@ -13,17 +13,17 @@ export const UcabGoPage = () => {
           <h1>Haga su Pedido!</h1>
           <hr />
           <ul>
-            <RestaurantList />
+            <StoreList />
           </ul>
         </>
       ) : (
         <>
           <div className="container">
             <div className="row">
-              <div className="col-10">
+              <div className="col">
                 <h1>Lista de Pedidos</h1>
               </div>
-              <div className="col mt-2">
+              <div className="text-align-right mt-2">
                 <Link
                   to="/restaurant/203948y3j9f40j2"
                   className="btn btn-primary"
@@ -34,9 +34,7 @@ export const UcabGoPage = () => {
             </div>
           </div>
           <hr />
-          <ul>
-            <OrderList />
-          </ul>
+          <OrderList />
         </>
       )}
     </>

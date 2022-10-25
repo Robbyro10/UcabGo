@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
 import { onAddNewProduct, onDeleteProduct, onSetActiveProduct, onUpdateProduct } from "../store/ucabGo/ucabGoSlice";
 
@@ -6,7 +7,7 @@ import { onAddNewProduct, onDeleteProduct, onSetActiveProduct, onUpdateProduct }
 export const useUcabGoStore = () => {
 
     const dispatch = useDispatch();
-    const { restaurants, products, activeProduct, orders } = useSelector( state => state.ucabGo);
+    const { stores, products, activeProduct, orders } = useSelector( state => state.ucabGo);
     const { user } = useSelector(state => state.auth)
 
     const setActiveProduct = ( product ) => {
@@ -23,18 +24,20 @@ export const useUcabGoStore = () => {
         // creating
         const { data } = await ucabGoApi.post('/products', product);
         dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
+        Swal.fire("Agregado!", `${product.name} ha sido agregado`, "success");
       }
     }
 
     const startDeleteEvent = () => {
       // Todo: llegar al backend
       dispatch(onDeleteProduct())
+      Swal.fire("Eliminado!", "Producto eliminado correctamente", "success");
     }
 
   return {
     //* Propiedades
     activeProduct,
-    restaurants,
+    stores,
     products,
     hasProductSelected: !!activeProduct,
     orders,

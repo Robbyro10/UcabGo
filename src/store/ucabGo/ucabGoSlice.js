@@ -1,11 +1,11 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { orders, products, restaurants } from '../../data'
+import { orders, products, stores } from '../../data'
 
 const initialState = {
-    restaurants: restaurants,
-    products: products,
-    orders: orders,
+    stores,
+    products,
+    orders,
     activeProduct: null
 }
 

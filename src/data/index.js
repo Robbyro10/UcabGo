@@ -1,5 +1,5 @@
 
 
 export * from './products'
-export * from './restaurants'
+export * from './stores'
 export * from './orders'

@@ -15,7 +15,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export const RestaurantModal = ({ restaurant }) => {
+export const StoreModal = ({ restaurant }) => {
   const { isProductModalOpen, closeProductModal } = useUiStore();
   const { startSavingProduct, activeProduct } = useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);

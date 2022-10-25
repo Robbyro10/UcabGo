@@ -1,13 +1,13 @@
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
-import { FabAddNew, ItemList, RestaurantModal } from "../components";
-import { getProductsByRestaurant, getRestaurantById } from "../helpers";
+import { FabAddNew, ItemList, StoreModal } from "../components";
+import { getProductsByStore, getStoreById } from "../helpers";
 
-export const RestaurantPage = () => {
+export const StorePage = () => {
   const { _id } = useParams();
 
-  const restaurant = getRestaurantById(_id);
-  const products = getProductsByRestaurant(restaurant);
+  const store = getStoreById(_id);
+  const products = getProductsByStore(store);
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
@@ -15,33 +15,33 @@ export const RestaurantPage = () => {
     navigate("/ucabgo");
   };
 
-  if (!restaurant) {
+  if (!store) {
     return <Navigate to="/ucabgo" />;
   }
 
   return (
     <>
-      <h1>{restaurant.name}</h1>
+      <h1>{store.name}</h1>
 
-      <p>{restaurant.desc}</p>
+      <p>{store.desc}</p>
       <hr />
       <p>
         <b>Ubicacion: </b>
-        {restaurant.location}
+        {store.location}
       </p>
       <p>
         <b>Horario: </b>
-        {restaurant.horario}
+        {store.horario}
       </p>
 
       {user.type !== "clients" && <FabAddNew />}
 
-      <RestaurantModal restaurant={restaurant.name} />
+      <StoreModal store={store.name} />
 
       {!products ? (
-        <h1>No hay items en este restaurante</h1>
+        <h1>No hay items en este establecimiento</h1>
       ) : (
-        <ItemList restaurant={restaurant} />
+        <ItemList store={store} />
       )}
 
       <button onClick={onBack} className="btn btn-outline-primary mb-5">

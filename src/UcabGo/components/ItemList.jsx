@@ -1,10 +1,10 @@
 import { useUcabGoStore } from "../../hooks";
 import { ItemCard } from "./ItemCard";
 
-export const ItemList = ({ restaurant }) => {
+export const ItemList = ({ store }) => {
   const { products } = useUcabGoStore();
   const filteredProducts = products.filter(
-    (product) => product.restaurant === restaurant.name
+    (product) => product.store === store.name
   );
 
   return (

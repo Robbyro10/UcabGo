@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProductById, getRestaurantById } from "../helpers";
+import { getProductById } from "../helpers";
 
 export const PedidoForm = ({ id }) => {
   const navigate = useNavigate();
 
-  const { name, desc, price, img } = getProductById(id);
+  const { name, desc, price, img, store } = getProductById(id);
   const itemImageUrl = img;
 
   const onBack = () => {
@@ -17,6 +17,7 @@ export const PedidoForm = ({ id }) => {
     desc: "La parte de afuera de laboratorios",
     pago: "Efectivo",
     apariencia: "Tengo una camisa roja y un bluejean",
+    store,
   });
 
   const onInputChanged = ({ target }) => {

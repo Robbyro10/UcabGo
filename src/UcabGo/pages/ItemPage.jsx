@@ -17,6 +17,7 @@ export const ItemPage = () => {
       <br />
       <img className="img" style={{ width: "70vw" }} src={img} alt={desc} />
       <hr />
+      <h2>Descripción</h2>
       <p>{desc}</p>
       <p>
         Precio: <b>{price}$</b>
@@ -26,7 +27,7 @@ export const ItemPage = () => {
       </Link>
 
       <button onClick={onBack} className="btn btn-outline-danger">
-        Atras
+        Atrás
       </button>
     </>
   );

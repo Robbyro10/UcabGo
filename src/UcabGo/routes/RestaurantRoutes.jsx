@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar, Footer } from "../components";
-import { OrderPage, RestaurantPage, UcabGoPage } from "../pages";
+import { OrderPage, StorePage, UcabGoPage } from "../pages";
 import { ItemPage } from "../pages/ItemPage";
 import { SuccessPage } from "../pages/SuccessPage";
 
@@ -13,7 +13,7 @@ export const RestaurantRoutes = () => {
       <div className="container">
         <Routes>
           <Route path="/ucabgo" element={<UcabGoPage />} />
-          <Route path="/restaurant/:_id" element={<RestaurantPage />} />
+          <Route path="/restaurant/:_id" element={<StorePage />} />
           <Route path="order/:_id/" element={<OrderPage />} />
           <Route path="restaurant/item/:_id/" element={<ItemPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />

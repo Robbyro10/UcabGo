@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuthStore, useUcabGoStore, useUiStore } from "../../hooks";
 import { getProductById } from "../helpers";
-import { RestaurantModal } from "./RestaurantModal";
+import { StoreModal } from "./StoreModal";
 
 export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
   const itemImageUrl = img;
@@ -42,7 +42,7 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
           </div>
           <div className="col-8 mb-2 mt-2">
             <h2 className="card-title">{name}</h2>
-            <p>{desc}</p>
+            {user.type !== "clients" && <p>{desc}</p>}
             <p>{price}$</p>
 
             {user.type === "clients" ? (

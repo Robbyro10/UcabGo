@@ -1,17 +1,16 @@
 import React from "react";
 import { Order } from "./Order";
+import { useAuthStore, useUcabGoStore } from "../../hooks";
 
 export const OrderList = () => {
-  // const { orders } = useUcabGoStore();
-  // const { user } = useAuthStore();
-  // const filteredOrders = orders.filter(
-  //   (order) => order.restaurant === user.name
-  // );
+  const { orders } = useUcabGoStore();
+  const { user } = useAuthStore();
+  const filteredOrders = orders.filter((order) => order.store === user.name);
   return (
     <ul className="list-group">
-      <li className="list-group-item">
-        <Order />
-      </li>
+      {filteredOrders?.map((order) => (
+        <Order key={order._id} {...order} />
+      ))}
     </ul>
   );
 };
