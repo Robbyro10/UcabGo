@@ -1,24 +1,20 @@
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useUcabGoStore } from "../../hooks";
+import { useParams } from "react-router-dom";
+import useSWR from "swr";
 import { PedidoForm } from "../components";
-import { getProductById } from "../helpers";
+import { fetcher } from "../helpers";
 
 export const OrderPage = () => {
   const { id } = useParams();
-  const { startLoadingProducts } = useUcabGoStore();
-
-  useEffect(() => {
-    startLoadingProducts();
-  }, []);
-
-  const product = getProductById(id);
+  const { data, error } = useSWR(
+    `http://localhost:4000/api/products/${id}`,
+    fetcher
+  );
 
   return (
     <>
       <h1>Casi Listo!</h1>
       <hr />
-      {!product ? <h1>Cargando...</h1> : <PedidoForm product={product} />}
+      {!data ? <h1>Cargando...</h1> : <PedidoForm product={data.product} />}
     </>
   );
 };

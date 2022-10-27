@@ -14,6 +14,7 @@ export const ItemCard = ({ id, name, price, desc, bestSeller, img }) => {
       name,
       price,
       desc,
+      img,
     });
     openProductModal();
   };
@@ -24,8 +25,9 @@ export const ItemCard = ({ id, name, price, desc, bestSeller, img }) => {
       name,
       price,
       desc,
+      img,
     });
-    startDeleteProduct({ id });
+    startDeleteProduct(id);
   };
 
   return (

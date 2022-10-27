@@ -46,9 +46,7 @@ export const StoreModal = ({ restaurant }) => {
   };
 
   const onSubmit = async (event) => {
-    event.preventDefault();
     setFormSubmitted(true);
-    console.log(formValues);
 
     await startSavingProduct(formValues);
     closeProductModal();

@@ -26,7 +26,6 @@ export const useUcabGoStore = () => {
         // creating
         const { data } = await ucabGoApi.post('/products', product);
         dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
-        Swal.fire("Agregado!", `${product.name} ha sido agregado`, "success");
 
       } catch (error) {
         console.log(error);
@@ -36,10 +35,17 @@ export const useUcabGoStore = () => {
       
     }
 
-    const startDeleteProduct = () => {
+    const startDeleteProduct = async() => {
       // Todo: llegar al backend
-      dispatch(onDeleteProduct())
-      Swal.fire("Eliminado!", "Producto eliminado correctamente", "success");
+      try {
+        await ucabGoApi.delete(`/products/${activeProduct.id}`);
+        dispatch(onDeleteProduct());
+        Swal.fire("Eliminado!", "Producto eliminado correctamente", "success");
+        
+      } catch (error) {
+        console.log(error);
+        Swal.fire('Error al Eliminar', error.response.data.msg, 'error');
+      }
     }
 
     const startLoadingProducts = async () => {
