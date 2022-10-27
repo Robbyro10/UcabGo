@@ -3,8 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { orders, products, stores } from '../../data'
 
 const initialState = {
+    isLoadingProducts: true,
+    isLoadingOrders: true,
     stores,
-    products,
+    products: [],
     orders,
     activeProduct: null
 }
@@ -22,7 +24,7 @@ export const ucabGoSlice = createSlice({
     },
     onUpdateProduct: (state, {payload}) => {
       state.products = state.products.map( product => {
-        if (product._id === payload._id){
+        if (product.id === payload.id){
           return payload;
         }
 
@@ -31,11 +33,21 @@ export const ucabGoSlice = createSlice({
     },
     onDeleteProduct: ( state ) => {
       if ( state.activeProduct ){
-        state.products = state.products.filter( product => product._id !== state.activeProduct._id);
+        state.products = state.products.filter( product => product.id !== state.activeProduct.id);
         state.activeProduct = null;
       }
+    },
+    onLoadProducts: (state, {payload = []}) => {
+      state.isLoadingProducts = false;
+      // state.products = payload;
+      payload.forEach( product => {
+        const exists = state.products.some( dbProduct => dbProduct.id === product.id );
+        if ( !exists ) {
+          state.products.push(product);
+        }
+      })
     }
   }
 });
 
-export const { onSetActiveProduct, onAddNewProduct, onUpdateProduct, onDeleteProduct } = ucabGoSlice.actions
+export const { onSetActiveProduct, onAddNewProduct, onUpdateProduct, onDeleteProduct, onLoadProducts } = ucabGoSlice.actions

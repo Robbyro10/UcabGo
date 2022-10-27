@@ -5,7 +5,7 @@ import { OrderPage, StorePage, UcabGoPage } from "../pages";
 import { ItemPage } from "../pages/ItemPage";
 import { SuccessPage } from "../pages/SuccessPage";
 
-export const RestaurantRoutes = () => {
+export const StoreRoutes = () => {
   return (
     <>
       <NavBar />
@@ -13,9 +13,9 @@ export const RestaurantRoutes = () => {
       <div className="container">
         <Routes>
           <Route path="/ucabgo" element={<UcabGoPage />} />
-          <Route path="/restaurant/:_id" element={<StorePage />} />
-          <Route path="order/:_id/" element={<OrderPage />} />
-          <Route path="restaurant/item/:_id/" element={<ItemPage />} />
+          <Route path="/store/:_id" element={<StorePage />} />
+          <Route path="order/:id/" element={<OrderPage />} />
+          <Route path="store/item/:id/" element={<ItemPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
           <Route path="/*" element={<Navigate to="/ucabgo" />} />
           <Route path="/order/success" element={<SuccessPage />} />

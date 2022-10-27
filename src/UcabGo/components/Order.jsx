@@ -29,14 +29,11 @@ export const Order = ({
           </p>
         </div>
         <div className="col-auto text-right">
-          <p>
-            <i className="fa-regular fa-clock"></i> &nbsp;
-            {time} <p className="text-muted">{client}</p>
-          </p>
+          <i className="fa-regular fa-clock"></i> &nbsp;
+          {time} <p className="text-muted">{client}</p>
           <button className="btn">
             <i className="fa-solid fa-check"></i>
           </button>
-
           <button className="btn">
             <i className="fa-solid fa-trash"></i>
           </button>

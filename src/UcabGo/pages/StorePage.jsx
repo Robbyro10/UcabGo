@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useAuthStore } from "../../hooks";
+import { useAuthStore, useUcabGoStore } from "../../hooks";
 import { FabAddNew, ItemList, StoreModal } from "../components";
 import { getProductsByStore, getStoreById } from "../helpers";
 
@@ -7,7 +8,7 @@ export const StorePage = () => {
   const { _id } = useParams();
 
   const store = getStoreById(_id);
-  const products = getProductsByStore(store);
+  const { startLoadingProducts, products } = useUcabGoStore();
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
@@ -18,6 +19,10 @@ export const StorePage = () => {
   if (!store) {
     return <Navigate to="/ucabgo" />;
   }
+
+  useEffect(() => {
+    startLoadingProducts();
+  }, []);
 
   return (
     <>

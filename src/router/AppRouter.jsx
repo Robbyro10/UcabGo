@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage, LoginStorePage } from "../auth";
-import { useAuthStore } from "../hooks";
+import { useAuthStore, useUcabGoStore } from "../hooks";
 import { UcabGoPage } from "../UcabGo";
-import { RestaurantRoutes } from "../UcabGo/routes/RestaurantRoutes";
+import { StoreRoutes } from "../UcabGo/routes/StoreRoutes";
 
 export const AppRouter = () => {
   // const authStatus = "not-authenticated";
@@ -29,7 +29,7 @@ export const AppRouter = () => {
             <Route path="/*" element={<Navigate to="/login" />} />
           </>
         ) : (
-          <Route path="/*" element={<RestaurantRoutes />} />
+          <Route path="/*" element={<StoreRoutes />} />
         )}
       </Routes>
     </>

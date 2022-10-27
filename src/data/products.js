@@ -7,7 +7,10 @@ export const products = [
         price: '9',
         desc: 'Hamburgesa de pollo con tocineta',
         bestSeller: 'true',
-        store: 'Holy Chicken',
+        store: {
+            name: 'Holy Chicken',
+            _id: '203948y3j9f40j2'
+        },
         img: '/assets/stores/holy.jpg'
     },
     {
@@ -17,7 +20,10 @@ export const products = [
         price: '5',
         desc: 'Tenders de pollo', 
         bestSeller: 'true',
-        store: 'Holy Chicken',
+        store: {
+            name: 'Holy Chicken',
+            _id: '203948y3j9f40j2'
+        },
         img: '/assets/stores/tender.jpg'
     },
     {
@@ -27,7 +33,10 @@ export const products = [
         price: '10',
         desc: 'Hamburgesa de pollo con Tocineta en nuestra salsa de Honey & Garlic',
         bestSeller: 'false',
-        store: 'Holy Chicken',
+        store: {
+            name: 'Holy Chicken',
+            _id: '203948y3j9f40j2'
+        },
         img: '/assets/stores/honeyGarlic.jpg'
     }
 ];

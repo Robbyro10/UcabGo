@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
 import { useAuthStore, useUcabGoStore, useUiStore } from "../../hooks";
-import { getProductById } from "../helpers";
-import { StoreModal } from "./StoreModal";
 
-export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
+export const ItemCard = ({ id, name, price, desc, bestSeller, img }) => {
   const itemImageUrl = img;
   const { openProductModal } = useUiStore();
-  const { setActiveProduct, startDeleteEvent } = useUcabGoStore();
+  const { setActiveProduct, startDeleteProduct } = useUcabGoStore();
   const { user } = useAuthStore();
 
   const onEdit = () => {
     // Still figuring this out
     setActiveProduct({
-      _id,
+      id,
       name,
       price,
       desc,
@@ -22,12 +20,12 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
 
   const handleDelete = () => {
     setActiveProduct({
-      _id,
+      id,
       name,
       price,
       desc,
     });
-    startDeleteEvent({ _id });
+    startDeleteProduct({ id });
   };
 
   return (
@@ -47,7 +45,7 @@ export const ItemCard = ({ _id, name, price, desc, bestSeller, img }) => {
 
             {user.type === "clients" ? (
               <Link
-                to={`/restaurant/item/${_id}`}
+                to={`/store/item/${id}`}
                 className="btn btn-outline-success"
               >
                 Más
