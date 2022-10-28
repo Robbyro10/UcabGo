@@ -12,14 +12,12 @@ export const PedidoForm = ({ product }) => {
   const { user } = useAuthStore();
   // const itemImageUrl = product.img;
 
-  const storeLink = "/";
-
   const [formValues, setFormValues] = useState({
-    ubicacion: "Modulos",
-    desc: "La parte de afuera de laboratorios",
-    pago: "Efectivo",
-    apariencia: "Tengo una camisa roja y un bluejean",
-    store: product.store.name,
+    location: "Modulos",
+    detail: "",
+    pago: "",
+    apariencia: "",
+    product: product.id,
     user,
     time,
   });
@@ -47,8 +45,8 @@ export const PedidoForm = ({ product }) => {
         <div className="col-sm-10">
           <select
             className="form-control"
-            name="ubicacion"
-            value={formValues.ubicacion}
+            name="location"
+            value={formValues.location}
             onChange={onInputChanged}
             required
           >
@@ -65,7 +63,7 @@ export const PedidoForm = ({ product }) => {
       </div>
 
       <div className="form-group row">
-        <label htmlFor="ubicacion" className="col-sm-2 col-form-label">
+        <label htmlFor="Descripcion" className="col-sm-2 col-form-label">
           Descripcion
         </label>
         <div className="col-sm-10">
@@ -73,8 +71,8 @@ export const PedidoForm = ({ product }) => {
             type="text"
             className="form-control"
             placeholder="Descripcion detallada de su ubicacion"
-            name="desc"
-            value={formValues.desc}
+            name="detail"
+            value={formValues.detail}
             onChange={onInputChanged}
             required
           />
@@ -163,7 +161,7 @@ export const PedidoForm = ({ product }) => {
           <button type="submit" className="btn btn-success">
             Confirmar Pedido!
           </button>
-          <Link className="btn btn-danger ml-3" to={storeLink}>
+          <Link className="btn btn-danger ml-3" to={`/store/${product.store}`}>
             Cancelar
           </Link>
         </div>

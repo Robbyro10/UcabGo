@@ -3,9 +3,11 @@ import { ItemCard } from "./ItemCard";
 
 export const ItemList = ({ store }) => {
   const { products } = useUcabGoStore();
+  //635c14dd9792c111dcedfa5f store._id
   const filteredProducts = products.filter(
-    (product) => product.store.name === store.name
+    (product) => product.store == store._id
   );
+  // console.log(filteredProducts);
 
   return (
     <div className="container">

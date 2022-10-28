@@ -15,6 +15,8 @@ const registerFormFields = {
   registerPhone: "",
   rif: "",
   desc: "",
+  registerLocation: "",
+  registerHorario: "",
   registerEmail: "",
   registerPassword: "",
   registerPassword2: "",
@@ -36,6 +38,8 @@ export const LoginStorePage = () => {
     registerEmail,
     registerPassword,
     registerPassword2,
+    registerHorario,
+    registerLocation,
     onInputChange: onRegisterInputChange,
   } = useForm(registerFormFields);
 
@@ -55,6 +59,8 @@ export const LoginStorePage = () => {
       password: registerPassword,
       name: registerName,
       phone: registerPhone,
+      // horario: registerHorario,
+      // location: registerLocation,
       rif,
       desc,
     });
@@ -128,6 +134,26 @@ export const LoginStorePage = () => {
                 onChange={onRegisterInputChange}
               />
             </div>
+            {/* <div className="form-group mb-2">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ubicacion dentro de la UCAB"
+                name="registerLocation"
+                value={registerLocation}
+                onChange={onRegisterInputChange}
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Horario d"
+                name="registerHorario"
+                value={registerHorario}
+                onChange={onRegisterInputChange}
+              />
+            </div> */}
             <div className="form-group mb-2">
               <input
                 type="text"

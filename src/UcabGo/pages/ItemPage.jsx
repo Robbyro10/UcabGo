@@ -10,9 +10,6 @@ export const ItemPage = () => {
     fetcher
   );
 
-  const navigate = useNavigate();
-  // const storeLink = `/store/${store._id}`;
-
   return (
     <>
       {!data ? (
@@ -37,7 +34,10 @@ export const ItemPage = () => {
             Pedir
           </Link>
 
-          <Link to={"/"} className="btn btn-outline-danger">
+          <Link
+            to={`/store/${data.product.store}`}
+            className="btn btn-outline-danger"
+          >
             Atrás
           </Link>
         </>
