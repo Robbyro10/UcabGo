@@ -10,6 +10,7 @@ export const orders = [
         payment: 'Tarjeta',
         appearance: "Camisa negra porque negra tiene el alma",
         time: "5pm",
+        day: "10/28/2022"
     },
     {
         _id: 'esdf2wefd2', 
@@ -21,6 +22,7 @@ export const orders = [
         payment: 'Efectivo',
         appearance: "Morral aesthetic y disfraz de unicornio",
         time: "2pm",
+        day: "10/28/2022"
     },
     {
         _id: '2saoie0ud2', 

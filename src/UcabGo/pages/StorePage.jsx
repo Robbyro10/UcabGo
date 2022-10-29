@@ -45,8 +45,8 @@ export const StorePage = () => {
             {data.store.location}
           </p>
           <p>
-            <b>Horario: </b>
-            {data.store.horario}
+            <b>Teléfono: </b>
+            {data.store.phone}
           </p>
 
           {user.type !== "clients" && <FabAddNew />}

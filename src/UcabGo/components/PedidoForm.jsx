@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAuthStore, useUcabGoStore } from "../../hooks";
-import { getProductById } from "../helpers";
-import { getTime } from "../helpers";
+import { useAuthStore } from "../../hooks";
+import { getDay, getTime } from "../helpers";
 
 export const PedidoForm = ({ product }) => {
   const navigate = useNavigate();
   const time = getTime();
+  const day = getDay();
 
   const { user } = useAuthStore();
   // const itemImageUrl = product.img;
@@ -15,11 +15,12 @@ export const PedidoForm = ({ product }) => {
   const [formValues, setFormValues] = useState({
     location: "Modulos",
     detail: "",
-    pago: "",
+    payment: "",
     apariencia: "",
     product: product.id,
     user,
     time,
+    day,
   });
 
   const onInputChanged = ({ target }) => {
@@ -89,7 +90,7 @@ export const PedidoForm = ({ product }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="pago"
+                name="payment"
                 value="Efectivo"
                 onChange={onInputChanged}
                 required
@@ -102,7 +103,7 @@ export const PedidoForm = ({ product }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="pago"
+                name="payment"
                 value="Pago Movil"
                 onChange={onInputChanged}
               />
@@ -114,8 +115,8 @@ export const PedidoForm = ({ product }) => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="pago"
-                value="tarjeta"
+                name="payment"
+                value="Tarjeta"
                 onChange={onInputChanged}
               />
               <label className="form-check-label" htmlFor="tarjeta">

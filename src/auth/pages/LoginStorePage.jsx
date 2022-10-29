@@ -13,10 +13,8 @@ const loginFormFields = {
 const registerFormFields = {
   registerName: "",
   registerPhone: "",
-  rif: "",
   desc: "",
   registerLocation: "",
-  registerHorario: "",
   registerEmail: "",
   registerPassword: "",
   registerPassword2: "",
@@ -33,12 +31,10 @@ export const LoginStorePage = () => {
   const {
     registerName,
     registerPhone,
-    rif,
     desc,
     registerEmail,
     registerPassword,
     registerPassword2,
-    registerHorario,
     registerLocation,
     onInputChange: onRegisterInputChange,
   } = useForm(registerFormFields);
@@ -59,16 +55,14 @@ export const LoginStorePage = () => {
       password: registerPassword,
       name: registerName,
       phone: registerPhone,
-      // horario: registerHorario,
-      // location: registerLocation,
-      rif,
+      location: registerLocation,
       desc,
     });
   };
 
   useEffect(() => {
     if (errorMessage !== undefined) {
-      Swal.fire("Erro en la autenticación", errorMessage, "error");
+      Swal.fire("Error en la autenticación", errorMessage, "error");
     }
   }, [errorMessage]);
 
@@ -134,7 +128,8 @@ export const LoginStorePage = () => {
                 onChange={onRegisterInputChange}
               />
             </div>
-            {/* <div className="form-group mb-2">
+
+            <div className="form-group mb-2">
               <input
                 type="text"
                 className="form-control"
@@ -144,26 +139,7 @@ export const LoginStorePage = () => {
                 onChange={onRegisterInputChange}
               />
             </div>
-            <div className="form-group mb-2">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Horario d"
-                name="registerHorario"
-                value={registerHorario}
-                onChange={onRegisterInputChange}
-              />
-            </div> */}
-            <div className="form-group mb-2">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="RIF"
-                name="rif"
-                value={rif}
-                onChange={onRegisterInputChange}
-              />
-            </div>
+
             <div className="form-group mb-2">
               <input
                 type="text"

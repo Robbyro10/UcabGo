@@ -1,14 +1,12 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { orders, products, stores } from '../../data'
 
 const initialState = {
     isLoadingProducts: true,
     isLoadingOrders: true,
-    stores,
     products: [],
-    orders,
-    activeProduct: null
+    activeProduct: null,
+    activeOrder: null,
 }
 
 export const ucabGoSlice = createSlice({
@@ -21,6 +19,10 @@ export const ucabGoSlice = createSlice({
     onAddNewProduct: (state, {payload}) => {
       state.products.push(payload);
       state.activeProduct = null;
+    },
+    onAddNewOrder: (state, {payload}) => {
+      state.orders.push(payload);
+      state.activeOrder = null
     },
     onUpdateProduct: (state, {payload}) => {
       state.products = state.products.map( product => {
@@ -50,4 +52,4 @@ export const ucabGoSlice = createSlice({
   }
 });
 
-export const { onSetActiveProduct, onAddNewProduct, onUpdateProduct, onDeleteProduct, onLoadProducts } = ucabGoSlice.actions
+export const { onSetActiveProduct, onAddNewProduct, onAddNewOrder, onUpdateProduct, onDeleteProduct, onLoadProducts } = ucabGoSlice.actions

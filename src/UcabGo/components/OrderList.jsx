@@ -1,16 +1,24 @@
 import React from "react";
 import { Order } from "./Order";
 import { useAuthStore, useUcabGoStore } from "../../hooks";
+import useSWR from "swr";
+import { fetcher } from "../helpers";
 
 export const OrderList = () => {
-  const { orders } = useUcabGoStore();
+  const { data, error } = useSWR(`http://localhost:4000/api/orders/`, fetcher);
   const { user } = useAuthStore();
-  const filteredOrders = orders.filter((order) => order.store === user.name);
+
   return (
-    <ul className="list-group">
-      {filteredOrders?.map((order) => (
-        <Order key={order._id} {...order} />
-      ))}
-    </ul>
+    <>
+      {!data ? (
+        <h1>Cargando...</h1>
+      ) : (
+        <ul className="list-group">
+          {data.orders.map((order) => (
+            <Order key={order.id} {...order} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };

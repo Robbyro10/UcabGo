@@ -8,13 +8,14 @@ export const Order = ({
   time,
   payment,
   appearance,
+  day,
 }) => {
   return (
     <li className="list-group-item">
       <div className="row">
         <div className="col">
           <i className="fa-solid fa-cart-shopping"></i> &nbsp;
-          <b>{product}</b>
+          <b>{product.name}</b>
           <p>
             &nbsp;
             <i className="fa-sharp fa-solid fa-location-dot"></i>
@@ -30,7 +31,8 @@ export const Order = ({
         </div>
         <div className="col-auto text-right">
           <i className="fa-regular fa-clock"></i> &nbsp;
-          {time} <p className="text-muted">{client}</p>
+          {time} <br /> <small className="text-muted">{day}</small>
+          <p className="text-muted">{client}</p>
           <button className="btn">
             <i className="fa-solid fa-check"></i>
           </button>
