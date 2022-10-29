@@ -1,10 +1,11 @@
 import { StoreCard } from "./StoreCard";
 import { useUcabGoStore } from "../../hooks/useUcabGoStore";
 import useSWR from "swr";
-import { fetcher } from "../helpers";
+import { fetcher, getEnvVariables } from "../helpers";
 
 export const StoreList = () => {
-  const { data, error } = useSWR("http://localhost:4000/api/stores/", fetcher);
+  const { VITE_API_URL } = getEnvVariables();
+  const { data, error } = useSWR(`${VITE_API_URL}/stores/`, fetcher);
 
   return (
     <>

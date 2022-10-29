@@ -14,6 +14,7 @@ const registerFormFields = {
   registerName: "",
   registerPhone: "",
   desc: "",
+  rif: "",
   registerLocation: "",
   registerEmail: "",
   registerPassword: "",
@@ -32,6 +33,7 @@ export const LoginStorePage = () => {
     registerName,
     registerPhone,
     desc,
+    rif,
     registerEmail,
     registerPassword,
     registerPassword2,
@@ -57,6 +59,7 @@ export const LoginStorePage = () => {
       phone: registerPhone,
       location: registerLocation,
       desc,
+      rif,
     });
   };
 
@@ -128,7 +131,16 @@ export const LoginStorePage = () => {
                 onChange={onRegisterInputChange}
               />
             </div>
-
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="RIF"
+                name="rif"
+                value={rif}
+                onChange={onRegisterInputChange}
+              />
+            </div>
             <div className="form-group mb-2">
               <input
                 type="text"

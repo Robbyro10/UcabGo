@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { PedidoForm } from "../components";
-import { fetcher } from "../helpers";
+import { fetcher, getEnvVariables } from "../helpers";
 
 export const OrderPage = () => {
   const { id } = useParams();
-  const { data, error } = useSWR(
-    `http://localhost:4000/api/products/${id}`,
-    fetcher
-  );
+  const { VITE_API_URL } = getEnvVariables();
+  const { data, error } = useSWR(`${VITE_API_URL}/products/${id}`, fetcher);
 
   return (
     <>

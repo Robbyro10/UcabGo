@@ -3,15 +3,14 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { useAuthStore, useUcabGoStore } from "../../hooks";
 import { FabAddNew, ItemList, StoreModal } from "../components";
-import { fetcher, getProductsByStore, getStoreById } from "../helpers";
+import { fetcher, getEnvVariables } from "../helpers";
 
 export const StorePage = () => {
   const { _id } = useParams();
 
-  const { data, error } = useSWR(
-    `http://localhost:4000/api/stores/${_id}`,
-    fetcher
-  );
+  const { VITE_API_URL } = getEnvVariables();
+
+  const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
   // console.log(data);
   // const store = getStoreById(_id);
   const { startLoadingProducts, products } = useUcabGoStore();
@@ -21,10 +20,6 @@ export const StorePage = () => {
   const onBack = () => {
     navigate("/ucabgo");
   };
-
-  // if (!store) {
-  //   return <Navigate to="/ucabgo" />;
-  // }
 
   useEffect(() => {
     startLoadingProducts();
@@ -40,14 +35,26 @@ export const StorePage = () => {
 
           <p>{data.store.desc}</p>
           <hr />
-          <p>
-            <b>Ubicacion: </b>
-            {data.store.location}
-          </p>
-          <p>
-            <b>Teléfono: </b>
-            {data.store.phone}
-          </p>
+          <div className="row">
+            <div className="col">
+              <p>
+                <b>Ubicacion: </b>
+                {data.store.location}
+              </p>
+            </div>
+            <div className="col">
+              <p>
+                <b>Teléfono: </b>
+                {data.store.phone}
+              </p>
+            </div>
+            <div className="col">
+              <p>
+                <b>RIF: </b>
+                {data.store.rif}
+              </p>
+            </div>
+          </div>
 
           {user.type !== "clients" && <FabAddNew />}
 
