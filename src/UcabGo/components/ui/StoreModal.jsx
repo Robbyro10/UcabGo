@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useUcabGoStore, useUiStore } from "../../hooks";
+import { useUcabGoStore, useUiStore } from "../../../hooks";
 
 const customStyles = {
   content: {
@@ -25,14 +25,8 @@ export const StoreModal = ({ restaurant }) => {
     price: "",
     desc: "",
     restaurant,
-    img: "",
+    img: undefined,
   });
-
-  useEffect(() => {
-    if (activeProduct !== null) {
-      setFormValues({ ...activeProduct });
-    }
-  }, [activeProduct]);
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -41,6 +35,19 @@ export const StoreModal = ({ restaurant }) => {
     });
   };
 
+  const onFileInputChanged = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      img: target.files[0],
+    });
+  };
+
+  useEffect(() => {
+    if (activeProduct !== null) {
+      setFormValues({ ...activeProduct });
+    }
+  }, [activeProduct]);
+
   const onCloseModal = () => {
     closeProductModal();
   };
@@ -48,7 +55,8 @@ export const StoreModal = ({ restaurant }) => {
   const onSubmit = async (event) => {
     setFormSubmitted(true);
 
-    await startSavingProduct(formValues);
+    // await startSavingProduct(formValues);
+    console.log(formValues);
     closeProductModal();
     setFormSubmitted(false);
   };
@@ -115,7 +123,7 @@ export const StoreModal = ({ restaurant }) => {
             accept="image/png, image/jpeg"
             name="img"
             value={formValues.img}
-            onChange={onInputChanged}
+            onChange={onFileInputChanged}
           />
         </div>
 

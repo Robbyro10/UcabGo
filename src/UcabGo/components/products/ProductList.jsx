@@ -1,7 +1,7 @@
-import { useUcabGoStore } from "../../hooks";
-import { ItemCard } from "./ItemCard";
+import { useUcabGoStore } from "../../../hooks";
+import { ProductCard } from "./ProductCard";
 
-export const ItemList = ({ store }) => {
+export const ProductList = ({ store }) => {
   const { products } = useUcabGoStore();
   //635c14dd9792c111dcedfa5f store._id
   const filteredProducts = products.filter(
@@ -13,7 +13,7 @@ export const ItemList = ({ store }) => {
     <div className="container">
       <div className="row">
         {filteredProducts?.map((product) => (
-          <ItemCard key={product.id} {...product} />
+          <ProductCard key={product.id} {...product} />
         ))}
       </div>
     </div>

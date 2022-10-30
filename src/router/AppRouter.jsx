@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage, LoginStorePage } from "../auth";
-import { useAuthStore, useUcabGoStore } from "../hooks";
-import { UcabGoPage } from "../UcabGo";
+import { useAuthStore } from "../hooks";
 import { StoreRoutes } from "../UcabGo/routes/StoreRoutes";
 
 export const AppRouter = () => {

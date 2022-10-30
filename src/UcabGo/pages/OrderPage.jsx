@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { PedidoForm } from "../components";
+import { PedidoForm } from "../components/orders";
 import { fetcher, getEnvVariables } from "../helpers";
 
 export const OrderPage = () => {

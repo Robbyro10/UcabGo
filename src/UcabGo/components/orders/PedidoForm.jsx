@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAuthStore } from "../../hooks";
-import { getDay, getTime } from "../helpers";
+import { useAuthStore, useUcabGoStore } from "../../../hooks";
+import { getDay, getTime } from "../../helpers";
 
 export const PedidoForm = ({ product }) => {
   const navigate = useNavigate();
@@ -10,13 +10,14 @@ export const PedidoForm = ({ product }) => {
   const day = getDay();
 
   const { user } = useAuthStore();
+  const { startSavingOrder } = useUcabGoStore();
   // const itemImageUrl = product.img;
 
   const [formValues, setFormValues] = useState({
     location: "Modulos",
     detail: "",
     payment: "",
-    apariencia: "",
+    appearance: "",
     product: product.id,
     user,
     time,
@@ -30,11 +31,11 @@ export const PedidoForm = ({ product }) => {
     });
   };
 
-  const handleSubmit = (event) => {
-    // navigate("/order/success");
-    console.log(formValues);
-    Swal.fire("Listo!", "Tu pedido ha sido realizado.", "success");
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    await startSavingOrder(formValues);
+    navigate("/ucabgo");
+    Swal.fire("Enviado!!", "Tu pedido ha sido registrado.", "success");
   };
 
   return (
@@ -135,10 +136,9 @@ export const PedidoForm = ({ product }) => {
           <input
             type="text"
             className="form-control"
-            id="apariencia"
             placeholder="Ej. vestimenta, pantalon, etc."
-            name="apariencia"
-            value={formValues.apariencia}
+            name="appearance"
+            value={formValues.appearance}
             onChange={onInputChanged}
             required
           />

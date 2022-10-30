@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useAuthStore, useUcabGoStore, useUiStore } from "../../hooks";
+import { useAuthStore, useUcabGoStore, useUiStore } from "../../../hooks";
 
-export const ItemCard = ({ id, name, price, desc, bestSeller, img }) => {
+export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
   const itemImageUrl = img;
   const { openProductModal } = useUiStore();
   const { setActiveProduct, startDeleteProduct } = useUcabGoStore();
@@ -47,7 +47,7 @@ export const ItemCard = ({ id, name, price, desc, bestSeller, img }) => {
 
             {user.type === "clients" ? (
               <Link
-                to={`/store/item/${id}`}
+                to={`/store/product/${id}`}
                 className="btn btn-outline-success"
               >
                 Más

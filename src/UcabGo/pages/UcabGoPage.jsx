@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
-import { StoreList, OrderList } from "../components";
+import { OrderList } from "../components/orders";
+import { StoreList } from "../components/stores";
 
 export const UcabGoPage = () => {
   const { user } = useAuthStore();

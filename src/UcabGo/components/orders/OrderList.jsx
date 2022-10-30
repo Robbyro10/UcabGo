@@ -1,13 +1,13 @@
 import React from "react";
 import { Order } from "./Order";
-import { useAuthStore, useUcabGoStore } from "../../hooks";
+import { useAuthStore } from "../../../hooks";
 import useSWR from "swr";
-import { fetcher, getEnvVariables } from "../helpers";
+import { fetcher, getEnvVariables } from "../../helpers";
 
 export const OrderList = () => {
   const { VITE_API_URL } = getEnvVariables();
-  const { data, error } = useSWR(`${VITE_API_URL}/orders/`, fetcher);
   const { user } = useAuthStore();
+  const { data, error } = useSWR(`${VITE_API_URL}/orders/${user.uid}`, fetcher);
 
   return (
     <>
@@ -15,7 +15,7 @@ export const OrderList = () => {
         <h1>Cargando...</h1>
       ) : (
         <ul className="list-group">
-          {data.orders.map((order) => (
+          {data.filteredOrders.map((order) => (
             <Order key={order.id} {...order} />
           ))}
         </ul>

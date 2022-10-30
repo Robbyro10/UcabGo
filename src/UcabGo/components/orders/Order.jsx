@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Order = ({
-  client,
+  user,
   location,
   detail,
   product,
@@ -32,7 +32,7 @@ export const Order = ({
         <div className="col-auto text-right">
           <i className="fa-regular fa-clock"></i> &nbsp;
           {time} <br /> <small className="text-muted">{day}</small>
-          <p className="text-muted">{client}</p>
+          <p className="text-muted">{user.name}</p>
           <button className="btn">
             <i className="fa-solid fa-check"></i>
           </button>

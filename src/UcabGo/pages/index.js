@@ -1,5 +1,5 @@
 export * from './OrderPage'
 export * from './StorePage'
 export * from './UcabGoPage'
-export * from './ItemPage'
+export * from './ProductPage'
 export * from './SuccessPage'

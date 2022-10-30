@@ -1,5 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
-import { useAuthStore } from "../../hooks";
+import { useAuthStore } from "../../../hooks";
 
 export const NavBar = () => {
   const { startLogout, user } = useAuthStore(

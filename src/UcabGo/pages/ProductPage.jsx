@@ -1,8 +1,8 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher, getEnvVariables } from "../helpers";
 
-export const ItemPage = () => {
+export const ProductPage = () => {
   const { id } = useParams();
 
   const { VITE_API_URL } = getEnvVariables();

@@ -6,6 +6,7 @@ const initialState = {
     isLoadingOrders: true,
     products: [],
     activeProduct: null,
+    orders: [],
     activeOrder: null,
 }
 
@@ -29,7 +30,6 @@ export const ucabGoSlice = createSlice({
         if (product.id === payload.id){
           return payload;
         }
-
         return product;
       })
     },

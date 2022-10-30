@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { useAuthStore, useUcabGoStore } from "../../hooks";
-import { FabAddNew, ItemList, StoreModal } from "../components";
+import { ProductList } from "../components/products";
+import { FabAddNew, StoreModal } from "../components/ui";
 import { fetcher, getEnvVariables } from "../helpers";
 
 export const StorePage = () => {
@@ -63,7 +64,7 @@ export const StorePage = () => {
           {!products ? (
             <h1>No hay items en este establecimiento</h1>
           ) : (
-            <ItemList store={data.store} />
+            <ProductList store={data.store} />
           )}
 
           <button onClick={onBack} className="btn btn-outline-primary mb-5">

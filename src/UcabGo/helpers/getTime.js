@@ -8,5 +8,8 @@ export const getTime = () => {
     hours -= 12;
     meridiem = "PM";
     }
-    return hours + ":" + min + " " + meridiem;
+
+    let colon = ":";
+    if ( min < 10) {colon = ": "}
+    return hours + colon + min + " " + meridiem;
 }
