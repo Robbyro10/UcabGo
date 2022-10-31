@@ -16,11 +16,8 @@ export const StoreRoutes = () => {
           <Route path="store/product/:id/" element={<ProductPage />} />
           <Route path="/" element={<Navigate to="/ucabgo" />} />
           <Route path="/*" element={<Navigate to="/ucabgo" />} />
-          {/* <Route path="/order/success" element={<SuccessPage />} /> */}
         </Routes>
       </div>
-
-      {/* <Footer /> */}
     </>
   );
 };

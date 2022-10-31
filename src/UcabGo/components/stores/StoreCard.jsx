@@ -11,7 +11,9 @@ export const StoreCard = ({ _id, name, location, desc, img }) => {
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{desc}</p>
-          <p className="card-text">Ubicacion: {location}</p>
+          <p className="card-text">
+            <i className="fa-sharp fa-solid fa-location-dot"></i> {location}
+          </p>
           <Link to={`/store/${_id}`} className="btn btn-outline-primary">
             Seleccionar
           </Link>

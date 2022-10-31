@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage, LoginStorePage } from "../auth";
 import { useAuthStore } from "../hooks";
+import { Footer } from "../UcabGo/components/ui";
 import { StoreRoutes } from "../UcabGo/routes/StoreRoutes";
 
 export const AppRouter = () => {
@@ -31,6 +32,8 @@ export const AppRouter = () => {
           <Route path="/*" element={<StoreRoutes />} />
         )}
       </Routes>
+
+      <Footer />
     </>
   );
 };
