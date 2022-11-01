@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { useUcabGoStore, useUiStore } from "../../../hooks";
 
@@ -15,32 +16,16 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export const StoreModal = ({ restaurant }) => {
+export const StoreModal = ({ store }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
   const { isProductModalOpen, closeProductModal } = useUiStore();
   const { startSavingProduct, activeProduct } = useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const [formValues, setFormValues] = useState({
-    name: "",
-    price: "",
-    desc: "",
-    restaurant,
-    img: undefined,
-  });
-
-  const onInputChanged = ({ target }) => {
-    setFormValues({
-      ...formValues,
-      [target.name]: target.value,
-    });
-  };
-
-  const onFileInputChanged = ({ target }) => {
-    setFormValues({
-      ...formValues,
-      img: target.files[0],
-    });
-  };
 
   useEffect(() => {
     if (activeProduct !== null) {
@@ -52,11 +37,12 @@ export const StoreModal = ({ restaurant }) => {
     closeProductModal();
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = (data) => {
     setFormSubmitted(true);
+    data.store = store;
 
-    await startSavingProduct(formValues);
-    console.log(formValues);
+    startSavingProduct(data);
+
     closeProductModal();
     setFormSubmitted(false);
   };
@@ -72,7 +58,7 @@ export const StoreModal = ({ restaurant }) => {
     >
       <h1> Nuevo Producto </h1>
       <hr />
-      <form className="container" onSubmit={onSubmit}>
+      <form className="container" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group mb-2">
           <label>Nombre</label>
           <input
@@ -80,11 +66,16 @@ export const StoreModal = ({ restaurant }) => {
             className="form-control"
             placeholder="Nombre"
             autoComplete="off"
-            name="name"
-            value={formValues.name}
-            onChange={onInputChanged}
-            required
+            {...register("name", { required: true, maxLength: 20 })}
           />
+          {errors.name?.type === "required" && (
+            <p className="text-warning">El nombre es obligatorio</p>
+          )}
+          {errors.name?.type === "maxLength" && (
+            <p className="text-warning">
+              El nombre debe tener menos de 20 caracteres
+            </p>
+          )}
         </div>
 
         <div className="form-group mb-2">
@@ -93,11 +84,11 @@ export const StoreModal = ({ restaurant }) => {
             type="number"
             className="form-control"
             placeholder="Precio"
-            name="price"
-            value={formValues.price}
-            onChange={onInputChanged}
-            required
+            {...register("price", { required: true })}
           />
+          {errors.price?.type === "required" && (
+            <p className="text-warning">El precio es obligatorio</p>
+          )}
         </div>
 
         <hr />
@@ -108,11 +99,17 @@ export const StoreModal = ({ restaurant }) => {
             className="form-control"
             placeholder="Notas"
             rows="5"
-            name="desc"
             style={{ resize: "none" }}
-            value={formValues.desc}
-            onChange={onInputChanged}
-          ></textarea>
+            {...register("desc", { required: true, maxLength: 100 })}
+          />
+          {errors.desc?.type === "required" && (
+            <p className="text-warning">La descripcion es obligatoria</p>
+          )}
+          {errors.desc?.type === "maxLength" && (
+            <p className="text-warning">
+              La descripcion debe tener maximo 100 caracteres
+            </p>
+          )}
         </div>
 
         <div className="form-group mb-4">
@@ -121,9 +118,7 @@ export const StoreModal = ({ restaurant }) => {
             className="form-control"
             type="file"
             accept="image/png, image/jpeg"
-            name="img"
-            value={formValues.img}
-            onChange={onFileInputChanged}
+            {...register("img")}
           />
         </div>
 

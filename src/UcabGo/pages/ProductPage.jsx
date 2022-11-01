@@ -66,9 +66,7 @@ export const ProductPage = () => {
               </button>
             </div>
             <div className="col-3 text-right">
-              <p>
-                <h3>{data.product.price * count}$</h3>
-              </p>
+              <h3>{data.product.price * count}$</h3>
             </div>
           </div>
           <br />
