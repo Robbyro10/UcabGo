@@ -1,5 +1,6 @@
 
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { ucabGoApi } from '../api'
 import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice';
 
@@ -21,6 +22,8 @@ export const useAuthStore = (type = 'clients') => {
             dispatch( onLogin({ name: data.name, uid: data.uid, type}));
             
         } catch (error) {
+            Swal.fire('Error!', 'Credenciales incorrectas', 'error');
+            
             dispatch( onLogout('Credenciales incorrectas'));
             setTimeout(() => {
                 dispatch(clearErrorMessage())
@@ -40,6 +43,7 @@ export const useAuthStore = (type = 'clients') => {
             dispatch( onLogin({ name: data.name, uid: data.uid, type }));
 
         } catch (error) {
+            Swal.fire('Error!', 'Ya existe un usuario con esos datos', 'error');
             dispatch( onLogout(error.response.data?.msg || '--'));
             setTimeout(() => {
                 dispatch(clearErrorMessage())
