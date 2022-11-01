@@ -10,6 +10,6 @@ export const getTime = () => {
     }
 
     let colon = ":";
-    if ( min < 10) {colon = ": "}
+    if ( min < 10) {colon = ":0"}
     return hours + colon + min + " " + meridiem;
 }

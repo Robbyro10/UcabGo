@@ -28,12 +28,12 @@ export const useAuthStore = (type = 'clients') => {
         }  
     }
 
-    const startRegister = async({ email, password, name, phone, desc, rif, location}) => {
+    const startRegister = async({ email, password, name, phone, desc, rif, location, img}) => {
         dispatch(onChecking());
 
         try {
 
-            const { data } = await ucabGoApi.post(`/${type}/new`, {email, name, password, phone, rif, desc, location});
+            const { data } = await ucabGoApi.post(`/${type}/new`, {email, password, name, phone, desc, rif, location, img});
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );

@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage, LoginStorePage } from "../auth";
+import {
+  ClientRegisterPage,
+  StoreRegisterPage,
+  StoreLoginPage,
+  ClientLoginPage,
+} from "../auth";
 import { useAuthStore } from "../hooks";
-import { Footer } from "../UcabGo/components/ui";
 import { StoreRoutes } from "../UcabGo/routes/StoreRoutes";
 
 export const AppRouter = () => {
@@ -24,16 +28,18 @@ export const AppRouter = () => {
       <Routes>
         {status === "not-authenticated" ? (
           <>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/loginStablishment" element={<LoginStorePage />} />
+            {/* <Route path="/login" element={<LoginPage />} /> */}
+            <Route path="/register" element={<ClientRegisterPage />} />
+            <Route path="/login" element={<ClientLoginPage />} />
+            <Route path="/registerstore" element={<StoreRegisterPage />} />
+            <Route path="/loginstore" element={<StoreLoginPage />} />
+            {/* <Route path="/loginStablishment" element={<LoginStorePage />} /> */}
             <Route path="/*" element={<Navigate to="/login" />} />
           </>
         ) : (
           <Route path="/*" element={<StoreRoutes />} />
         )}
       </Routes>
-
-      <Footer />
     </>
   );
 };

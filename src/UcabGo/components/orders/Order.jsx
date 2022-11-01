@@ -10,6 +10,9 @@ export const Order = ({
   appearance,
   day,
 }) => {
+  if (!user) {
+    return <h1> cargando...</h1>;
+  }
   return (
     <li className="list-group-item">
       <div className="row">
