@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher, getEnvVariables } from "../helpers";
@@ -8,6 +9,17 @@ export const ProductPage = () => {
   const { VITE_API_URL } = getEnvVariables();
 
   const { data, error } = useSWR(`${VITE_API_URL}/products/${id}`, fetcher);
+  const [count, setCount] = useState(1);
+
+  const onAdd = () => {
+    if (count === 10) return;
+    setCount(count + 1);
+  };
+
+  const onSubstract = () => {
+    if (count === 1) return;
+    setCount(count - 1);
+  };
 
   return (
     <>
@@ -15,7 +27,6 @@ export const ProductPage = () => {
         <h1>Cargando...</h1>
       ) : (
         <>
-          <h1>{data.product.name}</h1>
           <br />
           <img
             className="img"
@@ -24,14 +35,52 @@ export const ProductPage = () => {
             alt={data.product.desc}
           />
           <hr />
-          <h2>Descripción</h2>
+          <h1>{data.product.name}</h1>
           <p>{data.product.desc}</p>
-          <p>
-            Precio: <b>{data.product.price}$</b>
-          </p>
-          <Link to={`/order/${id}`} className="btn btn-outline-success mr-2">
-            Pedir
+          <textarea
+            type="textarea"
+            rows="2"
+            className="form-control w-75"
+            placeholder="Agregue una nota (sin cebolla, salsa extra, etc)"
+            style={{ resize: "none" }}
+          />
+          <hr />
+          <div className="row">
+            <div className="text-center" style={{ width: "80px" }}>
+              <button
+                className="btn btn-danger rounded-circle"
+                onClick={onSubstract}
+              >
+                <i className="fa-solid fa-minus"></i>
+              </button>
+            </div>
+            <div className="text-center" style={{ width: "80px" }}>
+              <h3>{count}</h3>
+            </div>
+            <div className="text-center" style={{ width: "80px" }}>
+              <button
+                className="btn btn-primary rounded-circle"
+                onClick={onAdd}
+              >
+                <i className="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div className="col-3 text-right">
+              <p>
+                <h3>{data.product.price * count}$</h3>
+              </p>
+            </div>
+          </div>
+          <br />
+
+          <Link
+            to={`/order/${id}`}
+            className="btn btn-outline-success mr-2 w-75"
+          >
+            Agregar al Pedido (demo)
           </Link>
+          <br />
+          <br />
 
           <Link
             to={`/store/${data.product.store}`}

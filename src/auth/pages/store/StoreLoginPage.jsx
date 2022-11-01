@@ -18,7 +18,7 @@ export const StoreLoginPage = () => {
   return (
     <div
       className="container mx-auto bg-success text-white p-4 rounded"
-      style={{ margin: "90px", width: "400px" }}
+      style={{ margin: "150px", width: "400px" }}
     >
       <h2>Ingreso Establecimiento</h2>
       <br />

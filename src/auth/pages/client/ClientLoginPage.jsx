@@ -18,7 +18,7 @@ export const ClientLoginPage = () => {
   return (
     <div
       className="container mx-auto text-white p-4 rounded"
-      style={{ margin: "90px", background: "#0062cc", width: "400px" }}
+      style={{ margin: "150px", background: "#0062cc", width: "400px" }}
     >
       <h2>Ingresar a UCABGO</h2>
       <br />
