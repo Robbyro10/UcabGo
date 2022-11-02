@@ -27,12 +27,6 @@ export const StoreModal = ({ store }) => {
   const { startSavingProduct, activeProduct } = useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (activeProduct !== null) {
-      setFormValues({ ...activeProduct });
-    }
-  }, [activeProduct]);
-
   const onCloseModal = () => {
     closeProductModal();
   };
@@ -40,11 +34,13 @@ export const StoreModal = ({ store }) => {
   const onSubmit = (data) => {
     setFormSubmitted(true);
     data.store = store;
+    data.img = "";
 
     startSavingProduct(data);
 
     closeProductModal();
     setFormSubmitted(false);
+    window.location.reload();
   };
 
   return (

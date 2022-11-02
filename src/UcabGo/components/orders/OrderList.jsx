@@ -11,8 +11,8 @@ export const OrderList = () => {
 
   return (
     <>
-      {!data ? (
-        <h1>Cargando...</h1>
+      {!data || data.filteredOrders.length === 0 ? (
+        <h3>Oops!! no parecen haber pedidos...</h3>
       ) : (
         <ul className="list-group">
           {data.filteredOrders.map((order) => (

@@ -9,8 +9,9 @@ export const useUcabGoStore = () => {
     const { stores, products, activeProduct, orders } = useSelector( state => state.ucabGo);
     const { user } = useSelector(state => state.auth)
 
-    const setActiveProduct = ( product ) => {
+    const setActiveProduct = ( {product} ) => {
       dispatch( onSetActiveProduct(product) )
+      console.log(activeProduct);
     }
 
     const startSavingProduct = async( product ) => {
@@ -45,13 +46,14 @@ export const useUcabGoStore = () => {
       }  
     }
 
-    const startDeleteProduct = async() => {
+    const startDeleteProduct = async( productId ) => {
       // Todo: llegar al backend
       try {
-        await ucabGoApi.delete(`/products/${activeProduct.id}`);
+        
+        await ucabGoApi.delete(`/products/${productId}`);
         dispatch(onDeleteProduct());
         Swal.fire("Eliminado!", "Producto eliminado correctamente", "success");
-        
+
       } catch (error) {
         console.log(error);
         Swal.fire('Error al Eliminar', error.response.data.msg, 'error');

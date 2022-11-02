@@ -6,28 +6,16 @@ export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
   const { openProductModal } = useUiStore();
   const { setActiveProduct, startDeleteProduct } = useUcabGoStore();
   const { user } = useAuthStore();
+  const product = { id, name, price, desc, img };
 
   const onEdit = () => {
-    // Still figuring this out
-    setActiveProduct({
-      id,
-      name,
-      price,
-      desc,
-      img,
-    });
+    setActiveProduct({ product });
     openProductModal();
   };
 
   const handleDelete = () => {
-    setActiveProduct({
-      id,
-      name,
-      price,
-      desc,
-      img,
-    });
     startDeleteProduct(id);
+    location.reload();
   };
 
   return (
