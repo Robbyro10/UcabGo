@@ -11,7 +11,7 @@ export const StoreList = () => {
       {!data ? (
         <h1>Cargando...</h1>
       ) : (
-        <div className="container">
+        <div className="container animate__animated animate__fadeInUp">
           <div className="row">
             {data.stores.map((store) => (
               <StoreCard key={store._id} {...store} />

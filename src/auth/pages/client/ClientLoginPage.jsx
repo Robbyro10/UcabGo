@@ -17,52 +17,62 @@ export const ClientLoginPage = () => {
 
   return (
     <div
-      className="container mx-auto text-white p-4 rounded"
-      style={{ margin: "150px", background: "#0062cc", width: "400px" }}
+      className="w-100 h-100"
+      style={{
+        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
+      }}
     >
-      <h2>Ingresar a UCABGO</h2>
-      <br />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label>Correo UCAB</label>
-          <input
-            className="form-control"
-            type="email"
-            {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
-          />
-        </div>
-        {errors.email?.type === "pattern" && (
-          <p className="text-warning">No es un correo de la UCAB</p>
-        )}
-
-        <div className="form-group">
-          <label>Contraseña</label>
-          <input
-            className="form-control"
-            type="password"
-            {...register("password", { required: true })}
-          />
-        </div>
-
+      <div
+        className="container mx-auto bg-white p-4 rounded"
+        style={{ margin: "150px", width: "400px" }}
+      >
+        <h2>Ingresar a UCABGO</h2>
         <br />
-        <br />
-        <button
-          className="btn btn-success mb-3 w-100"
-          type="submit"
-          value="submit"
-        >
-          Ingresar
-        </button>
-      </form>
-      <div className="text-center">
-        <p>
-          <a href="/register" className="text-white">
-            No tengo cuenta
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>Correo UCAB</label>
+            <input
+              className="form-control"
+              type="email"
+              {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
+            />
+          </div>
+          {errors.email?.type === "pattern" && (
+            <p className="text-warning">No es un correo de la UCAB</p>
+          )}
+
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              className="form-control"
+              type="password"
+              {...register("password", { required: true })}
+            />
+          </div>
+
+          <br />
+          <br />
+          <button
+            className="btn border-0 mb-3 w-100 text-white font-weight-bold"
+            style={{
+              backgroundImage: "linear-gradient(90deg, #4b6cb7, #182848)",
+            }}
+            type="submit"
+            value="submit"
+          >
+            Ingresar
+          </button>
+        </form>
+        <div className="text-center">
+          <p>
+            <a href="/register" style={{ color: "black" }}>
+              No tengo cuenta
+            </a>
+          </p>
+          <a href="/loginstore" style={{ color: "black" }}>
+            Soy Establecimiento
           </a>
-        </p>
-        <a href="/loginstore" className="text-white">
-          Soy Establecimiento
-        </a>
+        </div>
       </div>
     </div>
   );

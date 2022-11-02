@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "react-modal";
+import Swal from "sweetalert2";
 import { useUcabGoStore, useUiStore } from "../../../hooks";
 
 const customStyles = {
@@ -31,16 +33,28 @@ export const StoreModal = ({ store }) => {
     closeProductModal();
   };
 
+  const uploadImg = (img, data) => {
+    const formData = new FormData();
+    formData.append("file", img);
+    formData.append("upload_preset", "react-ucabgo");
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dwdimx0pg/image/upload", formData)
+      .then((response) => {
+        const imgUrl = response.data.url;
+        data.img = imgUrl;
+        startSavingProduct(data);
+      });
+  };
+
   const onSubmit = (data) => {
     setFormSubmitted(true);
     data.store = store;
-    data.img = "";
-
-    startSavingProduct(data);
+    Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
+    uploadImg(data.img[0], data);
 
     closeProductModal();
     setFormSubmitted(false);
-    window.location.reload();
   };
 
   return (

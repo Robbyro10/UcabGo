@@ -42,7 +42,7 @@ export const PedidoForm = ({ product }) => {
     <form onSubmit={handleSubmit}>
       <div className="form-group row">
         <label htmlFor="ubicacion" className="col-sm-2 col-form-label">
-          Ubicacion
+          Ubicación
         </label>
         <div className="col-sm-10">
           <select
@@ -52,12 +52,12 @@ export const PedidoForm = ({ product }) => {
             onChange={onInputChanged}
             required
           >
-            <option>Modulos</option>
+            <option>Módulos</option>
             <option>Laboratorios</option>
             <option>Feria</option>
             <option>Solarium</option>
             <option>Cincuentenario</option>
-            <option>Cafetin</option>
+            <option>Cafetín</option>
             <option>Canchas</option>
             <option>Otro</option>
           </select>
@@ -66,13 +66,13 @@ export const PedidoForm = ({ product }) => {
 
       <div className="form-group row">
         <label htmlFor="Descripcion" className="col-sm-2 col-form-label">
-          Descripcion
+          Descripción
         </label>
         <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
-            placeholder="Descripcion detallada de su ubicacion"
+            placeholder="Descripción detallada de su ubicación"
             name="detail"
             value={formValues.detail}
             onChange={onInputChanged}
@@ -84,7 +84,7 @@ export const PedidoForm = ({ product }) => {
       <fieldset className="form-group">
         <div className="row">
           <legend className="col-form-label col-sm-2 pt-0">
-            Metodo de Pago
+            Método de Pago
           </legend>
           <div className="col-sm-10">
             <div className="form-check">
@@ -96,21 +96,17 @@ export const PedidoForm = ({ product }) => {
                 onChange={onInputChanged}
                 required
               />
-              <label className="form-check-label" htmlFor="gridRadios1">
-                Efectivo
-              </label>
+              <label className="form-check-label">Efectivo</label>
             </div>
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="payment"
-                value="Pago Movil"
+                value="Pago Móvil"
                 onChange={onInputChanged}
               />
-              <label className="form-check-label" htmlFor="gridRadios2">
-                Pago Movil
-              </label>
+              <label className="form-check-label">Pago Movil</label>
             </div>
             <div className="form-check">
               <input
@@ -120,9 +116,17 @@ export const PedidoForm = ({ product }) => {
                 value="Tarjeta"
                 onChange={onInputChanged}
               />
-              <label className="form-check-label" htmlFor="tarjeta">
-                Tarjeta
-              </label>
+              <label className="form-check-label">Tarjeta</label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="payment"
+                value="Zelle"
+                onChange={onInputChanged}
+              />
+              <label className="form-check-label">Zelle</label>
             </div>
           </div>
         </div>
@@ -136,7 +140,7 @@ export const PedidoForm = ({ product }) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Ej. vestimenta, pantalon, etc."
+            placeholder="Ej. vestimenta, pantalón, morral, etc."
             name="appearance"
             value={formValues.appearance}
             onChange={onInputChanged}
@@ -144,10 +148,10 @@ export const PedidoForm = ({ product }) => {
           />
         </div>
       </div>
-      <h3 className="h3 mt-5">Confirme su Pedido!</h3>
+      <h3 className="h3 mt-5">¡Confirme su Pedido!</h3>
       <hr />
       <div className="card mb-3" style={{ width: "18rem" }}>
-        <img className="card-img-top" src={product.name} alt={product.name} />
+        <img className="card-img-top" src={product.img} alt={product.name} />
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
           <p className="card-text">{product.desc}</p>
@@ -160,7 +164,7 @@ export const PedidoForm = ({ product }) => {
       <div className="form-group row">
         <div className="col-sm-10">
           <button type="submit" className="btn btn-success">
-            Confirmar Pedido!
+            ¡Confirmar Pedido!
           </button>
           <Link className="btn btn-danger ml-3" to={`/store/${product.store}`}>
             Cancelar

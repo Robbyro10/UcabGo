@@ -6,11 +6,18 @@ export const StoreCard = ({ _id, name, location, desc, img }) => {
     <div className="col-lg-4">
       <div className="card mb-3">
         <Link to={`/store/${_id}`}>
-          <img className="card-img-top" src={storeImgUrl} alt={name} />
+          <img
+            className="card-img-top"
+            src={storeImgUrl}
+            alt={name}
+            style={{ height: "200px", objectFit: "contain" }}
+          />
         </Link>
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">{desc}</p>
+          <p className="card-text" style={{ minHeight: "3rem" }}>
+            {desc}
+          </p>
           <p className="card-text">
             <i className="fa-sharp fa-solid fa-location-dot"></i> {location}
           </p>

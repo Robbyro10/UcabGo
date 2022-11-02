@@ -17,49 +17,62 @@ export const StoreLoginPage = () => {
 
   return (
     <div
-      className="container mx-auto bg-success text-white p-4 rounded"
-      style={{ margin: "150px", width: "400px" }}
+      className="w-100 h-100"
+      style={{
+        backgroundImage: "linear-gradient(#44a08d, #093637)",
+      }}
     >
-      <h2>Ingreso Establecimiento</h2>
-      <br />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label>Correo</label>
-          <input
-            className="form-control"
-            type="email"
-            {...register("email", { required: true })}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Contraseña</label>
-          <input
-            className="form-control"
-            type="password"
-            {...register("password", { required: true })}
-          />
-        </div>
-
+      <div
+        className="container mx-auto bg-white p-4 rounded"
+        style={{
+          margin: "150px",
+          width: "400px",
+        }}
+      >
+        <h2>Ingreso Establecimiento</h2>
         <br />
-        <br />
-        <button
-          className="btn btn-primary mb-3 w-100"
-          type="submit"
-          value="submit"
-        >
-          Enviar
-        </button>
-      </form>
-      <p className="text-center">
-        <a href="/registerstore" className="text-white">
-          No tengo cuenta
-        </a>
-      </p>
-      <div className="text-center">
-        <a href="/login" className="text-white">
-          Soy Cliente
-        </a>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>Correo</label>
+            <input
+              className="form-control"
+              type="email"
+              {...register("email", { required: true })}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              className="form-control"
+              type="password"
+              {...register("password", { required: true })}
+            />
+          </div>
+
+          <br />
+          <br />
+          <button
+            className="btn border-0 mb-3 w-100 text-white font-weight-bold"
+            style={{
+              backgroundImage: "linear-gradient(90deg, #44a08d, #093637)",
+            }}
+            type="submit"
+            value="submit"
+          >
+            Enviar
+          </button>
+        </form>
+        <p className="text-center">
+          <a href="/registerstore" style={{ color: "black" }}>
+            No tengo cuenta
+          </a>
+        </p>
+        <div className="text-center">
+          <a href="/login" style={{ color: "black" }}>
+            Soy Cliente
+          </a>
+        </div>
       </div>
     </div>
   );

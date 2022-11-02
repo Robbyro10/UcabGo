@@ -10,7 +10,7 @@ export const ProductList = ({ store }) => {
   // console.log(filteredProducts);
 
   return (
-    <div className="container">
+    <div className="container animate__animated animate__fadeIn">
       <div className="row">
         {filteredProducts?.map((product) => (
           <ProductCard key={product.id} {...product} />

@@ -29,7 +29,7 @@ export const ProductPage = () => {
         <>
           <br />
           <img
-            className="img"
+            className="img animate__animated animate__fadeIn"
             style={{ width: "70vw", maxWidth: "60vh" }}
             src={data.product.img}
             alt={data.product.desc}

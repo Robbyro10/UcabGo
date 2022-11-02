@@ -11,7 +11,7 @@ export const UcabGoPage = () => {
     <>
       {user.type === "clients" ? (
         <>
-          <h1>Haga su Pedido!</h1>
+          <h1>¡Haga su Pedido!</h1>
           <hr />
           <ul>
             <StoreList />
