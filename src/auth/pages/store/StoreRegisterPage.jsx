@@ -49,7 +49,7 @@ export const StoreRegisterPage = () => {
 
   return (
     <div
-      className="w-100 h-100"
+      className="w-100 h-100 fixed-top"
       style={{
         backgroundImage: "linear-gradient(#44a08d, #093637)",
       }}
