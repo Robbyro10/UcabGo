@@ -30,7 +30,7 @@ export const ClientRegisterPage = () => {
 
   return (
     <div
-      className="w-100 h-100 fixed-top"
+      className="w-100 h-100"
       style={{
         backgroundImage: "linear-gradient(#4b6cb7, #182848)",
       }}
