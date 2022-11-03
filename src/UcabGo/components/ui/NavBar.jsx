@@ -30,7 +30,7 @@ export const NavBar = () => {
         <p>Cargando...</p>
       ) : (
         <nav
-          className="navbar navbar-dark bg-dark mb-4 px-4 fixed-top"
+          className="navbar navbar-dark bg-dark mb-4 px-4"
           style={{ opacity: "0.96" }}
         >
           <div className="container-fluid">
