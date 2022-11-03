@@ -11,7 +11,7 @@ export const Order = ({
   day,
 }) => {
   if (!user) {
-    return <h1> cargando...</h1>;
+    return;
   }
   return (
     <li className="list-group-item">
