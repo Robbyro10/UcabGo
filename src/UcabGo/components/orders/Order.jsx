@@ -1,4 +1,6 @@
 import React from "react";
+import Swal from "sweetalert2";
+import { useUcabGoStore } from "../../../hooks";
 
 export const Order = ({
   user,
@@ -9,10 +11,27 @@ export const Order = ({
   payment,
   appearance,
   day,
+  id,
 }) => {
   if (!user) {
     return;
   }
+
+  const { startDeleteOrder } = useUcabGoStore();
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "¿Seguro?",
+      confirmButtonText: "Eliminar",
+      showDenyButton: true,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        startDeleteOrder(id);
+      }
+    });
+  };
+
   return (
     <li className="list-group-item">
       <div className="row">
@@ -39,7 +58,7 @@ export const Order = ({
           <button className="btn">
             <i className="fa-solid fa-check"></i>
           </button>
-          <button className="btn">
+          <button className="btn" onClick={handleDelete}>
             <i className="fa-solid fa-trash"></i>
           </button>
         </div>

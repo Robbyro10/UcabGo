@@ -1,9 +1,14 @@
-#root{
+#root {
     height: 100%;
-    width: 100%;
+    width: 100vw;
     display: flex;
+    position: fixed;
     flex-direction: column;
     overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
 }
 
 /* Modal */

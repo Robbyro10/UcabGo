@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../../../hooks";
 
-export const ClientLoginPage = () => {
+export const AdminLoginPage = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const { startLogin } = useAuthStore();
+  const { startLogin } = useAuthStore("admins");
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -19,29 +19,26 @@ export const ClientLoginPage = () => {
     <div
       className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
+        backgroundImage: "linear-gradient(#000B18, #02386E)",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
         style={{ margin: "150px", width: "400px" }}
       >
-        <h2>Ingresar a UCABGO</h2>
+        <h2>Ingreso Administrador</h2>
         <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Correo UCAB</label>
+            <label>Correo</label>
             <input
               className="form-control"
               type="email"
-              {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
+              {...register("email", { required: true })}
             />
           </div>
           {errors.email?.type === "required" && (
-            <p className="text-danger">El correo es obligatorio</p>
-          )}
-          {errors.email?.type === "pattern" && (
-            <p className="text-danger">No es un correo de la UCAB</p>
+            <p className="text-warning">No es un correo de la UCAB</p>
           )}
 
           <div className="form-group">
@@ -58,7 +55,7 @@ export const ClientLoginPage = () => {
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #4b6cb7, #182848)",
+              backgroundImage: "linear-gradient(90deg, #000B18, #02386E)",
             }}
             type="submit"
             value="submit"
@@ -68,8 +65,8 @@ export const ClientLoginPage = () => {
         </form>
         <div className="text-center">
           <p>
-            <a href="/register" style={{ color: "black" }}>
-              No tengo cuenta
+            <a href="/login" style={{ color: "black" }}>
+              Soy Cliente
             </a>
           </p>
           <a href="/loginstore" style={{ color: "black" }}>

@@ -4,15 +4,15 @@ import Swal from "sweetalert2";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { getDay, getTime } from "../../helpers";
 
-export const PedidoForm = ({ product }) => {
+export const OrderForm = ({ product }) => {
   const navigate = useNavigate();
   const time = getTime();
   const day = getDay();
 
   const { user } = useAuthStore();
   const { startSavingOrder } = useUcabGoStore();
-  // const itemImageUrl = product.img;
 
+  // const itemImageUrl = product.img;
   const [formValues, setFormValues] = useState({
     location: "Modulos",
     detail: "",
@@ -22,6 +22,7 @@ export const PedidoForm = ({ product }) => {
     user,
     time,
     day,
+    status: "Pendiente",
   });
 
   const onInputChanged = ({ target }) => {

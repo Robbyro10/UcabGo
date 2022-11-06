@@ -1,19 +1,21 @@
 import { StoreCard } from "./StoreCard";
-import useSWR from "swr";
-import { fetcher, getEnvVariables } from "../../helpers";
+import { useEffect } from "react";
+import { useUcabGoStore } from "../../../hooks/useUcabGoStore";
 
 export const StoreList = () => {
-  const { VITE_API_URL } = getEnvVariables();
-  const { data, error } = useSWR(`${VITE_API_URL}/stores/`, fetcher);
+  const { startLoadingStores, stores } = useUcabGoStore();
+  useEffect(() => {
+    startLoadingStores();
+  }, []);
 
   return (
     <>
-      {!data ? (
+      {!stores ? (
         <h1>Cargando...</h1>
       ) : (
         <div className="container animate__animated animate__fadeInUp">
           <div className="row">
-            {data.stores.map((store) => (
+            {stores.map((store) => (
               <StoreCard key={store._id} {...store} />
             ))}
           </div>

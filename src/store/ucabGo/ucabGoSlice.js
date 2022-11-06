@@ -3,10 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isLoadingProducts: true,
+    isLoadingStores: true,
     isLoadingOrders: true,
+    isLoadingClients: true,
     products: [],
-    activeProduct: null,
+    stores: [],
     orders: [],
+    clients: [],
+    activeProduct: null,
     activeOrder: null,
 }
 
@@ -48,8 +52,29 @@ export const ucabGoSlice = createSlice({
           state.products.push(product);
         }
       })
+    },
+    onLoadStores: (state, {payload = []}) => {
+      state.isLoadingStores = false;
+      state.stores = payload;
+    },
+    onLoadClients: (state, {payload = []}) => {
+      state.isLoadingClients = false;
+      state.clients = payload;
+    },
+    onLoadOrders: (state, {payload = []}) => {
+      state.isLoadingOrders = false;
+      state.orders = payload;
     }
   }
 });
 
-export const { onSetActiveProduct, onAddNewProduct, onAddNewOrder, onUpdateProduct, onDeleteProduct, onLoadProducts } = ucabGoSlice.actions
+export const { 
+  onSetActiveProduct, 
+  onAddNewProduct, 
+  onAddNewOrder, 
+  onUpdateProduct, 
+  onDeleteProduct, 
+  onLoadStores, 
+  onLoadProducts, 
+  onLoadClients, 
+  onLoadOrders } = ucabGoSlice.actions

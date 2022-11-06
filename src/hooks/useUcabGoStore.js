@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from "react-redux"
 import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
-import { onAddNewProduct, onDeleteProduct, onLoadProducts, onSetActiveProduct, onUpdateProduct, onAddNewOrder } from "../store/ucabGo/ucabGoSlice";
+import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients } from "../store/ucabGo/ucabGoSlice";
 
 export const useUcabGoStore = () => {
 
     const dispatch = useDispatch();
-    const { stores, products, activeProduct, orders } = useSelector( state => state.ucabGo);
+    const { stores, products, clients, activeProduct, orders } = useSelector( state => state.ucabGo);
     const { user } = useSelector(state => state.auth)
 
     const setActiveProduct = ( {product} ) => {
       dispatch( onSetActiveProduct(product) )
-      console.log(activeProduct);
     }
 
     const startSavingProduct = async( product ) => {
@@ -47,13 +46,25 @@ export const useUcabGoStore = () => {
       }  
     }
 
+    const startDeleteOrder = async( orderId ) => {
+
+      try {
+        
+        await ucabGoApi.delete(`/orders/${orderId}`)
+        location.reload();
+
+      } catch (error) {
+        console.log(error);
+        Swal.fire('Error al Eliminar', error.response.data.msg, 'error');
+      }
+    }
+
     const startDeleteProduct = async( productId ) => {
-      // Todo: llegar al backend
       try {
         
         await ucabGoApi.delete(`/products/${productId}`);
         dispatch(onDeleteProduct());
-        Swal.fire("Eliminado!", "Producto eliminado correctamente", "success");
+        location.reload();
 
       } catch (error) {
         console.log(error);
@@ -74,20 +85,60 @@ export const useUcabGoStore = () => {
       }
     }
 
+    const startLoadingStores = async () => {
+      try {
+        const { data } = await ucabGoApi.get('/stores/');
+        const {stores} = data;
+        dispatch(onLoadStores(stores));
+        
+      } catch (error) {
+        console.log('Error cargando Stores');
+        console.log(error);
+      }
+    }
+
+    const startLoadingClients = async () => {
+      try {
+        const { data } = await ucabGoApi.get('/clients/');
+        const {clients} = data;
+        dispatch(onLoadClients(clients));
+        
+      } catch (error) {
+        console.log('Error cargando clients');
+        console.log(error);
+      }
+    }
+
+    const startLoadingOrders = async () => {
+      try {
+        const { data } = await ucabGoApi.get('/orders/');
+        const {orders} = data;
+        dispatch(onLoadOrders(orders));
+        
+      } catch (error) {
+        console.log('Error cargando clients');
+        console.log(error);
+      }
+    }
+
   return {
     //* Propiedades
     activeProduct,
     stores,
     products,
+    clients,
     hasProductSelected: !!activeProduct,
     orders,
 
     //* Metodos
     setActiveProduct,
     startSavingProduct,
-    startSavingOrder,
     startDeleteProduct,
+    startDeleteOrder,
     startLoadingProducts,
+    startLoadingStores,
+    startLoadingClients,
+    startLoadingOrders,
     
   }
 }

@@ -2,8 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "react-modal";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { useUcabGoStore, useUiStore } from "../../../hooks";
+import { onSetActiveProduct } from "../../../store/ucabGo/ucabGoSlice";
 
 const customStyles = {
   content: {
@@ -19,21 +21,31 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const StoreModal = ({ store }) => {
+  const { isProductModalOpen, closeProductModal } = useUiStore();
+  const {
+    startSavingProduct,
+    activeProduct,
+    setActiveProduct,
+    startDeleteProduct,
+  } = useUcabGoStore();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const { isProductModalOpen, closeProductModal } = useUiStore();
-  const { startSavingProduct, activeProduct } = useUcabGoStore();
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
   const onCloseModal = () => {
     closeProductModal();
+    dispatch(onSetActiveProduct(null));
   };
 
   const uploadImg = (img, data) => {
+    if (activeProduct) {
+      startDeleteProduct(activeProduct.id);
+    }
     const formData = new FormData();
     formData.append("file", img);
     formData.append("upload_preset", "react-ucabgo");
@@ -50,7 +62,11 @@ export const StoreModal = ({ store }) => {
   const onSubmit = (data) => {
     setFormSubmitted(true);
     data.store = store;
-    Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
+    if (activeProduct) {
+      Swal.fire("¡Listo!", "Producto editado exitosamente", "success");
+    } else {
+      Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
+    }
     uploadImg(data.img[0], data);
 
     closeProductModal();
@@ -66,7 +82,7 @@ export const StoreModal = ({ store }) => {
       overlayClassName="modal-fondo"
       closeTimeoutMs={200}
     >
-      <h1> Nuevo Producto </h1>
+      {activeProduct ? <h1> Editar Producto </h1> : <h1> Agregar Producto </h1>}
       <hr />
       <form className="container" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group mb-2">
@@ -79,10 +95,10 @@ export const StoreModal = ({ store }) => {
             {...register("name", { required: true, maxLength: 20 })}
           />
           {errors.name?.type === "required" && (
-            <p className="text-warning">El nombre es obligatorio</p>
+            <p className="text-danger">El nombre es obligatorio</p>
           )}
           {errors.name?.type === "maxLength" && (
-            <p className="text-warning">
+            <p className="text-danger">
               El nombre debe tener menos de 20 caracteres
             </p>
           )}
@@ -97,7 +113,7 @@ export const StoreModal = ({ store }) => {
             {...register("price", { required: true })}
           />
           {errors.price?.type === "required" && (
-            <p className="text-warning">El precio es obligatorio</p>
+            <p className="text-danger">El precio es obligatorio</p>
           )}
         </div>
 
@@ -113,10 +129,10 @@ export const StoreModal = ({ store }) => {
             {...register("desc", { required: true, maxLength: 100 })}
           />
           {errors.desc?.type === "required" && (
-            <p className="text-warning">La descripcion es obligatoria</p>
+            <p className="text-danger">La descripcion es obligatoria</p>
           )}
           {errors.desc?.type === "maxLength" && (
-            <p className="text-warning">
+            <p className="text-danger">
               La descripcion debe tener maximo 100 caracteres
             </p>
           )}
@@ -128,13 +144,16 @@ export const StoreModal = ({ store }) => {
             className="form-control"
             type="file"
             accept="image/png, image/jpeg"
-            {...register("img")}
+            {...register("img", { required: true })}
           />
+          {errors.img?.type === "required" && (
+            <p className="text-danger">La imagen es obligatoria</p>
+          )}
         </div>
 
         <button type="submit" className="btn btn-outline-primary btn-block">
           <i className="far fa-save"></i>
-          <span> Guardar</span>
+          {activeProduct ? <span> Actualizar </span> : <span> Guardar </span>}
         </button>
       </form>
     </Modal>

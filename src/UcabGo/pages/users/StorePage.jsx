@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
-import { useAuthStore, useUcabGoStore } from "../../hooks";
-import { ProductList } from "../components/products";
-import { FabAddNew, StoreModal } from "../components/ui";
-import { fetcher, getEnvVariables } from "../helpers";
+import { useAuthStore, useUcabGoStore } from "../../../hooks";
+import { ProductList } from "../../components/products";
+import { FabAddNew, StoreModal } from "../../components/ui";
+import { fetcher, getEnvVariables } from "../../helpers";
 
 export const StorePage = () => {
   const { _id } = useParams();
@@ -14,7 +14,8 @@ export const StorePage = () => {
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
   // console.log(data);
   // const store = getStoreById(_id);
-  const { startLoadingProducts, products } = useUcabGoStore();
+  const { startLoadingProducts, products, hasProductSelected } =
+    useUcabGoStore();
   const navigate = useNavigate();
   const { user } = useAuthStore();
 

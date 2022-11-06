@@ -5,9 +5,10 @@ import {
   StoreRegisterPage,
   StoreLoginPage,
   ClientLoginPage,
+  AdminLoginPage,
 } from "../auth";
 import { useAuthStore } from "../hooks";
-import { StoreRoutes } from "../UcabGo/routes/StoreRoutes";
+import { AppRoutes } from "../UcabGo/routes/AppRoutes";
 
 export const AppRouter = () => {
   // const authStatus = "not-authenticated";
@@ -30,12 +31,13 @@ export const AppRouter = () => {
           <>
             <Route path="/register" element={<ClientRegisterPage />} />
             <Route path="/login" element={<ClientLoginPage />} />
+            <Route path="/adminlogin" element={<AdminLoginPage />} />
             <Route path="/registerstore" element={<StoreRegisterPage />} />
             <Route path="/loginstore" element={<StoreLoginPage />} />
             <Route path="/*" element={<Navigate to="/login" />} />
           </>
         ) : (
-          <Route path="/*" element={<StoreRoutes />} />
+          <Route path="/*" element={<AppRoutes />} />
         )}
       </Routes>
     </>

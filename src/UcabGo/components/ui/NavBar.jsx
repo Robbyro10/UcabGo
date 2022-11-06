@@ -8,10 +8,11 @@ export const NavBar = () => {
   const { startLogout, user } = useAuthStore(
     window.localStorage.getItem("type")
   );
+  const cartUrl = `/cart/${user.uid}`;
   const { VITE_API_URL } = getEnvVariables();
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${user.uid}`, fetcher);
 
-  const handleClick = () => {
+  const handleLogout = () => {
     Swal.fire({
       title: "¿Desea salir?",
       confirmButtonText: "Salir",
@@ -30,7 +31,7 @@ export const NavBar = () => {
         <p>Cargando...</p>
       ) : (
         <nav
-          className="navbar navbar-dark bg-dark mb-4 px-4 fixed-top"
+          className="navbar navbar-dark bg-dark mb-4 px-4"
           style={{ opacity: "0.96" }}
         >
           <div className="container-fluid">
@@ -53,12 +54,12 @@ export const NavBar = () => {
             </span>
             <div className="ms-auto">
               {user.type === "clients" && (
-                <button className="btn btn-outline-success mr-3">
+                <Link to={cartUrl} className="btn btn-outline-success mr-3">
                   <i className="fa-solid fa-cart-shopping"></i>
-                </button>
+                </Link>
               )}
 
-              <button onClick={handleClick} className="btn btn-outline-danger">
+              <button onClick={handleLogout} className="btn btn-outline-danger">
                 <i className="fas fa-sign-out-alt"></i>
                 &nbsp;
                 <span>Salir</span>

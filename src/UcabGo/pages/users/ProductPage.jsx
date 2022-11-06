@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, getEnvVariables } from "../helpers";
+import { fetcher, getEnvVariables } from "../../helpers";
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -75,7 +75,7 @@ export const ProductPage = () => {
             to={`/order/${id}`}
             className="btn btn-outline-success mr-2 w-75"
           >
-            Agregar al Pedido (demo)
+            Agregar al Carrito
           </Link>
           <br />
           <br />

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { PedidoForm } from "../components/orders";
-import { fetcher, getEnvVariables } from "../helpers";
+import { OrderForm } from "../../components/orders";
+import { fetcher, getEnvVariables } from "../../helpers";
 
 export const OrderPage = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ export const OrderPage = () => {
       ) : (
         <div className="row">
           <div className="col-8">
-            <PedidoForm product={data.product} />
+            <OrderForm product={data.product} />
           </div>
           <div className="col-4">
             <div className="card mb-3">

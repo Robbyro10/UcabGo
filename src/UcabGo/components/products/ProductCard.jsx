@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore, useUcabGoStore, useUiStore } from "../../../hooks";
+import { StoreModal } from "../ui/StoreModal";
 
-export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
+export const ProductCard = ({ id, name, price, desc, img, store }) => {
   const { openProductModal } = useUiStore();
-  const { setActiveProduct, startDeleteProduct } = useUcabGoStore();
+  const { setActiveProduct, startDeleteProduct, activeProduct } =
+    useUcabGoStore();
   const { user } = useAuthStore();
   const product = { id, name, price, desc, img };
 
@@ -22,7 +24,6 @@ export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         startDeleteProduct(id);
-        location.reload();
       }
     });
   };
@@ -30,9 +31,6 @@ export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
   return (
     <>
       <div className="card mb-4" style={{ width: "60rem" }}>
-        {/* {bestSeller === "true" && (
-          <div className="card-header">Mas Vendido!</div>
-        )} */}
         <div className="row">
           <div className="col-4">
             <img
@@ -46,6 +44,7 @@ export const ProductCard = ({ id, name, price, desc, bestSeller, img }) => {
             <h2 className="card-title">{name}</h2>
             <p>{desc}</p>
             <p>{price}$</p>
+            {user.type === "admins" && <p>{store.name}</p>}
 
             {user.type === "clients" ? (
               <Link

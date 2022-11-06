@@ -90,18 +90,6 @@ export const ClientRegisterPage = () => {
                 )}
               </div>
             </div>
-            <div className="col">
-              <div className="col">
-                <label>Foto de Perfil</label>
-                <input
-                  className="form-control"
-                  type="file"
-                  accept=".png,.jpg"
-                  //TODO: Arreglar esto
-                  // {...register("img")}
-                />
-              </div>
-            </div>
           </div>
 
           <div className="form-group">
