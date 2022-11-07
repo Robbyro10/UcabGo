@@ -12,7 +12,6 @@ export const StorePage = () => {
   const { VITE_API_URL } = getEnvVariables();
 
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
-  // console.log(data);
   // const store = getStoreById(_id);
   const { startLoadingProducts, products, hasProductSelected } =
     useUcabGoStore();

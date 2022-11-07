@@ -33,25 +33,25 @@ export const SideBar = () => {
         <div className="ml-3" style={{ minHeight: "100vh" }}>
           <Link to="/products" className="text-white">
             <p>
-              <i className="fa-solid fa-bag-shopping"></i>&nbsp;&nbsp;Products
+              <i className="fa-solid fa-bag-shopping"></i>&nbsp;&nbsp;Productos
             </p>
           </Link>
           <Link to="/stores" className="text-white">
             <p>
-              <i className="fa-solid fa-store"></i>&nbsp;&nbsp;Stores
+              <i className="fa-solid fa-store"></i>&nbsp;&nbsp;Establecientos
             </p>
           </Link>
           <Link to="/clients" className="text-white">
             <p>
-              <i className="fa-solid fa-users"></i>&nbsp;&nbsp;Clients
+              <i className="fa-solid fa-users"></i>&nbsp;&nbsp;Clientes
             </p>
           </Link>
 
           <Link to="/orders" className="text-white">
-            <i className="fa-solid fa-truck"></i>&nbsp;&nbsp;Orders
+            <i className="fa-solid fa-truck"></i>&nbsp;&nbsp;Pedidos
           </Link>
 
-          <div className="fixed-bottom m-3 text-white">
+          <div className="fixed-bottom m-3 text-white w-25">
             <hr
               className="ml-0"
               style={{ background: "grey", width: "200px" }}

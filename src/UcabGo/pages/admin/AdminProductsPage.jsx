@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useUcabGoStore } from "../../../hooks/useUcabGoStore";
-import { ProductCard, ProductList } from "../../components/products";
+import {
+  AdminProductCard,
+  ProductCard,
+  ProductList,
+} from "../../components/products";
 import { StoreModal } from "../../components/ui/StoreModal";
 
-export const Products = () => {
+export const AdminProductsPage = () => {
   const { startLoadingProducts, products } = useUcabGoStore();
   useEffect(() => {
     startLoadingProducts();
@@ -12,8 +16,10 @@ export const Products = () => {
   return (
     <>
       <StoreModal />
-      <div style={{ paddingLeft: "240px" }}>
-        <p>{JSON.stringify(products)}</p>
+      <div className="mt-4" style={{ paddingLeft: "240px" }}>
+        {products.map((product) => (
+          <AdminProductCard key={product.id} {...product} />
+        ))}
       </div>
     </>
   );

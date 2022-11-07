@@ -1,5 +1,5 @@
 import React from "react";
 
 export const AdminPage = () => {
-  return <div>AdminPage</div>;
+  return <h1>AdminPage</h1>;
 };

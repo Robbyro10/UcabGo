@@ -1,6 +1,6 @@
 
 export * from './AdminPage'
 export * from './Clients'
-export * from './Products'
+export * from './AdminProductsPage'
 export * from './Stores'
 export * from './Orders'

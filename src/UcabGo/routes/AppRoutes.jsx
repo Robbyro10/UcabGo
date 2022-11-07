@@ -2,7 +2,13 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
 import { NavBar, SideBar } from "../components/ui";
-import { AdminPage, Clients, Products, Stores, Orders } from "../pages/admin";
+import {
+  AdminPage,
+  Clients,
+  Stores,
+  Orders,
+  AdminProductsPage,
+} from "../pages/admin";
 import {
   CartPage,
   OrderPage,
@@ -25,7 +31,7 @@ export const AppRoutes = () => {
             <Routes>
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/clients" element={<Clients />} />
-              <Route path="/products" element={<Products />} />
+              <Route path="/products" element={<AdminProductsPage />} />
               <Route path="/stores" element={<Stores />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/" element={<Navigate to="/admin" />} />
