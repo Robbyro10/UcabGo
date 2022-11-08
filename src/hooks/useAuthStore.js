@@ -10,16 +10,17 @@ export const useAuthStore = (type = 'clients') => {
     const { status, user, errorMessage } = useSelector( state => state.auth);
     const dispatch = useDispatch();
 
-    const startLogin = async({ email, password }) => {
+    const startLogin = async({ email, password, rif, phone, desc, img }) => {
         dispatch(onChecking());
 
         try {
 
             const { data } = await ucabGoApi.post(`/${type}`, {email, password})
+            
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type}));
+            dispatch( onLogin({ name: data.name, uid: data.uid, type,}));
             
         } catch (error) {
             Swal.fire('Error!', 'Credenciales incorrectas', 'error');

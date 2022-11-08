@@ -11,7 +11,7 @@ export const AdminProductsPage = () => {
   const { startLoadingProducts, products } = useUcabGoStore();
   useEffect(() => {
     startLoadingProducts();
-  }, []);
+  }, [products.length]);
 
   return (
     <>

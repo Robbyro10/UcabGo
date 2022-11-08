@@ -5,7 +5,7 @@ export const Orders = () => {
   const { startLoadingOrders, orders } = useUcabGoStore();
   useEffect(() => {
     startLoadingOrders();
-  }, []);
+  }, [orders.length]);
 
   return <div style={{ paddingLeft: "240px" }}>{JSON.stringify(orders)}</div>;
 };

@@ -35,8 +35,8 @@ export const OrderForm = ({ product }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await startSavingOrder(formValues);
-    navigate("/ucabgo");
     Swal.fire("Enviado!!", "Tu pedido ha sido registrado.", "success");
+    navigate("/ucabgo");
   };
 
   return (

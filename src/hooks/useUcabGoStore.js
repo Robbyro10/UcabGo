@@ -26,7 +26,6 @@ export const useUcabGoStore = () => {
         // creating
         const { data } = await ucabGoApi.post('/products', product);
         dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
-        window.location.reload();
 
       } catch (error) {
         console.log(error);
@@ -64,7 +63,6 @@ export const useUcabGoStore = () => {
         
         await ucabGoApi.delete(`/products/${productId}`);
         dispatch(onDeleteProduct());
-        location.reload();
 
       } catch (error) {
         console.log(error);
@@ -109,9 +107,9 @@ export const useUcabGoStore = () => {
       }
     }
 
-    const startLoadingOrders = async () => {
+    const startLoadingOrders = async (storeId) => {
       try {
-        const { data } = await ucabGoApi.get('/orders/');
+        const { data } = await ucabGoApi.get(`/orders/${storeId}`);
         const {orders} = data;
         dispatch(onLoadOrders(orders));
         
@@ -133,6 +131,7 @@ export const useUcabGoStore = () => {
     //* Metodos
     setActiveProduct,
     startSavingProduct,
+    startSavingOrder,
     startDeleteProduct,
     startDeleteOrder,
     startLoadingProducts,

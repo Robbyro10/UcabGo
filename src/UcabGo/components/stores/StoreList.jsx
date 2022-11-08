@@ -13,7 +13,7 @@ export const StoreList = () => {
       {!stores ? (
         <h1>Cargando...</h1>
       ) : (
-        <div className="container animate__animated animate__fadeInUp">
+        <div className="container animate__animated animate__fadeIn">
           <div className="row">
             {stores.map((store) => (
               <StoreCard key={store._id} {...store} />

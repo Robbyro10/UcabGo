@@ -1,13 +1,21 @@
 import Swal from "sweetalert2";
 import { useUcabGoStore } from "../../../hooks";
 
-export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
-  const { startDeleteProduct, setActiveProduct } = useUcabGoStore();
+export const AdminStoreCard = ({
+  name,
+  phone,
+  rif,
+  img,
+  desc,
+  email,
+  location,
+  _id,
+}) => {
+  //   const { startDeleteStore, setActiveStore } = useUcabGoStore();
 
-  const product = { id, name, price, desc, img, store };
+  const store = { _id, name, phone, desc, email, img, rif, location };
 
   const handleDelete = () => {
-    console.log(id);
     Swal.fire({
       title: "¿Seguro?",
       confirmButtonText: "Eliminar",
@@ -15,8 +23,8 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        setActiveProduct({ product });
-        startDeleteProduct(id);
+        // setActiveStore({ store });
+        // startDeleteStore(_id);
       }
     });
   };
@@ -26,14 +34,21 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
       <li className="list-group-item">
         <div className="row">
           <div className="col">
-            <i className="fa-solid fa-bag-shopping"></i> &nbsp;
+            <i className="fa-solid fa-store"></i> &nbsp;
             <b>{name}</b>
-            <p>{store?.name}</p>
-            <small>{desc}</small>
             <p>
-              <b>{price}$</b>
+              <i className="fa-solid fa-envelope"></i> &nbsp;
+              {email}
               <br />
+              <i className="fa-solid fa-phone"></i> &nbsp;
+              {phone}
+              <br />
+              <i className="fa-solid fa-location-dot"></i> &nbsp;
+              {location}
+              <br />
+              <b>RIF:</b> {rif}
             </p>
+            <small className="text-muted">Id: {_id}</small>
           </div>
           <div className="col-4">
             <img

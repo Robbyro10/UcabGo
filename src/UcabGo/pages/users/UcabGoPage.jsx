@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../../hooks";
+import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { OrderList } from "../../components/orders";
 import { StoreList } from "../../components/stores";
 
 export const UcabGoPage = () => {
   const { user } = useAuthStore();
   const catalogUrl = `/store/${user.uid}`;
+  const { startLoadingOrders, orders } = useUcabGoStore();
+
+  useEffect(() => {
+    startLoadingOrders(user.uid);
+  }, [orders.length]);
 
   return (
     <>

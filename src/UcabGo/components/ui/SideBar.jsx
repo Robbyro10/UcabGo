@@ -22,7 +22,7 @@ export const SideBar = () => {
     <div className="fixed-top" style={{ width: "240px" }}>
       <div className="bg-dark">
         <div className="header-box ml-3">
-          <h1 className="fs-4">
+          <h1 className="fs-4 pt-2">
             <span className="text-white">UcabGo</span>
           </h1>
           <h5 className="text-white">Admin Dashboard</h5>
@@ -31,26 +31,32 @@ export const SideBar = () => {
           style={{ background: "grey", width: "200px", marginLeft: "15px" }}
         />
         <div className="ml-3" style={{ minHeight: "100vh" }}>
-          <Link to="/products" className="text-white">
-            <p>
+          <div style={{ width: "265px" }}>
+            <Link
+              to="/products"
+              className="btn btn-outline-light w-75 mb-3 text-left"
+            >
               <i className="fa-solid fa-bag-shopping"></i>&nbsp;&nbsp;Productos
-            </p>
-          </Link>
-          <Link to="/stores" className="text-white">
-            <p>
+            </Link>
+            <Link
+              to="/stores"
+              className="btn btn-outline-light w-75 mb-3 text-left"
+            >
               <i className="fa-solid fa-store"></i>&nbsp;&nbsp;Establecientos
-            </p>
-          </Link>
-          <Link to="/clients" className="text-white">
-            <p>
+            </Link>
+            <Link
+              to="/clients"
+              className="btn btn-outline-light w-75 mb-3 text-left"
+            >
               <i className="fa-solid fa-users"></i>&nbsp;&nbsp;Clientes
-            </p>
-          </Link>
-
-          <Link to="/orders" className="text-white">
-            <i className="fa-solid fa-truck"></i>&nbsp;&nbsp;Pedidos
-          </Link>
-
+            </Link>
+            <Link
+              to="/orders"
+              className="btn btn-outline-light w-75 mb-2 text-left"
+            >
+              <i className="fa-solid fa-truck"></i>&nbsp;&nbsp;Pedidos
+            </Link>
+          </div>
           <div className="fixed-bottom m-3 text-white w-25">
             <hr
               className="ml-0"

@@ -4,15 +4,16 @@ import { useAuthStore } from "../../hooks";
 import { NavBar, SideBar } from "../components/ui";
 import {
   AdminPage,
-  Clients,
-  Stores,
   Orders,
   AdminProductsPage,
+  AdminClientsPage,
+  AdminStoresPage,
 } from "../pages/admin";
 import {
   CartPage,
   OrderPage,
   ProductPage,
+  ProfilePage,
   StorePage,
   UcabGoPage,
 } from "../pages/users";
@@ -30,9 +31,9 @@ export const AppRoutes = () => {
           <div className="container">
             <Routes>
               <Route path="/admin" element={<AdminPage />} />
-              <Route path="/clients" element={<Clients />} />
+              <Route path="/clients" element={<AdminClientsPage />} />
               <Route path="/products" element={<AdminProductsPage />} />
-              <Route path="/stores" element={<Stores />} />
+              <Route path="/stores" element={<AdminStoresPage />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/" element={<Navigate to="/admin" />} />
               <Route path="/*" element={<Navigate to="/admin" />} />
@@ -46,6 +47,7 @@ export const AppRoutes = () => {
           <div className="container">
             <Routes>
               <Route path="/ucabgo" element={<UcabGoPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/store/:_id" element={<StorePage />} />
               <Route path="order/:id/" element={<OrderPage />} />
               <Route path="cart/:id/" element={<CartPage />} />

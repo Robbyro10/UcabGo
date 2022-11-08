@@ -45,13 +45,7 @@ export const ucabGoSlice = createSlice({
     },
     onLoadProducts: (state, {payload = []}) => {
       state.isLoadingProducts = false;
-      // state.products = payload;
-      payload.forEach( product => {
-        const exists = state.products.some( dbProduct => dbProduct.id === product.id );
-        if ( !exists ) {
-          state.products.push(product);
-        }
-      })
+      state.products = payload;
     },
     onLoadStores: (state, {payload = []}) => {
       state.isLoadingStores = false;

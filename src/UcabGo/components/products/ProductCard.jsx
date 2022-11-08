@@ -8,7 +8,7 @@ export const ProductCard = ({ id, name, price, desc, img, store }) => {
   const { setActiveProduct, startDeleteProduct, activeProduct } =
     useUcabGoStore();
   const { user } = useAuthStore();
-  const product = { id, name, price, desc, img };
+  const product = { id, name, price, desc, img, store };
 
   const onEdit = () => {
     setActiveProduct({ product });
@@ -23,6 +23,7 @@ export const ProductCard = ({ id, name, price, desc, img, store }) => {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
+        setActiveProduct({ product });
         startDeleteProduct(id);
       }
     });

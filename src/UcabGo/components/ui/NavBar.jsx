@@ -36,21 +36,23 @@ export const NavBar = () => {
         >
           <div className="container-fluid">
             <span className="navbar-brand">
-              {user.type === "clients" ? (
-                <i className="fa-sharp fa-solid fa-house"></i>
-              ) : (
-                <img
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                  }}
-                  src={data.store.img}
-                  alt={data.store.name}
-                />
-              )}
-              &nbsp; {user.name}
+              <Link to="/profile" className="btn btn-outline-light">
+                {user.type === "clients" ? (
+                  <i className="fa-sharp fa-solid fa-house"></i>
+                ) : (
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
+                    src={data.store.img}
+                    alt={data.store.name}
+                  />
+                )}
+                &nbsp; {user.name}
+              </Link>
             </span>
             <div className="ms-auto">
               {user.type === "clients" && (

@@ -24,7 +24,7 @@ export const StorePage = () => {
 
   useEffect(() => {
     startLoadingProducts();
-  }, []);
+  }, [products.length]);
 
   return (
     <>
