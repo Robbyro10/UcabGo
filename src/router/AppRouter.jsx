@@ -6,6 +6,7 @@ import {
   StoreLoginPage,
   ClientLoginPage,
   AdminLoginPage,
+  AdminRegisterPage,
 } from "../auth";
 import { useAuthStore } from "../hooks";
 import { AppRoutes } from "../UcabGo/routes/AppRoutes";
@@ -31,7 +32,8 @@ export const AppRouter = () => {
           <>
             <Route path="/register" element={<ClientRegisterPage />} />
             <Route path="/login" element={<ClientLoginPage />} />
-            <Route path="/adminlogin" element={<AdminLoginPage />} />
+            <Route path="/loginadmin" element={<AdminLoginPage />} />
+            <Route path="/registeradmin" element={<AdminRegisterPage />} />
             <Route path="/registerstore" element={<StoreRegisterPage />} />
             <Route path="/loginstore" element={<StoreLoginPage />} />
             <Route path="/*" element={<Navigate to="/login" />} />

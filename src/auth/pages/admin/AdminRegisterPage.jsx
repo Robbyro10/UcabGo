@@ -1,20 +1,26 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useAuthStore } from "../../../hooks";
+import { validEmails } from "../../../data/validEmails";
 
-export const ClientRegisterPage = () => {
+export const AdminRegisterPage = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const { startRegister } = useAuthStore();
+  const { startRegister } = useAuthStore("admins");
 
   const onSubmit = (data) => {
-    const { email, password, password2, name, phone, img } = data;
+    const { email, password, password2, name } = data;
     if (password !== password2) {
       Swal.fire("Error en registro", "Contraseñas no coinciden", "error");
+      return;
+    }
+
+    if (!validEmails.includes(email)) {
+      Swal.fire("Acceso Negado", "Email Inválido", "error");
       return;
     }
 
@@ -23,8 +29,6 @@ export const ClientRegisterPage = () => {
       email,
       password,
       name,
-      phone,
-      img: "",
     });
   };
 
@@ -32,18 +36,18 @@ export const ClientRegisterPage = () => {
     <div
       className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
+        backgroundImage: "linear-gradient(#000B18, #02386E)",
       }}
     >
       <div
         className="container mx-auto p-4 rounded"
         style={{ margin: "90px", background: "white", width: "450px" }}
       >
-        <h1>Registro Cliente</h1>
+        <h1>Registro Administrador</h1>
         <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Nombre y Apellido</label>
+            <label>Nombre</label>
             <input
               className="form-control"
               type="text"
@@ -60,39 +64,12 @@ export const ClientRegisterPage = () => {
           </div>
 
           <div className="form-group">
-            <label>Correo UCAB</label>
+            <label>Correo</label>
             <input
               className="form-control"
               type="email"
-              {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
+              {...register("email", { required: true })}
             />
-          </div>
-          {errors.email?.type === "required" && (
-            <p className="text-danger">El correo es obligatorio</p>
-          )}
-          {errors.email?.type === "pattern" && (
-            <p className="text-danger">No es un correo de la UCAB</p>
-          )}
-
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <label>Celular</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  {...register("phone", { required: true, maxLength: 15 })}
-                />
-                {errors.phone?.type === "required" && (
-                  <p className="text-danger">El celular es obligatorio</p>
-                )}
-                {errors.phone?.type === "maxLength" && (
-                  <p className="text-danger">
-                    El nombre debe tener menos de 15 caracteres
-                  </p>
-                )}
-              </div>
-            </div>
           </div>
 
           <div className="form-group">
@@ -107,6 +84,9 @@ export const ClientRegisterPage = () => {
               })}
             />
           </div>
+          {errors.password?.type === "required" && (
+            <p className="text-danger">La contraseña es obligatoria</p>
+          )}
           {errors.password?.type === "minLength" && (
             <p className="text-danger">Mínimo 6 caracteres</p>
           )}
@@ -126,6 +106,9 @@ export const ClientRegisterPage = () => {
               })}
             />
           </div>
+          {errors.password2?.type === "required" && (
+            <p className="text-danger">Repita su contrasña</p>
+          )}
           {errors.password2?.type === "minLength" && (
             <p className="text-danger">Mínimo 6 caracteres</p>
           )}
@@ -137,7 +120,7 @@ export const ClientRegisterPage = () => {
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #4b6cb7, #182848)",
+              backgroundImage: "linear-gradient(90deg, #000B18, #02386E)",
             }}
             type="submit"
             value="submit"
@@ -147,7 +130,7 @@ export const ClientRegisterPage = () => {
         </form>
         <div className="text-center">
           <p>
-            <a href="/login" style={{ color: "black" }}>
+            <a href="/loginadmin" style={{ color: "black" }}>
               Ya tengo cuenta
             </a>
           </p>

@@ -38,7 +38,7 @@ export const AdminLoginPage = () => {
             />
           </div>
           {errors.email?.type === "required" && (
-            <p className="text-warning">No es un correo de la UCAB</p>
+            <p className="text-warning">No es un correo</p>
           )}
 
           <div className="form-group">

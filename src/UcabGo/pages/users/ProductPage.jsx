@@ -72,10 +72,10 @@ export const ProductPage = () => {
           <br />
 
           <Link
-            to={`/order/${id}`}
+            to={`/make+order/${id}`}
             className="btn btn-outline-success mr-2 w-75"
           >
-            Agregar al Carrito
+            Agregar al Carrito (DEMO)
           </Link>
           <br />
           <br />

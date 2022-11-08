@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
 import { NavBar, SideBar } from "../components/ui";
 import {
-  AdminPage,
   Orders,
   AdminProductsPage,
   AdminClientsPage,
@@ -30,13 +29,12 @@ export const AppRoutes = () => {
           <SideBar />
           <div className="container">
             <Routes>
-              <Route path="/admin" element={<AdminPage />} />
               <Route path="/clients" element={<AdminClientsPage />} />
               <Route path="/products" element={<AdminProductsPage />} />
               <Route path="/stores" element={<AdminStoresPage />} />
               <Route path="/orders" element={<Orders />} />
-              <Route path="/" element={<Navigate to="/admin" />} />
-              <Route path="/*" element={<Navigate to="/admin" />} />
+              <Route path="/" element={<Navigate to="/products" />} />
+              <Route path="/*" element={<Navigate to="/products" />} />
             </Routes>
           </div>
         </>
@@ -49,8 +47,8 @@ export const AppRoutes = () => {
               <Route path="/ucabgo" element={<UcabGoPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/store/:_id" element={<StorePage />} />
-              <Route path="order/:id/" element={<OrderPage />} />
-              <Route path="cart/:id/" element={<CartPage />} />
+              <Route path="make+order/:id/" element={<OrderPage />} />
+              <Route path="orders/:id/" element={<CartPage />} />
               <Route path="store/product/:id/" element={<ProductPage />} />
               <Route path="/" element={<Navigate to="/ucabgo" />} />
               <Route path="/*" element={<Navigate to="/ucabgo" />} />

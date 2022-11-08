@@ -1,5 +1,4 @@
 
-export * from './AdminPage'
 export * from './AdminClientsPage'
 export * from './AdminProductsPage'
 export * from './AdminStoresPage'

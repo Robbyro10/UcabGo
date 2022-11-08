@@ -8,7 +8,7 @@ export const NavBar = () => {
   const { startLogout, user } = useAuthStore(
     window.localStorage.getItem("type")
   );
-  const cartUrl = `/cart/${user.uid}`;
+  const orderUrl = `/orders/${user.uid}`;
   const { VITE_API_URL } = getEnvVariables();
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${user.uid}`, fetcher);
 
@@ -56,8 +56,8 @@ export const NavBar = () => {
             </span>
             <div className="ms-auto">
               {user.type === "clients" && (
-                <Link to={cartUrl} className="btn btn-outline-success mr-3">
-                  <i className="fa-solid fa-cart-shopping"></i>
+                <Link to={orderUrl} className="btn btn-outline-success mr-3">
+                  <i className="fa-solid fa-truck"></i>
                 </Link>
               )}
 
