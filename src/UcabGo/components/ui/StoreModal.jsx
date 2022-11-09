@@ -64,6 +64,7 @@ export const StoreModal = ({ store }) => {
           const imgUrl = response.data.url;
           data.img = imgUrl;
           startSavingProduct(data);
+          location.reload();
         });
       return;
     }
@@ -78,10 +79,9 @@ export const StoreModal = ({ store }) => {
     } else {
       Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
     }
-
     uploadImg(data.img[0], data);
-
-    onCloseModal();
+    dispatch(onSetActiveProduct(null));
+    closeProductModal();
     setFormSubmitted(false);
   };
 
@@ -152,7 +152,7 @@ export const StoreModal = ({ store }) => {
 
         <div className="form-group mb-4">
           <div className="row">
-            <div className="col">
+            <div className="col-8">
               {activeProduct ? (
                 <label className="form-label">Cambiar Imagen</label>
               ) : (
@@ -168,7 +168,7 @@ export const StoreModal = ({ store }) => {
             <div className="col">
               {activeProduct?.img && (
                 <img
-                  className="rounded img-fluid mx-auto d-block"
+                  className="rounded img-fluid float-right"
                   style={{ maxHeight: "70px" }}
                   src={activeProduct.img}
                   alt={activeProduct.desc}

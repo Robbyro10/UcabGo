@@ -61,11 +61,7 @@ export const StorePage = () => {
 
           <StoreModal store={data.store.name} {...activeProduct} />
 
-          {!products ? (
-            <h1>No hay items en este establecimiento</h1>
-          ) : (
-            <ProductList store={data.store} />
-          )}
+          <ProductList store={data.store} />
 
           <button onClick={onBack} className="btn btn-outline-primary mb-5">
             Atrás
