@@ -156,7 +156,10 @@ export const StoreModal = ({ store }) => {
               {activeProduct ? (
                 <label className="form-label">Cambiar Imagen</label>
               ) : (
-                <label className="form-label">Imagen del Producto</label>
+                <label className="form-label">
+                  Imagen del Producto{" "}
+                  <small className="text-muted">(Obligatorio)</small>
+                </label>
               )}
               <input
                 className="form-control"

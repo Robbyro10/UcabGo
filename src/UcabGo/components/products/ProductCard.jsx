@@ -31,7 +31,13 @@ export const ProductCard = ({ id, name, price, desc, img, store }) => {
 
   return (
     <>
-      <div className="card mb-4" style={{ width: "60rem" }}>
+      <div
+        className="card mb-4"
+        style={{
+          width: "60rem",
+          boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+        }}
+      >
         <div className="row">
           <div className="col-4">
             <img
