@@ -4,13 +4,18 @@ export const StoreCard = ({ _id, name, location, desc, img }) => {
   const storeImgUrl = img;
   return (
     <div className="col-lg-4">
-      <div className="card mb-3">
+      <div
+        className="card mb-3"
+        style={{
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+        }}
+      >
         <Link to={`/store/${_id}`}>
           <img
             className="card-img-top"
             src={storeImgUrl}
             alt={name}
-            style={{ height: "200px", objectFit: "contain" }}
+            style={{ height: "200px", objectFit: "cover" }}
           />
         </Link>
         <div className="card-body">

@@ -35,7 +35,7 @@ export const ProductCard = ({ id, name, price, desc, img, store }) => {
         className="card mb-4"
         style={{
           width: "60rem",
-          boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
         }}
       >
         <div className="row">

@@ -8,7 +8,11 @@ export const FabAddNew = () => {
   };
 
   return (
-    <button className="btn btn-primary fab" onClick={handleClickNew}>
+    <button
+      className="btn btn-primary fab"
+      onClick={handleClickNew}
+      style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;" }}
+    >
       <i className="fas fa-plus"></i>
     </button>
   );

@@ -34,7 +34,7 @@ export const AdminRegisterPage = () => {
 
   return (
     <div
-      className="w-100 h-100"
+      className="w-100"
       style={{
         backgroundImage: "linear-gradient(#000B18, #02386E)",
       }}
