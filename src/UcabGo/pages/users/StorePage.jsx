@@ -13,8 +13,7 @@ export const StorePage = () => {
 
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
   // const store = getStoreById(_id);
-  const { startLoadingProducts, products, hasProductSelected } =
-    useUcabGoStore();
+  const { startLoadingProducts, products, activeProduct } = useUcabGoStore();
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
@@ -60,7 +59,7 @@ export const StorePage = () => {
 
           {user.type !== "clients" && <FabAddNew />}
 
-          <StoreModal store={data.store.name} />
+          <StoreModal store={data.store.name} {...activeProduct} />
 
           {!products ? (
             <h1>No hay items en este establecimiento</h1>

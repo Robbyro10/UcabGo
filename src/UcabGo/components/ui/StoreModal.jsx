@@ -22,12 +22,8 @@ Modal.setAppElement("#root");
 
 export const StoreModal = ({ store }) => {
   const { isProductModalOpen, closeProductModal } = useUiStore();
-  const {
-    startSavingProduct,
-    activeProduct,
-    setActiveProduct,
-    startDeleteProduct,
-  } = useUcabGoStore();
+  const { startSavingProduct, activeProduct, startDeleteProduct } =
+    useUcabGoStore();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
 
@@ -35,6 +31,7 @@ export const StoreModal = ({ store }) => {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm();
 
   const onCloseModal = () => {
@@ -42,21 +39,35 @@ export const StoreModal = ({ store }) => {
     dispatch(onSetActiveProduct(null));
   };
 
+  useEffect(() => {
+    setValue("name", activeProduct?.name);
+    setValue("price", activeProduct?.price);
+    setValue("desc", activeProduct?.desc);
+    setValue("img", activeProduct?.img);
+  }, [activeProduct]);
+
   const uploadImg = (img, data) => {
     if (activeProduct) {
-      startDeleteProduct(activeProduct.id);
+      data.id = activeProduct.id;
     }
-    const formData = new FormData();
-    formData.append("file", img);
-    formData.append("upload_preset", "react-ucabgo");
+    if (typeof img === "object") {
+      const formData = new FormData();
+      formData.append("file", img);
+      formData.append("upload_preset", "react-ucabgo");
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/dwdimx0pg/image/upload", formData)
-      .then((response) => {
-        const imgUrl = response.data.url;
-        data.img = imgUrl;
-        startSavingProduct(data);
-      });
+      axios
+        .post(
+          "https://api.cloudinary.com/v1_1/dwdimx0pg/image/upload",
+          formData
+        )
+        .then((response) => {
+          const imgUrl = response.data.url;
+          data.img = imgUrl;
+          startSavingProduct(data);
+        });
+      return;
+    }
+    startSavingProduct(data);
   };
 
   const onSubmit = (data) => {
@@ -67,9 +78,10 @@ export const StoreModal = ({ store }) => {
     } else {
       Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
     }
+
     uploadImg(data.img[0], data);
 
-    closeProductModal();
+    onCloseModal();
     setFormSubmitted(false);
   };
 
@@ -139,16 +151,31 @@ export const StoreModal = ({ store }) => {
         </div>
 
         <div className="form-group mb-4">
-          <label className="form-label">Imagen del Producto</label>
-          <input
-            className="form-control"
-            type="file"
-            accept="image/png, image/jpeg"
-            {...register("img", { required: true })}
-          />
-          {errors.img?.type === "required" && (
-            <p className="text-danger">La imagen es obligatoria</p>
-          )}
+          <div className="row">
+            <div className="col">
+              {activeProduct ? (
+                <label className="form-label">Cambiar Imagen</label>
+              ) : (
+                <label className="form-label">Imagen del Producto</label>
+              )}
+              <input
+                className="form-control"
+                type="file"
+                accept="image/png, image/jpeg"
+                {...register("img")}
+              />
+            </div>
+            <div className="col">
+              {activeProduct?.img && (
+                <img
+                  className="rounded img-fluid mx-auto d-block"
+                  style={{ maxHeight: "70px" }}
+                  src={activeProduct.img}
+                  alt={activeProduct.desc}
+                />
+              )}
+            </div>
+          </div>
         </div>
 
         <button type="submit" className="btn btn-outline-primary btn-block">
