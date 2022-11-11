@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
@@ -8,11 +8,9 @@ export const OrderForm = ({ product }) => {
   const navigate = useNavigate();
   const time = getTime();
   const day = getDay();
-
   const { user } = useAuthStore();
   const { startSavingOrder } = useUcabGoStore();
 
-  // const itemImageUrl = product.img;
   const [formValues, setFormValues] = useState({
     location: "Modulos",
     detail: "",
@@ -23,6 +21,8 @@ export const OrderForm = ({ product }) => {
     time,
     day,
     status: "Pendiente",
+    quantity: "",
+    notes: "",
   });
 
   const onInputChanged = ({ target }) => {
@@ -149,19 +149,22 @@ export const OrderForm = ({ product }) => {
           />
         </div>
       </div>
-      <h3 className="h3 mt-5">¡Confirme su Pedido!</h3>
+      <h3 className="h3 mt-5">¡Complete su Pedido!</h3>
       <hr />
-      <div className="card mb-3" style={{ width: "18rem" }}>
-        <img className="card-img-top" src={product.img} alt={product.name} />
-        <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
-          <p className="card-text">{product.desc}</p>
-          <p className="card-text">
-            Total:
-            <b> {product.price}$</b>
-          </p>
+      <div className="col">
+        <div className="card mb-3" style={{ width: "18rem" }}>
+          <img className="card-img-top" src={product.img} alt={product.name} />
+          <div className="card-body">
+            <h5 className="card-title">{product.name}</h5>
+            <p className="card-text">{product.desc}</p>
+            <p className="card-text">
+              Total:
+              <b> {product.price}$</b>
+            </p>
+          </div>
         </div>
       </div>
+
       <div className="form-group row">
         <div className="col-sm-10">
           <button type="submit" className="btn btn-success">

@@ -11,7 +11,7 @@ export const FabAddNew = () => {
     <button
       className="btn btn-primary fab"
       onClick={handleClickNew}
-      style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;" }}
+      style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
     >
       <i className="fas fa-plus"></i>
     </button>

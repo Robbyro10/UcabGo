@@ -27,14 +27,7 @@ export const UcabGoPage = () => {
         <>
           <div className="container">
             <div className="row">
-              <div className="col">
-                <h1>Lista de Pedidos</h1>
-              </div>
-              <div className="text-align-right mt-2">
-                <Link to={catalogUrl} className="btn btn-primary">
-                  Catálogo
-                </Link>
-              </div>
+              <h1>Pedidos Pendientes</h1>
             </div>
           </div>
           <hr />

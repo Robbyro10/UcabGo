@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 
 export const ProfilePage = () => {
@@ -22,6 +23,9 @@ export const ProfilePage = () => {
           <p>{user.phone}</p>
         </>
       )}
+      <Link to="/" className="btn btn-primary">
+        Atras
+      </Link>
     </div>
   );
 };

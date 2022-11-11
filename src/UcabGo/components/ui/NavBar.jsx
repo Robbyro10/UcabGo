@@ -9,6 +9,7 @@ export const NavBar = () => {
     window.localStorage.getItem("type")
   );
   const orderUrl = `/orders/${user.uid}`;
+  const catalogUrl = `/store/${user.uid}`;
   const { VITE_API_URL } = getEnvVariables();
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${user.uid}`, fetcher);
 
@@ -55,9 +56,14 @@ export const NavBar = () => {
               </Link>
             </span>
             <div className="ms-auto">
-              {user.type === "clients" && (
+              {user.type === "clients" ? (
                 <Link to={orderUrl} className="btn btn-outline-success mr-3">
                   <i className="fa-solid fa-truck"></i>
+                </Link>
+              ) : (
+                <Link to={catalogUrl} className="btn btn-outline-success mr-3">
+                  <i className="fa-solid fa-bag-shopping"></i> &nbsp;
+                  <span>Catálogo</span>
                 </Link>
               )}
 

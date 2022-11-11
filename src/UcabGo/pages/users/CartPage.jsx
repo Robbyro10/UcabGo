@@ -4,23 +4,22 @@ export const CartPage = () => {
   return (
     <>
       <h1>Pedidos Realizados</h1>
+      <hr />
       <h3>En Camino</h3>
-      <p>
-        <ul>
-          <li>algo</li>
-          <li>algo</li>
-          <li>algo</li>
-        </ul>
-      </p>
+
+      <ul>
+        <li>algo</li>
+        <li>algo</li>
+        <li>algo</li>
+      </ul>
 
       <h3>Ya entregados</h3>
-      <p>
-        <ul>
-          <li>algo</li>
-          <li>algo</li>
-          <li>algo</li>
-        </ul>
-      </p>
+
+      <ul>
+        <li>algo</li>
+        <li>algo</li>
+        <li>algo</li>
+      </ul>
 
       <Link to="/" className="btn btn-primary">
         Volver

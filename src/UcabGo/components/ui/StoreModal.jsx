@@ -74,9 +74,7 @@ export const StoreModal = ({ store }) => {
   const onSubmit = (data) => {
     setFormSubmitted(true);
     data.store = store;
-    if (activeProduct) {
-      Swal.fire("¡Listo!", "Producto editado exitosamente", "success");
-    } else {
+    if (!activeProduct) {
       Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
     }
     uploadImg(data.img[0], data);
