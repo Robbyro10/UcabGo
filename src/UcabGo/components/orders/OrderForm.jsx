@@ -30,7 +30,6 @@ export const OrderForm = ({ product }) => {
     startSavingOrder(data);
     Swal.fire("Enviado!!", "Tu pedido ha sido registrado.", "success");
     navigate("/ucabgo");
-    console.log(data);
   };
 
   const quantity = watch("quantity");
@@ -148,6 +147,11 @@ export const OrderForm = ({ product }) => {
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
               </select>
             </div>
           </div>

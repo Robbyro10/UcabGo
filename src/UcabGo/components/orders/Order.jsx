@@ -13,19 +13,35 @@ export const Order = ({
   day,
   id,
   quantity,
+  notes,
 }) => {
   if (!user) {
     return;
   }
 
-  const { startDeleteOrder } = useUcabGoStore();
+  const { startDeleteOrder, dispatchOrder, startLoadingOrders } =
+    useUcabGoStore();
 
-  const handleDelete = () => {
+  const handleDispatch = () => {
     Swal.fire({
-      title: "¿Seguro?",
-      confirmButtonText: "Eliminar",
+      title: "¿Marcar como Despachado?",
+      confirmButtonText: "Sí",
       showDenyButton: true,
-      denyButtonText: `Cancelar`,
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatchOrder(id);
+        startLoadingOrders();
+      }
+    });
+  };
+
+  const handleCancel = () => {
+    Swal.fire({
+      title: "¿Cancelar Pedido?",
+      confirmButtonText: "Sí",
+      showDenyButton: true,
+      denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
         startDeleteOrder(id);
@@ -54,15 +70,20 @@ export const Order = ({
             <small>{appearance}</small>
           </p>
         </div>
-        <div className="col-auto text-right">
+        {notes && (
+          <div className="col">
+            <p>Notas: {notes}</p>
+          </div>
+        )}
+        <div className="col text-right">
           <i className="fa-regular fa-clock"></i> &nbsp;
           {time} <br /> <small className="text-muted">{day}</small>
           <p className="text-muted">{user.name}</p>
-          <button className="btn">
+          <button onClick={handleDispatch} className="btn">
             <i className="fa-solid fa-check"></i>
           </button>
-          <button className="btn" onClick={handleDelete}>
-            <i className="fa-solid fa-trash"></i>
+          <button className="btn" onClick={handleCancel}>
+            <i className="fa-solid fa-ban"></i>
           </button>
         </div>
       </div>

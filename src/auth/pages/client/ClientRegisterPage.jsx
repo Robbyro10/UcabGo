@@ -32,11 +32,12 @@ export const ClientRegisterPage = () => {
       className="w-100"
       style={{
         backgroundImage: "linear-gradient(#4b6cb7, #182848)",
+        height: "1000px",
       }}
     >
       <div
-        className="container mx-auto p-4 rounded"
-        style={{ margin: "90px", background: "white", width: "450px" }}
+        className="container mx-auto p-4 rounded bg-white"
+        style={{ margin: "90px", width: "450px" }}
       >
         <h1>Registro Cliente</h1>
         <br />

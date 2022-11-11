@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
-import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients } from "../store/ucabGo/ucabGoSlice";
+import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients } from "../store/ucabGo/ucabGoSlice";
 
 export const useUcabGoStore = () => {
 
@@ -43,6 +43,18 @@ export const useUcabGoStore = () => {
         console.log(error);
         Swal.fire('Error al guardar', error.response.data.msg, 'error');
       }  
+    }
+
+    const dispatchOrder = async( order ) => {
+      try {
+        await ucabGoApi.put(`orders/${order}`, order);
+        
+        dispatch(onDispatchOrder({...order, user}));
+
+      } catch (error) {
+        console.log(error);
+        Swal.fire('Algo', error.response.data.msg, 'error');
+      }
     }
 
     const startDeleteOrder = async( orderId ) => {
@@ -107,7 +119,7 @@ export const useUcabGoStore = () => {
       }
     }
 
-    const startLoadingOrders = async (storeId) => {
+    const startLoadingOrders = async (storeId = "") => {
       try {
         const { data } = await ucabGoApi.get(`/orders/${storeId}`);
         const {orders} = data;
@@ -132,6 +144,7 @@ export const useUcabGoStore = () => {
     setActiveProduct,
     startSavingProduct,
     startSavingOrder,
+    dispatchOrder,
     startDeleteProduct,
     startDeleteOrder,
     startLoadingProducts,

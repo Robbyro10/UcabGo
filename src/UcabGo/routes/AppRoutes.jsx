@@ -9,7 +9,7 @@ import {
   AdminOrders,
 } from "../pages/admin";
 import {
-  CartPage,
+  ClientOrderPage,
   OrderPage,
   ProductPage,
   ProfilePage,
@@ -48,7 +48,7 @@ export const AppRoutes = () => {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/store/:_id" element={<StorePage />} />
               <Route path="make+order/:id/" element={<OrderPage />} />
-              <Route path="orders/:id/" element={<CartPage />} />
+              <Route path="orders/:id/" element={<ClientOrderPage />} />
               <Route path="store/product/:id/" element={<ProductPage />} />
               <Route path="/" element={<Navigate to="/ucabgo" />} />
               <Route path="/*" element={<Navigate to="/ucabgo" />} />

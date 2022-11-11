@@ -37,6 +37,14 @@ export const ucabGoSlice = createSlice({
         return product;
       })
     },
+    onDispatchOrder: (state, {payload}) => {
+      state.orders = state.orders.map( order => {
+        if (order.id === payload.id){
+          return payload;
+        }
+        return order;
+      })
+    },
     onDeleteProduct: ( state ) => {
       if ( state.activeProduct ){
         state.products = state.products.filter( product => product.id !== state.activeProduct.id);
@@ -67,6 +75,7 @@ export const {
   onAddNewProduct, 
   onAddNewOrder, 
   onUpdateProduct, 
+  onDispatchOrder,
   onDeleteProduct, 
   onLoadStores, 
   onLoadProducts, 
