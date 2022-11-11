@@ -47,10 +47,6 @@ export const OrderPage = () => {
                 <p className="card-text">
                   <b>Celular:</b> 0412-3349273
                 </p>
-                <p className="card-text">
-                  <b>Monto:</b> &nbsp;
-                  {data.product.price * 9.02} Bs
-                </p>
               </div>
             </div>
           </div>

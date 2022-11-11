@@ -3,10 +3,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
 import { NavBar, SideBar } from "../components/ui";
 import {
-  Orders,
   AdminProductsPage,
   AdminClientsPage,
   AdminStoresPage,
+  AdminOrders,
 } from "../pages/admin";
 import {
   CartPage,
@@ -32,7 +32,7 @@ export const AppRoutes = () => {
               <Route path="/clients" element={<AdminClientsPage />} />
               <Route path="/products" element={<AdminProductsPage />} />
               <Route path="/stores" element={<AdminStoresPage />} />
-              <Route path="/orders" element={<Orders />} />
+              <Route path="/orders" element={<AdminOrders />} />
               <Route path="/" element={<Navigate to="/products" />} />
               <Route path="/*" element={<Navigate to="/products" />} />
             </Routes>

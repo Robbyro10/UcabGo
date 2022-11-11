@@ -12,6 +12,7 @@ export const Order = ({
   appearance,
   day,
   id,
+  quantity,
 }) => {
   if (!user) {
     return;
@@ -37,7 +38,9 @@ export const Order = ({
       <div className="row">
         <div className="col">
           <i className="fa-solid fa-cart-shopping"></i> &nbsp;
-          <b>{product.name}</b>
+          <b>
+            {product.name} ({quantity})
+          </b>
           <p>
             &nbsp;
             <i className="fa-sharp fa-solid fa-location-dot"></i>

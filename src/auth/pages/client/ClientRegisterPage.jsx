@@ -18,7 +18,6 @@ export const ClientRegisterPage = () => {
       return;
     }
 
-    //TODO: Arreglar img
     startRegister({
       email,
       password,

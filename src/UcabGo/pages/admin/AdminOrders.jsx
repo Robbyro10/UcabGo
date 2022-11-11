@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useUcabGoStore } from "../../../hooks/useUcabGoStore";
 
-export const Orders = () => {
+export const AdminOrders = () => {
   const { startLoadingOrders, orders } = useUcabGoStore();
   useEffect(() => {
     startLoadingOrders();

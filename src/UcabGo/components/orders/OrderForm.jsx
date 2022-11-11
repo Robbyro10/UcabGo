@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
@@ -11,47 +12,39 @@ export const OrderForm = ({ product }) => {
   const { user } = useAuthStore();
   const { startSavingOrder } = useUcabGoStore();
 
-  const [formValues, setFormValues] = useState({
-    location: "Modulos",
-    detail: "",
-    payment: "",
-    appearance: "",
-    product: product.id,
-    user,
-    time,
-    day,
-    status: "Pendiente",
-    quantity: "",
-    notes: "",
-  });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm({ defaultValues: { quantity: 1 } });
 
-  const onInputChanged = ({ target }) => {
-    setFormValues({
-      ...formValues,
-      [target.name]: target.value,
-    });
-  };
+  const { startRegister } = useAuthStore();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await startSavingOrder(formValues);
+  const onSubmit = (data) => {
+    data.time = time;
+    data.day = day;
+    data.status = "Pendiente";
+    data.product = product.id;
+    data.user = user;
+    startSavingOrder(data);
     Swal.fire("Enviado!!", "Tu pedido ha sido registrado.", "success");
     navigate("/ucabgo");
+    console.log(data);
   };
 
+  const quantity = watch("quantity");
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group row">
-        <label htmlFor="ubicacion" className="col-sm-2 col-form-label">
+        <label htmlFor="ubicacion" className="col-lg-2 col-form-label">
           Ubicación
         </label>
-        <div className="col-sm-10">
+        <div className="col-lg-10">
           <select
             className="form-control"
-            name="location"
-            value={formValues.location}
-            onChange={onInputChanged}
-            required
+            {...register("location", { required: true })}
           >
             <option>Módulos</option>
             <option>Laboratorios</option>
@@ -66,107 +59,103 @@ export const OrderForm = ({ product }) => {
       </div>
 
       <div className="form-group row">
-        <label htmlFor="Descripcion" className="col-sm-2 col-form-label">
+        <label htmlFor="Descripcion" className="col-lg-2 col-form-label">
           Descripción
         </label>
-        <div className="col-sm-10">
+        <div className="col-lg-10">
           <input
             type="text"
             className="form-control"
             placeholder="Descripción detallada de su ubicación"
-            name="detail"
-            value={formValues.detail}
-            onChange={onInputChanged}
-            required
+            {...register("detail", { required: true })}
           />
         </div>
       </div>
 
-      <fieldset className="form-group">
-        <div className="row">
-          <legend className="col-form-label col-sm-2 pt-0">
-            Método de Pago
-          </legend>
-          <div className="col-sm-10">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="payment"
-                value="Efectivo"
-                onChange={onInputChanged}
-                required
-              />
-              <label className="form-check-label">Efectivo</label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="payment"
-                value="Pago Móvil"
-                onChange={onInputChanged}
-              />
-              <label className="form-check-label">Pago Movil</label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="payment"
-                value="Tarjeta"
-                onChange={onInputChanged}
-              />
-              <label className="form-check-label">Tarjeta</label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="payment"
-                value="Zelle"
-                onChange={onInputChanged}
-              />
-              <label className="form-check-label">Zelle</label>
-            </div>
-          </div>
+      <div className="form-group row">
+        <label htmlFor="ubicacion" className="col-lg-2 col-form-label">
+          Pago
+        </label>
+        <div className="col-lg-10">
+          <select
+            className="form-control"
+            {...register("payment", { required: true })}
+          >
+            <option>Efectivo</option>
+            <option>Zelle</option>
+            <option>Pago Móvil</option>
+            <option>Tarjeta</option>
+          </select>
         </div>
-      </fieldset>
+      </div>
 
       <div className="form-group row">
-        <label htmlFor="apariencia" className="col-sm-2 col-form-label">
+        <label htmlFor="apariencia" className="col-lg-2 col-form-label">
           Apariencia
         </label>
-        <div className="col-sm-10">
+        <div className="col-lg-10">
           <input
             type="text"
             className="form-control"
             placeholder="Ej. vestimenta, pantalón, morral, etc."
-            name="appearance"
-            value={formValues.appearance}
-            onChange={onInputChanged}
-            required
+            {...register("appearance", { required: true })}
           />
         </div>
       </div>
       <h3 className="h3 mt-5">¡Complete su Pedido!</h3>
       <hr />
-      <div className="col">
-        <div className="card mb-3" style={{ width: "18rem" }}>
-          <img className="card-img-top" src={product.img} alt={product.name} />
-          <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text">{product.desc}</p>
-            <p className="card-text">
-              Total:
-              <b> {product.price}$</b>
-            </p>
+
+      <div className="row mb-5">
+        <div className="col">
+          <div className="card mb-3" style={{ width: "18rem" }}>
+            <img
+              className="card-img-top"
+              src={product.img}
+              alt={product.name}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{product.name}</h5>
+              <p className="card-text">{product.desc}</p>
+              <p className="card-text">
+                Total:
+                <b> {product.price * quantity}$</b> o{" "}
+                <b>{(product.price * quantity * 10.55).toFixed(2)}Bs</b>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="form-group row">
+            <label className="col col-form-label">Notas:</label>
+            <div className="col-lg-12">
+              <textarea
+                className="form-control"
+                placeholder="Ej. sin tomate, extra salsa, etc."
+                rows="5"
+                style={{ resize: "none" }}
+                {...register("notes")}
+              />
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label className="col col-form-label">Cantidad:</label>
+            <div className="col-lg-12">
+              <select className="form-control" {...register("quantity")}>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="form-group row">
-        <div className="col-sm-10">
+        <div className="col-lg-10">
           <button type="submit" className="btn btn-success">
             ¡Confirmar Pedido!
           </button>
