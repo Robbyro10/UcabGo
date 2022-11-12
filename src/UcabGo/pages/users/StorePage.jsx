@@ -3,7 +3,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { ProductList } from "../../components/products";
-import { FabAddNew, StoreModal } from "../../components/ui";
+import { FabAddNew, StoreModal, ArrowBack } from "../../components/ui";
 import { fetcher, getEnvVariables } from "../../helpers";
 
 export const StorePage = () => {
@@ -63,9 +63,7 @@ export const StorePage = () => {
 
           <ProductList store={data.store} />
 
-          <button onClick={onBack} className="btn btn-outline-primary mb-5">
-            Atrás
-          </button>
+          <ArrowBack route={"/ucabgo"} />
         </>
       )}
     </>

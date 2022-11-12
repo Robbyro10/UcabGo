@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
+import { ArrowBack } from "../../components/ui/ArrowBack";
 import { fetcher, getEnvVariables } from "../../helpers";
 
 export const ProductPage = () => {
@@ -15,8 +16,7 @@ export const ProductPage = () => {
         <>
           <br />
           <img
-            className="img animate__animated animate__fadeIn"
-            style={{ width: "70vw", maxWidth: "60vh" }}
+            className="img animate__animated animate__fadeIn w-100 rounded"
             src={data.product.img}
             alt={data.product.desc}
           />
@@ -28,19 +28,14 @@ export const ProductPage = () => {
 
           <Link
             to={`/make+order/${id}`}
-            className="btn btn-outline-success mr-2 w-75"
+            className="btn btn-outline-success mr-2 w-100"
           >
             Seleccionar
           </Link>
           <br />
           <br />
 
-          <Link
-            to={`/store/${data.product.store}`}
-            className="btn btn-outline-danger"
-          >
-            Atrás
-          </Link>
+          <ArrowBack route={`/store/${data.product.store}`} />
         </>
       )}
     </>

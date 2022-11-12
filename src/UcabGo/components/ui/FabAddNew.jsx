@@ -9,7 +9,7 @@ export const FabAddNew = () => {
 
   return (
     <button
-      className="btn btn-primary fab"
+      className="btn btn-success fab"
       onClick={handleClickNew}
       style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
     >

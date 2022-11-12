@@ -47,7 +47,7 @@ export const useUcabGoStore = () => {
 
     const dispatchOrder = async( order ) => {
       try {
-        await ucabGoApi.put(`orders/${order}`, order);
+        await ucabGoApi.patch(`orders/${order}`, order);
         
         dispatch(onDispatchOrder({...order, user}));
 

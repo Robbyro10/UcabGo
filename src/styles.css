@@ -53,11 +53,25 @@ body {
 }
 
 .fab {
-    border-radius: 100%;
+    border-radius: 50%;
+    display:block;
+    height: 80px;
+    width: 80px;
     bottom: 25px;
-    font-size: 30px;
-    padding: 25px;
+    font-size: 40px;
     position: fixed;
     right: 25px;
+    z-index: 99;
+}
+
+.fab-back {
+    border-radius: 50%;
+    display:block;
+    height: 80px;
+    width: 80px;
+    bottom: 25px;
+    font-size: 35px;
+    position: fixed;
+    left: 25px;
     z-index: 99;
 }
