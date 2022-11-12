@@ -104,26 +104,7 @@ export const OrderForm = ({ product }) => {
       <h3 className="h3 mt-5">¡Complete su Pedido!</h3>
       <hr />
 
-      <div className="row mb-5">
-        <div className="col">
-          <div className="card mb-3" style={{ width: "18rem" }}>
-            <img
-              className="card-img-top"
-              src={product.img}
-              alt={product.name}
-            />
-            <div className="card-body">
-              <h5 className="card-title">{product.name}</h5>
-              <p className="card-text">{product.desc}</p>
-              <p className="card-text">
-                Total:
-                <b> {product.price * quantity}$</b> o{" "}
-                <b>{(product.price * quantity * 10.55).toFixed(2)}Bs</b>
-              </p>
-            </div>
-          </div>
-        </div>
-
+      <div className="row">
         <div className="col">
           <div className="form-group row">
             <label className="col col-form-label">Notas:</label>
@@ -153,6 +134,24 @@ export const OrderForm = ({ product }) => {
                 <option>9</option>
                 <option>10</option>
               </select>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card mb-3 mt-3" style={{ width: "18rem" }}>
+            <img
+              className="card-img-top"
+              src={product.img}
+              alt={product.name}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{product.name}</h5>
+              <p className="card-text">{product.desc}</p>
+              <p className="card-text">
+                Total:
+                <b> {product.price * quantity}$</b> o{" "}
+                <b>{(product.price * quantity * 10.55).toFixed(2)}Bs</b>
+              </p>
             </div>
           </div>
         </div>
