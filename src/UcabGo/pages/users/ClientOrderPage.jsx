@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../../hooks";
 import { useUcabGoStore } from "../../../hooks/useUcabGoStore";
+import { ClientOrderList } from "../../components/orders";
 import { ArrowBack } from "../../components/ui/ArrowBack";
 
 export const ClientOrderPage = () => {
@@ -21,12 +22,16 @@ export const ClientOrderPage = () => {
 
   return (
     <>
-      <h1>Pedidos Realizados</h1>
+      <h1>Pedidos Realizados: </h1>
 
       <h3>Pendientes</h3>
 
+      <ClientOrderList orders={pendingOrders} />
+
       <hr />
       <h3>Despachados por el Restaurante: </h3>
+
+      <ClientOrderList orders={dispatchedOrders} />
 
       <ArrowBack route={"/"} />
     </>
