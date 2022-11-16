@@ -137,8 +137,8 @@ export const OrderForm = ({ product }) => {
             </div>
           </div>
         </div>
-        <div className="col">
-          <div className="card mb-3 mt-3" style={{ width: "18rem" }}>
+        <div className="col-md-6">
+          <div className="card mb-3 mt-3">
             <img
               className="card-img-top"
               src={product.img}

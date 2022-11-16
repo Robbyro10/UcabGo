@@ -1,30 +1,222 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 
 export const ProfilePage = () => {
   const { user } = useAuthStore();
-  //   const { clients, stores } = useUcabGoStore();
-  //   console.log(user);
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      location: user.location,
+      desc: user.desc,
+      rif: user.rif,
+      img: user.img,
+    },
+  });
+
+  const [notEditing, setNotEditing] = useState(true);
+
+  const { updateUser } = useAuthStore(user.type);
+
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "¿Guardar Cambios?",
+      confirmButtonText: "Guardar",
+      showDenyButton: true,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setNotEditing(true);
+        data.uid = user.uid;
+        data.password = user.password;
+        data.type = user.type;
+        updateUser(data);
+      }
+    });
+  };
 
   return (
     <div>
-      <h1>Perfil</h1>
+      <div className="row">
+        <div className="col">
+          <h1>Perfil</h1>
+        </div>
+        <div className="col text-right">
+          <button
+            className="btn btn-primary mt-2"
+            disabled={!notEditing}
+            onClick={() => setNotEditing(!notEditing)}
+          >
+            Editar Pefil &nbsp;
+            <i className="fa-solid fa-pencil"></i>
+          </button>
+        </div>
+      </div>
       <hr />
-      <h3>Nombre:</h3>
-      <p>{user.name}</p>
-      <h3>Correo:</h3>
-      <p>{user.email}</p>
-      <p className="text-danger">Necesita Trabajo</p>
-      {user.type === "stores" && (
-        <>
-          <p>{user.img}</p>
-          <p>{user.desc}</p>
-          <p>{user.rif}</p>
-          <p>{user.phone}</p>
-        </>
-      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group">
+          <label>Nombre y Apellido</label>
+          <input
+            className="form-control"
+            readOnly={notEditing}
+            type="text"
+            {...register("name", { required: true, maxLength: 20 })}
+          />
+          {errors.name?.type === "required" && (
+            <p className="text-danger">El nombre es obligatorio</p>
+          )}
+          {errors.name?.type === "maxLength" && (
+            <p className="text-danger">
+              El nombre debe tener menos de 20 caracteres
+            </p>
+          )}
+        </div>
+
+        {user.type === "clients" ? (
+          <div className="form-group">
+            <label>Correo UCAB</label>
+            <input
+              className="form-control"
+              type="email"
+              readOnly={notEditing}
+              {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
+            />
+            {errors.email?.type === "required" && (
+              <p className="text-danger">El correo es obligatorio</p>
+            )}
+            {errors.email?.type === "pattern" && (
+              <p className="text-danger">No es un correo de la UCAB</p>
+            )}
+          </div>
+        ) : (
+          <div className="form-group">
+            <label>Correo</label>
+            <input
+              className="form-control"
+              readOnly={notEditing}
+              type="email"
+              {...register("email", { required: true })}
+            />
+            {errors.email?.type === "required" && (
+              <p className="text-danger">El correo es obligatorio</p>
+            )}
+          </div>
+        )}
+
+        {user.type === "stores" && (
+          <div className="form-group">
+            <label>Descripción</label>
+            <input
+              className="form-control"
+              type="text"
+              readOnly={notEditing}
+              {...register("desc", { required: true })}
+            />
+            {errors.desc?.type === "required" && (
+              <p className="text-danger">La Descripción es obligatoria</p>
+            )}
+          </div>
+        )}
+
+        <div className="row">
+          <div className="col">
+            <div className="form-group">
+              <label>Celular</label>
+              <input
+                className="form-control"
+                type="text"
+                readOnly={notEditing}
+                {...register("phone", { required: true, maxLength: 15 })}
+              />
+              {errors.phone?.type === "required" && (
+                <p className="text-danger">El celular es obligatorio</p>
+              )}
+              {errors.phone?.type === "maxLength" && (
+                <p className="text-danger">
+                  El nombre debe tener menos de 15 caracteres
+                </p>
+              )}
+            </div>
+          </div>
+          {user.type === "stores" && (
+            <div className="col">
+              <div className="form-group">
+                <label>Ubicación en la UCAB</label>
+                <select
+                  className="form-control"
+                  disabled={notEditing}
+                  {...register("location", { required: true })}
+                >
+                  <option value="Feria">Feria</option>
+                  <option value="Cafetín">Cafertín</option>
+                  <option value="Solarium">Solarium</option>
+                  <option value="Canchas">Canchas</option>
+                  <option value="Cincuentenario">Cincuentenario</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                {errors.location?.type === "required" && (
+                  <p className="text-danger">La ubicacion es obligatoria</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {user.type === "stores" && (
+          <div className="row">
+            <div className="col">
+              <div className="form-group">
+                <label>RIF</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  readOnly={notEditing}
+                  {...register("rif", { required: true, maxLength: 15 })}
+                />
+                {errors.rif?.type === "required" && (
+                  <p className="text-danger">El RIF es obligatorio</p>
+                )}
+                {errors.phone?.type === "maxLength" && (
+                  <p className="text-danger">
+                    El nombre debe tener menos de 15 caracteres
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="col">
+              <label>Foto/Logo</label>
+              <input
+                className="form-control"
+                //todo: fix this
+                // disabled={notEditing}
+                disabled
+                type="file"
+                accept=".png,.jpg"
+                {...register("img")}
+              />
+            </div>
+          </div>
+        )}
+
+        <br />
+        {!notEditing && (
+          <button className="btn btn-success mb-2" type="submit" value="submit">
+            Guardar
+          </button>
+        )}
+      </form>
+
       <Link to="/" className="btn btn-primary">
-        Atras
+        Atrás
       </Link>
     </div>
   );

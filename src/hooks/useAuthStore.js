@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { ucabGoApi } from '../api'
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice';
+import { clearErrorMessage, onChecking, onLogin, onLogout, onUpdate } from '../store/auth/authSlice';
 
 
 export const useAuthStore = (type = 'clients') => {
@@ -10,17 +10,19 @@ export const useAuthStore = (type = 'clients') => {
     const { status, user, errorMessage } = useSelector( state => state.auth);
     const dispatch = useDispatch();
 
-    const startLogin = async({ email, password, rif, phone, desc, img }) => {
+    const startLogin = async({ email, password }) => {
         dispatch(onChecking());
 
         try {
 
             const { data } = await ucabGoApi.post(`/${type}`, {email, password})
-            
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type,}));
+            dispatch( onLogin({name: data.name, uid: data.uid, 
+                type, email: data.email, 
+                phone: data.phone, password: data.password, rif: data.rif,
+                desc: data.desc, img: data.img, location: data.location}));
             
         } catch (error) {
             Swal.fire('Error!', 'Credenciales incorrectas', 'error');
@@ -41,7 +43,10 @@ export const useAuthStore = (type = 'clients') => {
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type }));
+            dispatch( onLogin({ name: data.name, uid: data.uid, 
+                type, email: data.email, 
+                phone: data.phone, password: data.password, rif: data.rif,
+                desc: data.desc, img: data.img, location: data.location }));
 
         } catch (error) {
             Swal.fire('Error!', 'Ya existe un usuario con esos datos', 'error');
@@ -52,15 +57,32 @@ export const useAuthStore = (type = 'clients') => {
         }
     }
 
+    const updateUser = async (user) => {
+        try {
+            await ucabGoApi.put(`/${type}/${user.uid}`, user);
+            dispatch(onUpdate({...user}));
+        } catch (error) {
+            console.log(error);
+            Swal.fire('Error al actualizar', error.response.data.msg, 'error');
+        }
+    }
+
     const checkAuthToken = async() => {
         const token = localStorage.getItem('token');
         if ( !token ) return dispatch(onLogout());
 
         try {
             const { data } = await ucabGoApi.get(`/${type}/renew`);
-            localStorage.setItem('token', data.token);
+            
+            // TODO talvez deba ser eliminado
+            // localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime() );
-            dispatch( onLogin({ name: data.name, uid: data.uid, type }));
+            dispatch( onLogin({ 
+                name: data.name, uid: data.uid, 
+                type, email: data.email, 
+                phone: data.phone, password: data.password, rif: data.rif,
+                desc: data.desc, img: data.img, location: data.location 
+            }));
         } catch (error) {
             localStorage.clear();
             dispatch(onLogout());
@@ -84,5 +106,6 @@ export const useAuthStore = (type = 'clients') => {
         startRegister,
         checkAuthToken,
         startLogout,
+        updateUser
     }
 }

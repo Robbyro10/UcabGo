@@ -69,10 +69,10 @@ export const StoreRegisterPage = () => {
               {...register("name", { required: true, maxLength: 20 })}
             />
             {errors.name?.type === "required" && (
-              <p className="text-warning">El nombre es obligatorio</p>
+              <p className="text-danger">El nombre es obligatorio</p>
             )}
             {errors.name?.type === "maxLength" && (
-              <p className="text-warning">
+              <p className="text-danger">
                 El nombre debe tener menos de 20 caracteres
               </p>
             )}
@@ -87,7 +87,7 @@ export const StoreRegisterPage = () => {
             />
           </div>
           {errors.email?.type === "required" && (
-            <p className="text-warning">El correo es obligatorio</p>
+            <p className="text-danger">El correo es obligatorio</p>
           )}
 
           <div className="form-group">
@@ -99,7 +99,7 @@ export const StoreRegisterPage = () => {
             />
           </div>
           {errors.desc?.type === "required" && (
-            <p className="text-warning">Campo obligatorio</p>
+            <p className="text-danger">Campo obligatorio</p>
           )}
 
           <div className="row">
@@ -112,10 +112,10 @@ export const StoreRegisterPage = () => {
                   {...register("phone", { required: true, maxLength: 15 })}
                 />
                 {errors.phone?.type === "required" && (
-                  <p className="text-warning">El celular es obligatorio</p>
+                  <p className="text-danger">El celular es obligatorio</p>
                 )}
                 {errors.phone?.type === "maxLength" && (
-                  <p className="text-warning">
+                  <p className="text-danger">
                     El celular debe tener menos de 15 caracteres
                   </p>
                 )}
@@ -136,7 +136,7 @@ export const StoreRegisterPage = () => {
                   <option value="Otro">Otro</option>
                 </select>
                 {errors.location?.type === "required" && (
-                  <p className="text-warning">La ubicacion es obligatoria</p>
+                  <p className="text-danger">La ubicacion es obligatoria</p>
                 )}
               </div>
             </div>
@@ -152,10 +152,10 @@ export const StoreRegisterPage = () => {
                   {...register("rif", { required: true, maxLength: 15 })}
                 />
                 {errors.rif?.type === "required" && (
-                  <p className="text-warning">El RIF es obligatorio</p>
+                  <p className="text-danger">El RIF es obligatorio</p>
                 )}
                 {errors.phone?.type === "maxLength" && (
-                  <p className="text-warning">
+                  <p className="text-danger">
                     El nombre debe tener menos de 15 caracteres
                   </p>
                 )}
@@ -185,10 +185,10 @@ export const StoreRegisterPage = () => {
             />
           </div>
           {errors.password?.type === "minLength" && (
-            <p className="text-warning">Mínimo 6 caracteres</p>
+            <p className="text-danger">Mínimo 6 caracteres</p>
           )}
           {errors.password?.type === "maxLength" && (
-            <p className="text-warning">Máximo 15 caracteres</p>
+            <p className="text-danger">Máximo 15 caracteres</p>
           )}
 
           <div className="form-group">
@@ -204,10 +204,10 @@ export const StoreRegisterPage = () => {
             />
           </div>
           {errors.password2?.type === "minLength" && (
-            <p className="text-warning">Mínimo 6 caracteres</p>
+            <p className="text-danger">Mínimo 6 caracteres</p>
           )}
           {errors.password2?.type === "maxLength" && (
-            <p className="text-warning">Máximo 15 caracteres</p>
+            <p className="text-danger">Máximo 15 caracteres</p>
           )}
           <br />
           <button

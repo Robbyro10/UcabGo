@@ -23,7 +23,6 @@ export const ClientRegisterPage = () => {
       password,
       name,
       phone,
-      img: "",
     });
   };
 
@@ -66,13 +65,13 @@ export const ClientRegisterPage = () => {
               type="email"
               {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
             />
+            {errors.email?.type === "required" && (
+              <p className="text-danger">El correo es obligatorio</p>
+            )}
+            {errors.email?.type === "pattern" && (
+              <p className="text-danger">No es un correo de la UCAB</p>
+            )}
           </div>
-          {errors.email?.type === "required" && (
-            <p className="text-danger">El correo es obligatorio</p>
-          )}
-          {errors.email?.type === "pattern" && (
-            <p className="text-danger">No es un correo de la UCAB</p>
-          )}
 
           <div className="row">
             <div className="col">

@@ -126,7 +126,7 @@ export const useUcabGoStore = () => {
         dispatch(onLoadOrders(orders));
         
       } catch (error) {
-        console.log('Error cargando clients');
+        console.log('Error cargando pedidos');
         console.log(error);
       }
     }

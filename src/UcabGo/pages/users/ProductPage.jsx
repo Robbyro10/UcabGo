@@ -13,34 +13,32 @@ export const ProductPage = () => {
       {!data ? (
         <h1>Cargando...</h1>
       ) : (
-        <div className="col text-center">
-          <br />
-          <img
-            className="img animate__animated animate__fadeIn w-75 rounded"
-            src={data.product.img}
-            alt={data.product.desc}
-          />
-          <hr />
-          <h1>{data.product.name}</h1>
-          <p>
-            {data.product.desc} Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Error assumenda ut expedita at non voluptas. Nam
-            repudiandae quam velit. Veniam corporis, similique totam aliquam et
-            quis quia accusantium iusto fuga?
-          </p>
+        <div className="row">
+          <div className="col text-center">
+            <br />
+            <img
+              className="img animate__animated animate__fadeIn w-75 rounded"
+              src={data.product.img}
+              alt={data.product.desc}
+              style={{ maxWidth: "600px" }}
+            />
+            <hr />
+            <h1>{data.product.name}</h1>
+            <p>{data.product.desc}</p>
 
-          <br />
+            <br />
 
-          <Link
-            to={`/make+order/${id}`}
-            className="btn btn-outline-success mr-2 w-75"
-          >
-            Seleccionar
-          </Link>
-          <br />
-          <br />
+            <Link
+              to={`/make+order/${id}`}
+              className="btn btn-outline-success mr-2 w-75"
+            >
+              Seleccionar
+            </Link>
+            <br />
+            <br />
 
-          <ArrowBack route={`/store/${data.product.store}`} />
+            <ArrowBack route={`/store/${data.product.store}`} />
+          </div>
         </div>
       )}
     </>
