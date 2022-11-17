@@ -17,6 +17,7 @@ export const ClientOrderPage = () => {
   const dispatchedOrders = orders.filter(
     (order) => order.user == user.uid && order.status == "Despachado"
   );
+  console.log(orders);
   // console.log(pendingOrders);
   // console.log(dispatchedOrders);
 

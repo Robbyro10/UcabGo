@@ -119,9 +119,9 @@ export const useUcabGoStore = () => {
       }
     }
 
-    const startLoadingOrders = async (storeId) => {
+    const startLoadingOrders = async (storeId = "") => {
       try {
-        const data = await ucabGoApi.get(`/orders/${storeId}`);
+        const {data} = await ucabGoApi.get(`/orders/${storeId}`);
         const {orders} = data;
         dispatch(onLoadOrders(orders));
         

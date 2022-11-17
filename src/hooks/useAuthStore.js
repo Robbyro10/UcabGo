@@ -21,7 +21,7 @@ export const useAuthStore = (type = 'clients') => {
             localStorage.setItem('type', type );
             dispatch( onLogin({name: data.name, uid: data.uid, 
                 type, email: data.email, 
-                phone: data.phone, password: data.password, rif: data.rif,
+                phone: data.phone, rif: data.rif,
                 desc: data.desc, img: data.img, location: data.location}));
             
         } catch (error) {
@@ -45,7 +45,7 @@ export const useAuthStore = (type = 'clients') => {
             localStorage.setItem('type', type );
             dispatch( onLogin({ name: data.name, uid: data.uid, 
                 type, email: data.email, 
-                phone: data.phone, password: data.password, rif: data.rif,
+                phone: data.phone, rif: data.rif,
                 desc: data.desc, img: data.img, location: data.location }));
 
         } catch (error) {
@@ -80,7 +80,7 @@ export const useAuthStore = (type = 'clients') => {
             dispatch( onLogin({ 
                 name: data.name, uid: data.uid, 
                 type, email: data.email, 
-                phone: data.phone, password: data.password, rif: data.rif,
+                phone: data.phone, rif: data.rif,
                 desc: data.desc, img: data.img, location: data.location 
             }));
         } catch (error) {
