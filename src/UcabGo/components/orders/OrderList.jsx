@@ -1,8 +1,15 @@
-import { useUcabGoStore } from "../../../hooks";
+import { useEffect } from "react";
+import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { Order } from "./Order";
 
 export const OrderList = () => {
-  const { orders } = useUcabGoStore();
+  const { startLoadingOrders, orders } = useUcabGoStore();
+  const { user } = useAuthStore();
+
+  useEffect(() => {
+    startLoadingOrders(user.uid);
+  }, [orders.length]);
+
   const filteredOrders = orders.filter((order) => order.status === "Pendiente");
 
   return (
