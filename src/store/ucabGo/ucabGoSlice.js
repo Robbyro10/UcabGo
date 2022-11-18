@@ -51,6 +51,9 @@ export const ucabGoSlice = createSlice({
         state.activeProduct = null;
       }
     },
+    onDeleteOrder: (state, {payload}) => { // TODO fix this
+      state.orders = state.orders.filter( order => order.id !== payload) 
+    },
     onLoadProducts: (state, {payload = []}) => {
       state.isLoadingProducts = false;
       state.products = payload;
@@ -76,7 +79,8 @@ export const {
   onAddNewOrder, 
   onUpdateProduct, 
   onDispatchOrder,
-  onDeleteProduct, 
+  onDeleteProduct,
+  onDeleteOrder, 
   onLoadStores, 
   onLoadProducts, 
   onLoadClients, 

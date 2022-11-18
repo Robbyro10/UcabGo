@@ -32,7 +32,7 @@ export const NavBar = () => {
         <p>Cargando...</p>
       ) : (
         <nav
-          className="navbar navbar-dark bg-dark mb-4 px-4"
+          className="navbar navbar-dark bg-dark mb-4 px-4 fixed-top"
           style={{ opacity: "0.96" }}
         >
           <div className="container-fluid">
@@ -43,8 +43,8 @@ export const NavBar = () => {
                 ) : (
                   <img
                     style={{
-                      width: "50px",
-                      height: "50px",
+                      width: "28px",
+                      height: "28px",
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}

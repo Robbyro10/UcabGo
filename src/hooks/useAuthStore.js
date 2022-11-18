@@ -60,7 +60,7 @@ export const useAuthStore = (type = 'clients') => {
     const updateUser = async (user) => {
         try {
             await ucabGoApi.put(`/${type}/${user.uid}`, user);
-            dispatch(onUpdate({...user}));
+            dispatch(onUpdate(user));
         } catch (error) {
             console.log(error);
             Swal.fire('Error al actualizar', error.response.data.msg, 'error');

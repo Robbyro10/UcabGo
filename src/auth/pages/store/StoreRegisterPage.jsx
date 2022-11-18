@@ -22,28 +22,19 @@ export const StoreRegisterPage = () => {
       .then((response) => {
         const imgUrl = response.data.url;
         data.img = imgUrl;
-        Swal.fire("Registro Exitoso", "Espere unos segundos.", "success");
         startRegister(data);
       });
   };
 
   const onSubmit = (data) => {
-    const {
-      email,
-      password,
-      password2,
-      name,
-      phone,
-      rif,
-      desc,
-      img,
-      location,
-    } = data;
+    const { password, password2 } = data;
     if (password !== password2) {
       Swal.fire("Error en registro", "Contraseñas no coinciden", "error");
       return;
+    } else {
+      Swal.fire("Registro Exitoso", "Espere unos segundos.", "success");
     }
-    // console.log(data);
+
     uploadImg(data);
   };
 

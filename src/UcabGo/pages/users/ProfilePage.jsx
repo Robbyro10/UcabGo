@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -45,7 +46,7 @@ export const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <div style={{paddingTop: "80px"}}>
       <div className="row">
         <div className="col">
           <h1>Perfil</h1>
@@ -193,12 +194,10 @@ export const ProfilePage = () => {
               </div>
             </div>
             <div className="col">
-              <label>Foto/Logo</label>
+              <label>Cambiar Imagen</label>
               <input
                 className="form-control"
-                //todo: fix this
-                // disabled={notEditing}
-                disabled
+                disabled={notEditing}
                 type="file"
                 accept=".png,.jpg"
                 {...register("img")}

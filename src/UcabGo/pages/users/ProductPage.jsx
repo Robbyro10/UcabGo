@@ -9,7 +9,7 @@ export const ProductPage = () => {
   const { data, error } = useSWR(`${VITE_API_URL}/products/${id}`, fetcher);
 
   return (
-    <>
+    <div style={{paddingTop: "80px"}}>
       {!data ? (
         <h1>Cargando...</h1>
       ) : (
@@ -41,6 +41,6 @@ export const ProductPage = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };

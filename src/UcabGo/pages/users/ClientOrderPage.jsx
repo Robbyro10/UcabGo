@@ -21,7 +21,7 @@ export const ClientOrderPage = () => {
   // console.log(dispatchedOrders);
 
   return (
-    <>
+    <div style={{paddingTop: "80px"}}>
       <h1>Pedidos Realizados: </h1>
 
       <h3 className="pb-3">Pendientes</h3>
@@ -34,6 +34,6 @@ export const ClientOrderPage = () => {
       <ClientOrderList orders={dispatchedOrders} />
 
       <ArrowBack route={"/"} />
-    </>
+    </div>
   );
 };

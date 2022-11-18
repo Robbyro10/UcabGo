@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const StoreCard = ({ _id, name, location, desc, img }) => {
   const storeImgUrl = img;
   return (
-    <div className="col-lg-4">
+    <div className="col-md-4">
       <div
         className="card mb-3"
         style={{

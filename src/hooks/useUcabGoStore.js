@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
-import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients } from "../store/ucabGo/ucabGoSlice";
+import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients, onDeleteOrder } from "../store/ucabGo/ucabGoSlice";
 
 export const useUcabGoStore = () => {
 
@@ -62,11 +62,11 @@ export const useUcabGoStore = () => {
       try {
         
         await ucabGoApi.delete(`/orders/${orderId}`)
-        location.reload();
+        dispatch(onDeleteOrder(orderId));
 
       } catch (error) {
         console.log(error);
-        Swal.fire('Error al Eliminar', error.response.data.msg, 'error');
+        Swal.fire('Error al Cancelar', error.response.data.msg, 'error');
       }
     }
 

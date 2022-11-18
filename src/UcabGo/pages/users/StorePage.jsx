@@ -26,7 +26,7 @@ export const StorePage = () => {
   }, [products.length]);
 
   return (
-    <>
+    <div style={{paddingTop: "80px"}}>
       {!data || !products ? (
         <h1>Cargando...</h1>
       ) : (
@@ -66,6 +66,6 @@ export const StorePage = () => {
           <ArrowBack route={"/ucabgo"} />
         </>
       )}
-    </>
+    </div>
   );
 };

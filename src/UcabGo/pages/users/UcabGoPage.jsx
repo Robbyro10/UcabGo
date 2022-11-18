@@ -8,7 +8,7 @@ export const UcabGoPage = () => {
   const { user } = useAuthStore();
 
   return (
-    <>
+    <div style={{paddingTop: "80px"}}>
       {user.type === "clients" ? (
         <>
           <h1>¡Haga su Pedido!</h1>
@@ -28,6 +28,6 @@ export const UcabGoPage = () => {
           <OrderList />
         </>
       )}
-    </>
+    </div>
   );
 };
