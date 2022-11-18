@@ -17,7 +17,6 @@ export const ClientOrderPage = () => {
   const dispatchedOrders = orders.filter(
     (order) => order.user == user.uid && order.status == "Despachado"
   );
-  console.log(orders);
   // console.log(pendingOrders);
   // console.log(dispatchedOrders);
 
@@ -25,12 +24,12 @@ export const ClientOrderPage = () => {
     <>
       <h1>Pedidos Realizados: </h1>
 
-      <h3>Pendientes</h3>
+      <h3 className="pb-3">Pendientes</h3>
 
       <ClientOrderList orders={pendingOrders} />
 
       <hr />
-      <h3>Despachados por el Restaurante: </h3>
+      <h3 className="pb-3">Despachados por el Restaurante: </h3>
 
       <ClientOrderList orders={dispatchedOrders} />
 

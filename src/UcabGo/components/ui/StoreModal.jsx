@@ -92,6 +92,7 @@ export const StoreModal = ({ store }) => {
       overlayClassName="modal-fondo"
       closeTimeoutMs={200}
     >
+      <form className="container" onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
         <div className="col">
           {activeProduct ? (
@@ -101,13 +102,12 @@ export const StoreModal = ({ store }) => {
           )}
         </div>
         <div className="col-fluid">
-          <button onClick={onCloseModal} className="btn btn-danger mr-3 mt-2">
+          <button onClick={onCloseModal} className="btn mr-2 mt-2">
             <i className="far fa-x"></i>
           </button>
         </div>
       </div>
       <hr />
-      <form className="container" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group mb-2">
           <label>Nombre</label>
           <input

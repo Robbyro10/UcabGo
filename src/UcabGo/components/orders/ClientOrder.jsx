@@ -21,17 +21,18 @@ export const ClientOrder = ({
   return (
     <li className="list-group-item">
       <div className="row">
+        <div className="col-md-4 col-12 text-center">
+          <img className="img-fluid rounded mb-2" src={product.img} alt={product.desc} />
+        </div>
         <div className="col">
-          <i className="fa-solid fa-cart-shopping"></i> &nbsp;
-          <b>Producto ({quantity})</b>
-          <p>
-            &nbsp;
-            <i className="fa-sharp fa-solid fa-location-dot"></i>
-            &nbsp;&nbsp; {location}, {detail}
+        <p>
+          <big>
+          <b>{product.name} ({quantity})</b> 
+          </big>
+          <br />
+            {location}, {detail} 
             <br />
-          </p>
-          <p className="text-muted">
-            <small>{appearance}</small>
+            <small className="text-muted">{appearance}</small>
           </p>
         </div>
         {notes && (
@@ -41,8 +42,10 @@ export const ClientOrder = ({
         )}
         <div className="col text-right">
           <i className="fa-regular fa-clock"></i> &nbsp; {time}
-          <br /> <small className="text-muted">{day}</small>
-          <p className="text-muted">usuario</p>
+          <br /> 
+          <p>
+            <small className="text-muted">{day}</small>
+          </p> 
           <button onClick={handleEdit} className="btn">
             <i className="fa-solid fa-pencil"></i>
           </button>

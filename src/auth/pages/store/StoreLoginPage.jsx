@@ -25,7 +25,7 @@ export const StoreLoginPage = () => {
       <div
         className="container mx-auto bg-white p-4 rounded"
         style={{
-          margin: "3em",
+          margin: "20vh",
           width: "400px",
         }}
       >
