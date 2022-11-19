@@ -74,7 +74,6 @@ export const useAuthStore = (type = 'clients') => {
 
         try {
             const { data } = await ucabGoApi.get(`/${type}/renew`);
-            console.log(data);
             
             // TODO talvez deba ser eliminado
             // localStorage.setItem('token', data.token);

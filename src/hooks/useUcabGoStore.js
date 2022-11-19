@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
-import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients, onDeleteOrder } from "../store/ucabGo/ucabGoSlice";
+import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients, onDeleteOrder, onUpdateOrder } from "../store/ucabGo/ucabGoSlice";
 
 export const useUcabGoStore = () => {
 
@@ -35,6 +35,12 @@ export const useUcabGoStore = () => {
 
     const startSavingOrder = async( order ) => {
       try {
+        if ( order.id ){
+          // Updating
+          await ucabGoApi.put(`/orders/${order.id}`, order);
+          dispatch(onUpdateOrder({order}));
+          return;
+        } 
         // creating
         const { data } = await ucabGoApi.post('/orders', order);
         dispatch(onAddNewOrder({ ...order, id: data.order.id, user }));

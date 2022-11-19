@@ -7,6 +7,7 @@ import { useUcabGoStore } from "../../../hooks";
 
 export const ClientOrder = ({
   location,
+  store,
   notes,
   appearance,
   quantity,
@@ -26,20 +27,28 @@ export const ClientOrder = ({
     defaultValues: {
       notes,
       location,
-      quantity,
+      detail,
       appearance,
     },
   });
 
-  const {startDeleteOrder, stores, startLoadingStores} = useUcabGoStore();
-  useEffect(() => {
-    startLoadingStores()
-  }, [])
-  
-  const store = stores.find( store => store._id === product.store)
+  const {startDeleteOrder, startSavingOrder} = useUcabGoStore();
 
-  const handleEdit = () => {
-    console.log("edit");
+  const [isEdit, setIsEdit] = useState(false)
+
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "¿Guardar Cambios?",
+      confirmButtonText: "Guardar",
+      showDenyButton: true,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsEdit(false);
+        data.id = id;
+        startSavingOrder(data);
+      }
+    });
   };
 
   const handleCancel = () => {
@@ -57,42 +66,78 @@ export const ClientOrder = ({
 
   return (
     <li className={"list-group-item " + (status === 'Despachado' ? 'text-muted' : '')}>
+          <form onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
         <div className="col">
-        <p>
+        
           <big>
           <b>{product.name} ({quantity})</b>
           </big>
           <br />
-            {location}, {detail} 
-            <br />
-            <small className="text-muted">{appearance}</small>
-            <br />
+          <div className="form-group mb-1 mt-1">
+          <select
+            className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
+            disabled={!isEdit}
+            {...register("location", { required: true })}
+          >
+            <option>Módulos</option>
+            <option>Laboratorios</option>
+            <option>Feria</option>
+            <option>Solarium</option>
+            <option>Cincuentenario</option>
+            <option>Cafetín</option>
+            <option>Canchas</option>
+            <option>Otro</option>
+          </select>
+          </div>
+          <div className="form-group mb-1">
+            <input
+              className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
+              readOnly={!isEdit}
+              type="text"
+              {...register("detail", { required: true })}
+            />
+          </div>
+          <div className="form-group mb-1">
+            <input
+              className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
+              readOnly={!isEdit}
+              {...register("appearance", { required: true })}
+            />
+          </div>
             {!store ? <small className="text-muted">Cargando...</small> 
             : <small className="text-muted"><b>{store.name}</b></small>}
             
-          </p>
+          
         </div>
         {notes && (
-          <div className="col text-center">
-            <p>Notas: {notes}</p>
+          <div className="col">
+            <small>Notas:</small>
+            <input
+              className={"mt-2 form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
+              readOnly={!isEdit}
+              {...register("notes")}
+            />
           </div>
-        )}
+        ) 
+      }
+        
         <div className="col-fluid text-right">
           <i className="fa-regular fa-clock"></i> &nbsp; {time}
           <br /> 
           <p>
             <small className="text-muted">{day}</small>
           </p> 
-          {status === 'Pendiente' && <> <button onClick={handleEdit} className="btn">
+          {status === 'Pendiente' && <> <button onClick={()=> setIsEdit(!isEdit)} className="btn" disabled={isEdit}>
             <i className="fa-solid fa-pencil"></i>
           </button>
           <button className="btn" onClick={handleCancel}>
             <i className="fa-solid fa-ban"></i>
           </button> </>}
-          
+          {isEdit && <button type="submit" className="btn btn-success">Guardar</button>}
         </div>
       </div>
+      </form>
     </li>
   );
 };
