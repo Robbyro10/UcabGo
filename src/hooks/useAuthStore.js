@@ -17,8 +17,9 @@ export const useAuthStore = (type = 'clients') => {
 
             const { data } = await ucabGoApi.post(`/${type}`, {email, password})
             localStorage.setItem('token', data.token );
-            localStorage.setItem('token-init-date', new Date().getTime() );
+            // localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
+            
             dispatch( onLogin({name: data.name, uid: data.uid, 
                 type, email: data.email, 
                 phone: data.phone, rif: data.rif,
@@ -41,7 +42,7 @@ export const useAuthStore = (type = 'clients') => {
 
             const { data } = await ucabGoApi.post(`/${type}/new`, {email, password, name, phone, desc, rif, location, img});
             localStorage.setItem('token', data.token );
-            localStorage.setItem('token-init-date', new Date().getTime() );
+            // localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
             dispatch( onLogin({ name: data.name, uid: data.uid, 
                 type, email: data.email, 
@@ -73,10 +74,11 @@ export const useAuthStore = (type = 'clients') => {
 
         try {
             const { data } = await ucabGoApi.get(`/${type}/renew`);
+            console.log(data);
             
             // TODO talvez deba ser eliminado
             // localStorage.setItem('token', data.token);
-            localStorage.setItem('token-init-date', new Date().getTime() );
+            // localStorage.setItem('token-init-date', new Date().getTime() );
             dispatch( onLogin({ 
                 name: data.name, uid: data.uid, 
                 type, email: data.email, 

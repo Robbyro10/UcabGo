@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useUcabGoStore } from "../../../hooks";
 
@@ -16,6 +17,19 @@ export const ClientOrder = ({
   status,
   id
 }) => {
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      notes,
+      location,
+      quantity,
+      appearance,
+    },
+  });
 
   const {startDeleteOrder, stores, startLoadingStores} = useUcabGoStore();
   useEffect(() => {
@@ -60,11 +74,11 @@ export const ClientOrder = ({
           </p>
         </div>
         {notes && (
-          <div className="col">
+          <div className="col text-center">
             <p>Notas: {notes}</p>
           </div>
         )}
-        <div className="col text-right">
+        <div className="col-fluid text-right">
           <i className="fa-regular fa-clock"></i> &nbsp; {time}
           <br /> 
           <p>

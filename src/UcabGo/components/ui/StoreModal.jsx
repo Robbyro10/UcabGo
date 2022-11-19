@@ -64,7 +64,6 @@ export const StoreModal = ({ store }) => {
           const imgUrl = response.data.url;
           data.img = imgUrl;
           startSavingProduct(data);
-          location.reload();
         });
       return;
     }

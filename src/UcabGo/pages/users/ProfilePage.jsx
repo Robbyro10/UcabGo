@@ -82,37 +82,6 @@ export const ProfilePage = () => {
           )}
         </div>
 
-        {user.type === "clients" ? (
-          <div className="form-group">
-            <label>Correo UCAB</label>
-            <input
-              className="form-control"
-              type="email"
-              readOnly={notEditing}
-              {...register("email", { required: true, pattern: /ucab.edu.ve/ })}
-            />
-            {errors.email?.type === "required" && (
-              <p className="text-danger">El correo es obligatorio</p>
-            )}
-            {errors.email?.type === "pattern" && (
-              <p className="text-danger">No es un correo de la UCAB</p>
-            )}
-          </div>
-        ) : (
-          <div className="form-group">
-            <label>Correo</label>
-            <input
-              className="form-control"
-              readOnly={notEditing}
-              type="email"
-              {...register("email", { required: true })}
-            />
-            {errors.email?.type === "required" && (
-              <p className="text-danger">El correo es obligatorio</p>
-            )}
-          </div>
-        )}
-
         {user.type === "stores" && (
           <div className="form-group">
             <label>Descripción</label>
