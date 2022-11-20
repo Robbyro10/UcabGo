@@ -16,9 +16,8 @@ export const ClientOrder = ({
   detail,
   product,
   status,
-  id
+  id,
 }) => {
-
   const {
     register,
     formState: { errors },
@@ -32,9 +31,9 @@ export const ClientOrder = ({
     },
   });
 
-  const {startDeleteOrder, startSavingOrder} = useUcabGoStore();
+  const { startDeleteOrder, startSavingOrder } = useUcabGoStore();
 
-  const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(false);
 
   const onSubmit = (data) => {
     Swal.fire({
@@ -65,78 +64,107 @@ export const ClientOrder = ({
   };
 
   return (
-    <li className={"list-group-item " + (status === 'Despachado' ? 'text-muted' : '')}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="row">
-        <div className="col">
-        
-          <big>
-          <b>{product.name} ({quantity})</b>
-          </big>
-          <br />
-          <div className="form-group mb-1 mt-1">
-          <select
-            className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
-            disabled={!isEdit}
-            {...register("location", { required: true })}
-          >
-            <option>Módulos</option>
-            <option>Laboratorios</option>
-            <option>Feria</option>
-            <option>Solarium</option>
-            <option>Cincuentenario</option>
-            <option>Cafetín</option>
-            <option>Canchas</option>
-            <option>Otro</option>
-          </select>
-          </div>
-          <div className="form-group mb-1">
-            <input
-              className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
-              readOnly={!isEdit}
-              type="text"
-              {...register("detail", { required: true })}
-            />
-          </div>
-          <div className="form-group mb-1">
-            <input
-              className={"form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
-              readOnly={!isEdit}
-              {...register("appearance", { required: true })}
-            />
-          </div>
-            {!store ? <small className="text-muted">Cargando...</small> 
-            : <small className="text-muted"><b>{store.name}</b></small>}
-            
-          
-        </div>
-        {notes && (
-          <div className="col">
-            <small>Notas:</small>
-            <input
-              className={"mt-2 form-control-sm form-control" + (!isEdit ? "-plaintext" : "")}
-              readOnly={!isEdit}
-              {...register("notes")}
-            />
-          </div>
-        ) 
+    <li
+      className={
+        "list-group-item " + (status === "Despachado" ? "text-muted" : "")
       }
-        
-        <div className="col-fluid text-right">
-          <i className="fa-regular fa-clock"></i> &nbsp; {time}
-          <br /> 
-          <p>
-            <small className="text-muted">{day}</small>
-          </p> 
-          {status === 'Pendiente' && <> <button onClick={()=> setIsEdit(!isEdit)} className="btn" disabled={isEdit}>
-            <i className="fa-solid fa-pencil"></i>
-          </button>
-          <button className="btn" onClick={handleCancel}>
-            <i className="fa-solid fa-ban"></i>
-          </button> </>}
-          {isEdit && <button type="submit" className="btn btn-success">Guardar</button>}
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="row">
+          <div className="col">
+            <big>
+              <b>
+                {product.name} ({quantity})
+              </b>
+            </big>
+            <br />
+            <div className="form-group mb-1 mt-1">
+              <select
+                className={
+                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
+                }
+                disabled={!isEdit}
+                {...register("location", { required: true })}
+              >
+                <option>Módulos</option>
+                <option>Laboratorios</option>
+                <option>Feria</option>
+                <option>Solarium</option>
+                <option>Cincuentenario</option>
+                <option>Cafetín</option>
+                <option>Canchas</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div className="form-group mb-1">
+              <input
+                className={
+                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
+                }
+                readOnly={!isEdit}
+                type="text"
+                {...register("detail", { required: true })}
+              />
+            </div>
+            <div className="form-group mb-1">
+              <input
+                className={
+                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
+                }
+                readOnly={!isEdit}
+                {...register("appearance", { required: true })}
+              />
+            </div>
+            {!store ? (
+              <small className="text-muted">Cargando...</small>
+            ) : (
+              <small className="text-muted">
+                <b>{store.name}</b>
+              </small>
+            )}
+          </div>
+          {notes && (
+            <div className="col">
+              <small>Notas:</small>
+              <input
+                className={
+                  "mt-2 form-control-sm form-control" +
+                  (!isEdit ? "-plaintext" : "")
+                }
+                readOnly={!isEdit}
+                {...register("notes")}
+              />
+            </div>
+          )}
+
+          <div className="col-fluid text-right">
+            <i className="fa-regular fa-clock"></i> &nbsp; {time}
+            <br />
+            <p>
+              <small className="text-muted">{day}</small>
+            </p>
+            {status === "Pendiente" && (
+              <>
+                {" "}
+                <button
+                  onClick={() => setIsEdit(!isEdit)}
+                  className="btn"
+                  disabled={isEdit}
+                >
+                  <i className="fa-solid fa-pencil"></i>
+                </button>
+                <button className="btn" onClick={handleCancel}>
+                  <i className="fa-solid fa-ban"></i>
+                </button>{" "}
+              </>
+            )}
+            {isEdit && (
+              <button type="submit" className="btn btn-success">
+                Guardar
+              </button>
+            )}
+          </div>
         </div>
-      </div>
       </form>
     </li>
   );
