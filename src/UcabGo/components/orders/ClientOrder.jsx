@@ -22,6 +22,7 @@ export const ClientOrder = ({
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       notes,
@@ -69,103 +70,130 @@ export const ClientOrder = ({
         "list-group-item " + (status === "Despachado" ? "text-muted" : "")
       }
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="row">
-          <div className="col">
-            <big>
-              <b>
-                {product.name} ({quantity})
-              </b>
-            </big>
-            <br />
-            <div className="form-group mb-1 mt-1">
-              <select
-                className={
-                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
-                }
-                disabled={!isEdit}
-                {...register("location", { required: true })}
-              >
-                <option>Módulos</option>
-                <option>Laboratorios</option>
-                <option>Feria</option>
-                <option>Solarium</option>
-                <option>Cincuentenario</option>
-                <option>Cafetín</option>
-                <option>Canchas</option>
-                <option>Otro</option>
-              </select>
-            </div>
-            <div className="form-group mb-1">
-              <input
-                className={
-                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
-                }
-                readOnly={!isEdit}
-                type="text"
-                {...register("detail", { required: true })}
-              />
-            </div>
-            <div className="form-group mb-1">
-              <input
-                className={
-                  "form-control-sm form-control" + (!isEdit ? "-plaintext" : "")
-                }
-                readOnly={!isEdit}
-                {...register("appearance", { required: true })}
-              />
-            </div>
-            {!store ? (
-              <small className="text-muted">Cargando...</small>
-            ) : (
-              <small className="text-muted">
-                <b>{store.name}</b>
-              </small>
-            )}
-          </div>
-          {notes && (
+      <div className="row">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="row">
             <div className="col">
-              <small>Notas:</small>
-              <input
-                className={
-                  "mt-2 form-control-sm form-control" +
-                  (!isEdit ? "-plaintext" : "")
-                }
-                readOnly={!isEdit}
-                {...register("notes")}
-              />
-            </div>
-          )}
-
-          <div className="col-fluid text-right">
-            <i className="fa-regular fa-clock"></i> &nbsp; {time}
-            <br />
-            <p>
-              <small className="text-muted">{day}</small>
-            </p>
-            {status === "Pendiente" && (
-              <>
-                {" "}
-                <button
-                  onClick={() => setIsEdit(!isEdit)}
-                  className="btn"
-                  disabled={isEdit}
+              <big>
+                <b>
+                  {product.name} ({quantity})
+                </b>
+              </big>
+              <br />
+              <div className="form-group mb-1 mt-1">
+                <select
+                  className={
+                    "form-control-sm form-control" +
+                    (!isEdit ? "-plaintext" : "")
+                  }
+                  disabled={!isEdit}
+                  {...register("location", { required: true })}
                 >
-                  <i className="fa-solid fa-pencil"></i>
-                </button>
-                <button className="btn" onClick={handleCancel}>
-                  <i className="fa-solid fa-ban"></i>
-                </button>{" "}
-              </>
-            )}
-            {isEdit && (
-              <button type="submit" className="btn btn-success">
-                Guardar
-              </button>
+                  <option>Módulos</option>
+                  <option>Laboratorios</option>
+                  <option>Feria</option>
+                  <option>Solarium</option>
+                  <option>Cincuentenario</option>
+                  <option>Cafetín</option>
+                  <option>Canchas</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div className="form-group mb-1">
+                <input
+                  className={
+                    "form-control-sm form-control" +
+                    (!isEdit ? "-plaintext" : "")
+                  }
+                  readOnly={!isEdit}
+                  type="text"
+                  {...register("detail", { required: true })}
+                />
+              </div>
+              <div className="form-group mb-1">
+                <input
+                  className={
+                    "form-control-sm form-control" +
+                    (!isEdit ? "-plaintext" : "")
+                  }
+                  readOnly={!isEdit}
+                  {...register("appearance", { required: true })}
+                />
+              </div>
+              {!store ? (
+                <small className="text-muted">Cargando...</small>
+              ) : (
+                <small className="text-muted">
+                  <b>{store.name}</b>
+                </small>
+              )}
+            </div>
+            {notes && (
+              <div className="col">
+                <small>Notas:</small>
+                <input
+                  className={
+                    "mt-2 form-control-sm form-control" +
+                    (!isEdit ? "-plaintext" : "")
+                  }
+                  readOnly={!isEdit}
+                  {...register("notes")}
+                />
+                {isEdit && (
+                  <>
+                    <br />
+                    <button
+                      type="submit"
+                      value="submit"
+                      onClick={handleSubmit}
+                      className="btn btn-success mr-1"
+                    >
+                      Guardar
+                    </button>
+                    <button
+                      onClick={()=> setIsEdit(!isEdit)}
+                      className="btn btn-danger"
+                    >
+                      Cancelar
+                    </button>
+                  </>
+                )}
+              </div>
             )}
           </div>
+        </form>
+        <div className="col text-right">
+          <img
+            className="img rounded"
+            style={{ height: "150px", width: '150px', objectFit: 'cover' }}
+            src={product.img}
+            alt={product.name}
+          />
         </div>
-      </form>
+
+        <div className="col text-right">
+          <i className="fa-regular fa-clock"></i> &nbsp; {time}
+          <br />
+          <p>
+            <small className="text-muted">{day}</small>
+          </p>
+          {status === "Pendiente" && (
+            <>
+              {" "}
+              <button
+                onClick={() => setIsEdit(!isEdit)}
+                className="btn"
+                disabled={isEdit}
+              >
+                <i className="fa-solid fa-pencil"></i>
+              </button>
+              <button className="btn" onClick={handleCancel}>
+                <i className="fa-solid fa-ban"></i>
+              </button>{" "}
+            </>
+          )}
+        </div>
+      </div>
     </li>
   );
 };

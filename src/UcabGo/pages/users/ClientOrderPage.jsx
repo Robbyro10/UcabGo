@@ -27,7 +27,7 @@ export const ClientOrderPage = () => {
       <ClientOrderList orders={pendingOrders} />
 
       <hr />
-      <h3 className="pb-3">Despachados por el Restaurante: </h3>
+      <h3 className="pb-3">Ya Entregados: </h3>
 
       <ClientOrderList orders={dispatchedOrders} />
 

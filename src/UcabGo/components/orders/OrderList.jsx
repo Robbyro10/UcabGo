@@ -15,7 +15,12 @@ export const OrderList = () => {
   return (
     <>
       {!filteredOrders || filteredOrders.length === 0 ? (
-        <h3 className="text-muted">Oops!! no parecen haber pedidos...</h3>
+        <div className="text-muted text-center" style={{ marginTop: '20vh'}}>
+        <h1>Oops!! no parecen haber pedidos...</h1>
+        <p>Vuelve mas tarde...</p>
+        <br />
+        <img style={{height: '10vh', opacity: "0.6"}} src="/assets/sad.png" alt="sad face" />
+        </div>
       ) : (
         <ul className="list-group">
           {filteredOrders.map((order) => (
