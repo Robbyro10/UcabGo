@@ -10,8 +10,6 @@ export const NavBar = () => {
   );
   const orderUrl = `/orders/${user.uid}`;
   const catalogUrl = `/store/${user.uid}`;
-  const { VITE_API_URL } = getEnvVariables();
-  const { data, error } = useSWR(`${VITE_API_URL}/stores/${user.uid}`, fetcher);
 
   const handleLogout = () => {
     Swal.fire({
@@ -28,7 +26,7 @@ export const NavBar = () => {
 
   return (
     <>
-      {!data ? (
+      {!user ? (
         <p>Cargando...</p>
       ) : (
         <nav
@@ -38,7 +36,7 @@ export const NavBar = () => {
           <div className="container-fluid">
             <span className="navbar-brand">
               <Link to="/profile" className="btn btn-outline-light">
-                {user.type === "clients" ? (
+                {!user.img ? (
                   <i className="fa-sharp fa-solid fa-house"></i>
                 ) : (
                   <img
@@ -48,8 +46,8 @@ export const NavBar = () => {
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}
-                    src={data.store.img}
-                    alt={data.store.name}
+                    src={user.img}
+                    alt={user.name}
                   />
                 )}
                 &nbsp; {user.name}

@@ -28,6 +28,21 @@ export const ProfilePage = () => {
 
   const { updateUser } = useAuthStore(user.type);
 
+  const uploadImg = (data) => { 
+    const formData = new FormData();
+    formData.append("file", data.img[0]);
+    formData.append("upload_preset", "react-ucabgo");
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dwdimx0pg/image/upload", formData)
+      .then((response) => {
+        const imgUrl = response.data.url;
+        data.img = imgUrl;
+        console.log(data);
+        updateUser(data);
+      });
+  }
+
   const onSubmit = (data) => {
     Swal.fire({
       title: "¿Guardar Cambios?",
@@ -38,9 +53,15 @@ export const ProfilePage = () => {
       if (result.isConfirmed) {
         setNotEditing(true);
         data.uid = user.uid;
-        data.password = user.password;
         data.type = user.type;
-        updateUser(data);
+        if (typeof(data.img) === "string" || user.type === 'clients') {
+          data.img = user.img;
+          updateUser(data);
+          return;
+        } else {
+          uploadImg(data);
+          Swal.fire('Listo!', 'Sus datos se estan actualizando', 'success')
+        }
       }
     });
   };
