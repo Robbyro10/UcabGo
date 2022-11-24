@@ -22,7 +22,7 @@ export const AppRouter = () => {
   }, []);
 
   if (status === "checking") {
-    return <h3>Cargando...</h3>;
+    return <h1 className="text-center text-muted" style={{marginTop: '35vh'}}>Cargando...</h1>;
   }
 
   return (

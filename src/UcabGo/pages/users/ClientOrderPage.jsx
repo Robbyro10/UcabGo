@@ -24,12 +24,13 @@ export const ClientOrderPage = () => {
 
       <h3 className="pb-3">Pendientes</h3>
 
-      <ClientOrderList orders={pendingOrders} />
+      {!pendingOrders.length ? <p className="text-muted">No tienes pedidos pendientes.</p> : <ClientOrderList orders={pendingOrders} /> }
+      
 
       <hr />
       <h3 className="pb-3">Ya Entregados: </h3>
 
-      <ClientOrderList orders={dispatchedOrders} />
+      {!dispatchedOrders.length ? <p className="text-muted">No has hecho pedidos.</p> : <ClientOrderList orders={dispatchedOrders} /> }
 
       <ArrowBack route={"/"} />
     </div>

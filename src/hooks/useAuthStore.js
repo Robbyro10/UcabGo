@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { ucabGoApi } from '../api'
-import { clearErrorMessage, onChecking, onLogin, onLogout, onUpdate } from '../store/auth/authSlice';
+import { clearErrorMessage, onChecking, onLogin, onLogout, onUpdate, onPasswordChange } from '../store/auth/authSlice';
 
 
 export const useAuthStore = (type = 'clients') => {
@@ -68,6 +68,19 @@ export const useAuthStore = (type = 'clients') => {
         }
     }
 
+    const changePassword = async (password) => {
+        try {
+            console.log(password);
+            await ucabGoApi.patch(`/${type}/${user.uid}`, password);
+            dispatch(onPasswordChange(password));
+            console.log('LO LOGRASTE');
+            
+        } catch (error) {
+            console.log(error);
+            Swal.fire('Error al actualizar', error.response.data.msg, 'error');
+        }
+    }
+
     const checkAuthToken = async() => {
         const token = localStorage.getItem('token');
         if ( !token ) return dispatch(onLogout());
@@ -105,6 +118,7 @@ export const useAuthStore = (type = 'clients') => {
         //* Metodos
         startLogin,
         startRegister,
+        changePassword,
         checkAuthToken,
         startLogout,
         updateUser

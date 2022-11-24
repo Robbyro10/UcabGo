@@ -52,6 +52,9 @@ export const ProfilePage = () => {
           <h1>Perfil</h1>
         </div>
         <div className="col text-right">
+          <Link to="/password" className="btn btn-primary mt-2">Cambiar Contraseña</Link>
+        </div>
+        <div className="col-fluid text-right">
           <button
             className="btn btn-primary mt-2"
             disabled={!notEditing}

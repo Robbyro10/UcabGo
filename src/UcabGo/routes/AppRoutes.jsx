@@ -11,6 +11,7 @@ import {
 import {
   ClientOrderPage,
   OrderPage,
+  PasswordPage,
   ProductPage,
   ProfilePage,
   StorePage,
@@ -46,6 +47,7 @@ export const AppRoutes = () => {
             <Routes>
               <Route path="/ucabgo" element={<UcabGoPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/password" element={<PasswordPage />} />
               <Route path="/store/:_id" element={<StorePage />} />
               <Route path="make+order/:id/" element={<OrderPage />} />
               <Route path="orders/:id/" element={<ClientOrderPage />} />
