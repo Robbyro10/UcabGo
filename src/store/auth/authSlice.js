@@ -27,10 +27,6 @@ export const authSlice = createSlice({
       state.user = payload;
       state.errorMessage = undefined;
     },
-    onPasswordChange: (state, {payload}) => {
-      state.user = payload;
-      state.errorMessage = undefined;
-    },
     clearErrorMessage: (state) => {
       state.errorMessage = undefined;
     }

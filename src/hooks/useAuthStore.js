@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { ucabGoApi } from '../api'
-import { clearErrorMessage, onChecking, onLogin, onLogout, onUpdate, onPasswordChange } from '../store/auth/authSlice';
+import { clearErrorMessage, onChecking, onLogin, onLogout, onUpdate } from '../store/auth/authSlice';
 
 
 export const useAuthStore = (type = 'clients') => {
@@ -59,7 +59,7 @@ export const useAuthStore = (type = 'clients') => {
     }
 
     const updateUser = async (user) => {
-        try {
+        try {    
             await ucabGoApi.put(`/${type}/${user.uid}`, user);
             dispatch(onUpdate(user));
         } catch (error) {
@@ -70,10 +70,7 @@ export const useAuthStore = (type = 'clients') => {
 
     const changePassword = async (password) => {
         try {
-            console.log(password);
             await ucabGoApi.patch(`/${type}/${user.uid}`, password);
-            dispatch(onPasswordChange(password));
-            console.log('LO LOGRASTE');
             
         } catch (error) {
             console.log(error);

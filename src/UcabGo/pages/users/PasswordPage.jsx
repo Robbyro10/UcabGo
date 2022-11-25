@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore } from "../../../hooks/useAuthStore";
 
@@ -10,9 +13,7 @@ export const PasswordPage = () => {
     watch,
   } = useForm();
 
-  const checkpassword = watch("password");
-
-  const {user} = useAuthStore();
+  const { user } = useAuthStore();
 
   const { changePassword } = useAuthStore(user.type);
 
@@ -24,10 +25,8 @@ export const PasswordPage = () => {
     data = {
         password: data.password
     }
-
-    console.log(data);
-
     changePassword(data)
+    Swal.fire('¡Listo!', 'Contraseña actualizada exitosamente.', 'success');
   };
   return (
     <>
@@ -70,18 +69,17 @@ export const PasswordPage = () => {
         )}
 
         <br />
-        <br />
         <button
-          className="btn border-0 mb-3 w-100 text-white font-weight-bold"
-          style={{
-            backgroundImage: "linear-gradient(90deg, #4b6cb7, #182848)",
-          }}
+          className="btn btn-primary mb-3"
           type="submit"
           value="submit"
         >
           Guardar Cambios
         </button>
       </form>
+      <Link to="/profile" className="btn btn-danger">
+        Atrás
+      </Link>
     </>
   );
 };

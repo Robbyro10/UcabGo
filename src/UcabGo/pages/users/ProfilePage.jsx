@@ -28,7 +28,7 @@ export const ProfilePage = () => {
 
   const { updateUser } = useAuthStore(user.type);
 
-  const uploadImg = (data) => { 
+  const uploadImg = (data) => {
     const formData = new FormData();
     formData.append("file", data.img[0]);
     formData.append("upload_preset", "react-ucabgo");
@@ -41,7 +41,7 @@ export const ProfilePage = () => {
         console.log(data);
         updateUser(data);
       });
-  }
+  };
 
   const onSubmit = (data) => {
     Swal.fire({
@@ -54,36 +54,42 @@ export const ProfilePage = () => {
         setNotEditing(true);
         data.uid = user.uid;
         data.type = user.type;
-        if (typeof(data.img) === "string" || user.type === 'clients') {
+        if (user.type === "clients") {
+          updateUser(data);
+          return;
+        }
+        if (typeof data.img === "string") {
           data.img = user.img;
           updateUser(data);
           return;
         } else {
           uploadImg(data);
-          Swal.fire('Listo!', 'Sus datos se estan actualizando', 'success')
+          Swal.fire("Listo!", "Sus datos se estan actualizando", "success");
         }
       }
     });
   };
 
   return (
-    <div style={{paddingTop: "80px"}}>
+    <div style={{ paddingTop: "80px" }}>
       <div className="row">
         <div className="col">
           <h1>Perfil</h1>
         </div>
-        <div className="col text-right">
-          <Link to="/password" className="btn btn-primary mt-2">Cambiar Contraseña</Link>
-        </div>
         <div className="col-fluid text-right">
           <button
-            className="btn btn-primary mt-2"
+            className="btn btn btn-outline-primary mt-2"
             disabled={!notEditing}
             onClick={() => setNotEditing(!notEditing)}
           >
             Editar Pefil &nbsp;
             <i className="fa-solid fa-pencil"></i>
           </button>
+        </div>
+        <div className="col text-right mt-2">
+          <Link to="/password" className="btn btn-outline-primary">
+            Cambiar Contraseña
+          </Link>
         </div>
       </div>
       <hr />
