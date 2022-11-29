@@ -22,9 +22,7 @@ Modal.setAppElement("#root");
 
 export const StoreModal = ({ store }) => {
   const { isProductModalOpen, closeProductModal } = useUiStore();
-  const { startSavingProduct, activeProduct, startDeleteProduct } =
-    useUcabGoStore();
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const { startSavingProduct, activeProduct } = useUcabGoStore();
   const dispatch = useDispatch();
 
   const {
@@ -71,42 +69,42 @@ export const StoreModal = ({ store }) => {
   };
 
   const onSubmit = (data) => {
-    setFormSubmitted(true);
     data.store = store;
-    if (!activeProduct) {
-      Swal.fire("¡Listo!", "Producto agregado exitosamente", "success");
+    if (!activeProduct && !data.img[0]) {
+      Swal.fire("Error", "La imagen es obligatoria.", "error");
+      dispatch(onSetActiveProduct(null));
+      return;
     }
     uploadImg(data.img[0], data);
     dispatch(onSetActiveProduct(null));
     closeProductModal();
-    setFormSubmitted(false);
   };
 
   return (
     <Modal
       isOpen={isProductModalOpen}
-      onRequestClose={onCloseModal}
       style={customStyles}
+      // onRequestClose={onCloseModal}
       className="modal"
       overlayClassName="modal-fondo"
       closeTimeoutMs={200}
     >
       <form className="container" onSubmit={handleSubmit(onSubmit)}>
-      <div className="row">
-        <div className="col">
-          {activeProduct ? (
-            <h1> Editar Producto </h1>
-          ) : (
-            <h1> Agregar Producto </h1>
-          )}
+        <div className="row">
+          <div className="col">
+            {activeProduct ? (
+              <h1> Editar Producto </h1>
+            ) : (
+              <h1> Agregar Producto </h1>
+            )}
+          </div>
+          <div className="col-fluid">
+            <button onClick={onCloseModal} className="btn mr-2 mt-2">
+              <i className="far fa-x"></i>
+            </button>
+          </div>
         </div>
-        <div className="col-fluid">
-          <button onClick={onCloseModal} className="btn mr-2 mt-2">
-            <i className="far fa-x"></i>
-          </button>
-        </div>
-      </div>
-      <hr />
+        <hr />
         <div className="form-group mb-2">
           <label>Nombre</label>
           <input
@@ -191,7 +189,11 @@ export const StoreModal = ({ store }) => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-outline-primary btn-block">
+        <button
+          type="submit"
+          value="submit"
+          className="btn btn-outline-primary btn-block"
+        >
           <i className="far fa-save"></i>
           {activeProduct ? <span> Actualizar </span> : <span> Guardar </span>}
         </button>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { ProductList } from "../../components/products";
@@ -12,21 +12,15 @@ export const StorePage = () => {
   const { VITE_API_URL } = getEnvVariables();
 
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
-  // const store = getStoreById(_id);
   const { startLoadingProducts, products, activeProduct } = useUcabGoStore();
-  const navigate = useNavigate();
   const { user } = useAuthStore();
-
-  const onBack = () => {
-    navigate("/ucabgo");
-  };
 
   useEffect(() => {
     startLoadingProducts();
   }, [products.length]);
 
   return (
-    <div style={{paddingTop: "80px"}}>
+    <div style={{ paddingTop: "80px" }}>
       {!data || !products ? (
         <h1>Cargando...</h1>
       ) : (

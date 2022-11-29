@@ -26,6 +26,7 @@ export const useUcabGoStore = () => {
         // creating
         const { data } = await ucabGoApi.post('/products', product);
         dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
+        // location.reload()
 
       } catch (error) {
         console.log(error);
