@@ -19,18 +19,26 @@ export const ClientOrderPage = () => {
   );
 
   return (
-    <div style={{paddingTop: "80px"}}>
+    <div style={{ paddingTop: "80px" }}>
       <h1>Pedidos Realizados: </h1>
-
-      <h3 className="pb-3">Pendientes</h3>
-
-      {!pendingOrders.length ? <p className="text-muted">No tienes pedidos pendientes.</p> : <ClientOrderList orders={pendingOrders} /> }
-      
-
       <hr />
+
+      <h3 className="pb-3">Pendientes:</h3>
+
+      {!pendingOrders.length ? (
+        <p className="text-muted">No tienes pedidos pendientes.</p>
+      ) : (
+        <ClientOrderList orders={pendingOrders} />
+      )}
+
+      <br />
       <h3 className="pb-3">Ya Entregados: </h3>
 
-      {!dispatchedOrders.length ? <p className="text-muted">No has hecho pedidos.</p> : <ClientOrderList orders={dispatchedOrders} /> }
+      {!dispatchedOrders.length ? (
+        <p className="text-muted">No has hecho pedidos.</p>
+      ) : (
+        <ClientOrderList orders={dispatchedOrders} />
+      )}
 
       <ArrowBack route={"/"} />
     </div>

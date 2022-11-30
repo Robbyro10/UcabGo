@@ -15,6 +15,8 @@ export const StorePage = () => {
   const { startLoadingProducts, products, activeProduct } = useUcabGoStore();
   const { user } = useAuthStore();
 
+  // console.log(products);
+
   useEffect(() => {
     startLoadingProducts();
   }, [products.length]);

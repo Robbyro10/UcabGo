@@ -39,18 +39,20 @@ export const ProductCard = ({ id, name, price, desc, img, store }) => {
         }}
       >
         <div className="row">
-          <div className="col-4">
+          <div className="col-sm-4">
             <img
               src={img}
-              className="card-img-top h-100"
+              className="card-img h-100"
               alt={name}
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div className="col-8 mb-2 mt-2">
+          <div className="col m-2 mb-4">
             <h2 className="card-title">{name}</h2>
             <p>{desc}</p>
-            <p>{price}$</p>
+            <p>
+              <big>{price}$</big>
+            </p>
             {user.type === "admins" && <p>{store.name}</p>}
 
             {user.type === "clients" ? (

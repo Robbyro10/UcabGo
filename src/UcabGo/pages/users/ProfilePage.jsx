@@ -76,7 +76,7 @@ export const ProfilePage = () => {
         <div className="col">
           <h1>Perfil</h1>
         </div>
-        <div className="col-fluid text-right">
+        <div className="col text-right">
           <button
             className="btn btn btn-outline-primary mt-2"
             disabled={!notEditing}
@@ -86,7 +86,7 @@ export const ProfilePage = () => {
             <i className="fa-solid fa-pencil"></i>
           </button>
         </div>
-        <div className="col text-right mt-2">
+        <div className="col-fluid text-right mt-2 mr-2">
           <Link to="/password" className="btn btn-outline-primary">
             Cambiar Contraseña
           </Link>
