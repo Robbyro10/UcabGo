@@ -76,6 +76,17 @@ export const StoreModal = ({ store }) => {
       return;
     }
     uploadImg(data.img[0], data);
+    if (!activeProduct) {
+      Swal.fire({
+        icon: "success",
+        title: "Producto agregado",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+    }
     dispatch(onSetActiveProduct(null));
     closeProductModal();
   };
@@ -84,7 +95,6 @@ export const StoreModal = ({ store }) => {
     <Modal
       isOpen={isProductModalOpen}
       style={customStyles}
-      // onRequestClose={onCloseModal}
       className="modal"
       overlayClassName="modal-fondo"
       closeTimeoutMs={200}

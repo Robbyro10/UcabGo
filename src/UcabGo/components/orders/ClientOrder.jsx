@@ -77,9 +77,13 @@ export const ClientOrder = ({
               <div className="col">
                 <big>
                   <i className="fa-solid fa-bag-shopping"></i> &nbsp;
-                  <b>
-                    {product.name} ({quantity})
-                  </b>
+                  {!product.active ? (
+                    <del>{product.name}</del>
+                  ) : (
+                    <b>
+                      {product.name} ({quantity})
+                    </b>
+                  )}
                 </big>
                 <br />
                 <div className="form-group mb-1 mt-1">
@@ -126,7 +130,7 @@ export const ClientOrder = ({
                   <small className="text-muted">Cargando...</small>
                 ) : (
                   <small className="text-muted">
-                    <i class="fa-solid fa-store"></i> &nbsp;
+                    <i className="fa-solid fa-store"></i> &nbsp;
                     <b>{store.name}</b>
                   </small>
                 )}

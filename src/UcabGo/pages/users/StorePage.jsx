@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { useAuthStore, useUcabGoStore } from "../../../hooks";
 import { ProductList } from "../../components/products";
@@ -14,8 +14,6 @@ export const StorePage = () => {
   const { data, error } = useSWR(`${VITE_API_URL}/stores/${_id}`, fetcher);
   const { startLoadingProducts, products, activeProduct } = useUcabGoStore();
   const { user } = useAuthStore();
-
-  // console.log(products);
 
   useEffect(() => {
     startLoadingProducts();
