@@ -6,7 +6,7 @@ import {
   AdminProductsPage,
   AdminClientsPage,
   AdminStoresPage,
-  AdminOrders,
+  AdminOrdersPage,
 } from "../pages/admin";
 import {
   ClientOrderPage,
@@ -33,7 +33,7 @@ export const AppRoutes = () => {
               <Route path="/clients" element={<AdminClientsPage />} />
               <Route path="/products" element={<AdminProductsPage />} />
               <Route path="/stores" element={<AdminStoresPage />} />
-              <Route path="/orders" element={<AdminOrders />} />
+              <Route path="/orders" element={<AdminOrdersPage />} />
               <Route path="/" element={<Navigate to="/products" />} />
               <Route path="/*" element={<Navigate to="/products" />} />
             </Routes>

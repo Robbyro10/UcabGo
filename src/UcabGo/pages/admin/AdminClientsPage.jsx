@@ -9,10 +9,13 @@ export const AdminClientsPage = () => {
   }, [clients.length]);
 
   return (
-    <div className="mt-4" style={{ paddingLeft: "240px" }}>
-      {clients.map((client) => (
-        <AdminClientCard key={client._id} {...client} />
-      ))}
+    <div style={{ paddingLeft: "240px" }}>
+      <h1 className="mt-3">Establecimientos</h1>
+      <ul className="list-group mt-4">
+        {clients.map((client) => (
+          <AdminClientCard key={client._id} {...client} />
+        ))}
+      </ul>
     </div>
   );
 };

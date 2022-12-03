@@ -14,13 +14,14 @@ export const AdminProductsPage = () => {
   }, [products.length]);
 
   return (
-    <>
+    <div className="mt-3" style={{ paddingLeft: "240px" }}>
+      <h1>Productos</h1>
       <StoreModal />
-      <div className="mt-4" style={{ paddingLeft: "240px" }}>
+      <ul className="list-group mt-4">
         {products.map((product) => (
           <AdminProductCard key={product.id} {...product} />
         ))}
-      </div>
-    </>
+      </ul>
+    </div>
   );
 };

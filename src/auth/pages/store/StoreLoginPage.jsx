@@ -19,7 +19,7 @@ export const StoreLoginPage = () => {
     <div
       className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(#44a08d, #093637)",
+        backgroundImage: "linear-gradient(rgb(78,95,255), rgb(78,20,255))",
       }}
     >
       <div
@@ -29,7 +29,14 @@ export const StoreLoginPage = () => {
           width: "400px",
         }}
       >
-        <h2>Ingreso Establecimiento</h2>
+        <div className="text-center m-3">
+          <img
+            src="/assets/cart.png"
+            style={{ width: "40px" }}
+            alt="ucabGo logo"
+          />
+        </div>
+        <h2 className="text-center">Ingreso Establecimiento</h2>
         <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -55,7 +62,8 @@ export const StoreLoginPage = () => {
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #44a08d, #093637)",
+              backgroundImage:
+                "linear-gradient(90deg, rgb(78,95,255), rgb(78,10,255))",
             }}
             type="submit"
             value="submit"

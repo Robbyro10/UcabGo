@@ -40,46 +40,59 @@ export const StoreRegisterPage = () => {
 
   return (
     <div
-      className="w-100"
+      className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(#44a08d, #093637)",
+        backgroundImage: "linear-gradient(rgb(78,95,255), rgb(78,20,255))",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
         style={{ margin: "50px", width: "550px" }}
       >
-        <h1>Registro en UCABGO</h1>
+        <div className="text-center m-3">
+          <img
+            src="/assets/cart.png"
+            style={{ width: "40px" }}
+            alt="ucabGo logo"
+          />
+        </div>
+        <h1 className="text-center">Registro en UCABGO</h1>
         <br />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-group">
-            <label>Nombre del Establecimiento</label>
-            <input
-              className="form-control"
-              type="text"
-              {...register("name", { required: true, maxLength: 20 })}
-            />
-            {errors.name?.type === "required" && (
-              <p className="text-danger">El nombre es obligatorio</p>
-            )}
-            {errors.name?.type === "maxLength" && (
-              <p className="text-danger">
-                El nombre debe tener menos de 20 caracteres
-              </p>
-            )}
-          </div>
 
-          <div className="form-group">
-            <label>Correo</label>
-            <input
-              className="form-control"
-              type="email"
-              {...register("email", { required: true })}
-            />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="row">
+            <div className="col">
+              <div className="form-group">
+                <label>Nombre del Establecimiento</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  {...register("name", { required: true, maxLength: 20 })}
+                />
+                {errors.name?.type === "required" && (
+                  <p className="text-danger">El nombre es obligatorio</p>
+                )}
+                {errors.name?.type === "maxLength" && (
+                  <p className="text-danger">
+                    El nombre debe tener menos de 20 caracteres
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="col">
+              <div className="form-group">
+                <label>Correo</label>
+                <input
+                  className="form-control"
+                  type="email"
+                  {...register("email", { required: true })}
+                />
+              </div>
+              {errors.email?.type === "required" && (
+                <p className="text-danger">El correo es obligatorio</p>
+              )}
+            </div>
           </div>
-          {errors.email?.type === "required" && (
-            <p className="text-danger">El correo es obligatorio</p>
-          )}
 
           <div className="form-group">
             <label>Descripción o Slogan del Establecimiento</label>
@@ -163,48 +176,55 @@ export const StoreRegisterPage = () => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Contraseña</label>
-            <input
-              className="form-control"
-              type="password"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                maxLength: 15,
-              })}
-            />
+          <div className="row">
+            <div className="col">
+              <div className="form-group">
+                <label>Contraseña</label>
+                <input
+                  className="form-control"
+                  type="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 15,
+                  })}
+                />
+              </div>
+              {errors.password?.type === "minLength" && (
+                <p className="text-danger">Mínimo 6 caracteres</p>
+              )}
+              {errors.password?.type === "maxLength" && (
+                <p className="text-danger">Máximo 15 caracteres</p>
+              )}
+            </div>
+            <div className="col">
+              <div className="form-group">
+                <label>Repita su contraseña</label>
+                <input
+                  className="form-control"
+                  type="password"
+                  {...register("password2", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 15,
+                  })}
+                />
+              </div>
+              {errors.password2?.type === "minLength" && (
+                <p className="text-danger">Mínimo 6 caracteres</p>
+              )}
+              {errors.password2?.type === "maxLength" && (
+                <p className="text-danger">Máximo 15 caracteres</p>
+              )}
+            </div>
           </div>
-          {errors.password?.type === "minLength" && (
-            <p className="text-danger">Mínimo 6 caracteres</p>
-          )}
-          {errors.password?.type === "maxLength" && (
-            <p className="text-danger">Máximo 15 caracteres</p>
-          )}
 
-          <div className="form-group">
-            <label>Repita su contraseña</label>
-            <input
-              className="form-control"
-              type="password"
-              {...register("password2", {
-                required: true,
-                minLength: 6,
-                maxLength: 15,
-              })}
-            />
-          </div>
-          {errors.password2?.type === "minLength" && (
-            <p className="text-danger">Mínimo 6 caracteres</p>
-          )}
-          {errors.password2?.type === "maxLength" && (
-            <p className="text-danger">Máximo 15 caracteres</p>
-          )}
           <br />
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #44a08d, #093637)",
+              backgroundImage:
+                "linear-gradient(90deg, rgb(78,95,255), rgb(78,20,255))",
             }}
             type="submit"
             value="submit"
@@ -212,6 +232,7 @@ export const StoreRegisterPage = () => {
             Enviar
           </button>
         </form>
+
         <div className="text-center">
           <p>
             <a href="/loginstore" style={{ color: "black" }}>

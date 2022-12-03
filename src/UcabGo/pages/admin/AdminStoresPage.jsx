@@ -9,10 +9,13 @@ export const AdminStoresPage = () => {
   }, [stores.length]);
 
   return (
-    <div className="mt-4" style={{ paddingLeft: "240px" }}>
-      {stores.map((store) => (
-        <AdminStoreCard key={store._id} {...store} />
-      ))}
+    <div style={{ paddingLeft: "240px" }}>
+      <h1 className="mt-3">Establecimientos</h1>
+      <ul className="list-group mt-4">
+        {stores.map((store) => (
+          <AdminStoreCard key={store._id} {...store} />
+        ))}
+      </ul>
     </div>
   );
 };

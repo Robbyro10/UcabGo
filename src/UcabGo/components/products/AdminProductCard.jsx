@@ -7,7 +7,6 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
   const product = { id, name, price, desc, img, store };
 
   const handleDelete = () => {
-    console.log(id);
     Swal.fire({
       title: "¿Seguro?",
       confirmButtonText: "Eliminar",
@@ -22,34 +21,32 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
   };
 
   return (
-    <ul className="list-group">
-      <li className="list-group-item">
-        <div className="row">
-          <div className="col">
-            <i className="fa-solid fa-bag-shopping"></i> &nbsp;
-            <b>{name}</b>
-            <p>{store?.name}</p>
-            <small>{desc}</small>
-            <p>
-              <b>{price}$</b>
-              <br />
-            </p>
-          </div>
-          <div className="col-4">
-            <img
-              className="img-fluid img-thumbnail"
-              style={{ maxHeight: "170px" }}
-              src={img}
-              alt={desc}
-            />
-          </div>
-          <div className="col-2">
-            <button className="btn" onClick={handleDelete}>
-              <i className="fa-solid fa-trash"></i>
-            </button>
-          </div>
+    <li className="list-group-item">
+      <div className="row">
+        <div className="col">
+          <i className="fa-solid fa-bag-shopping"></i> &nbsp;
+          <b>{name}</b>
+          <p>{store?.name}</p>
+          <small>{desc}</small>
+          <p>
+            <b>{price}$</b>
+            <br />
+          </p>
         </div>
-      </li>
-    </ul>
+        <div className="col-4">
+          <img
+            className="img-fluid img-thumbnail"
+            style={{ maxHeight: "170px" }}
+            src={img}
+            alt={desc}
+          />
+        </div>
+        <div className="col-fluid">
+          <button className="btn mr-2" onClick={handleDelete}>
+            <i className="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </li>
   );
 };
