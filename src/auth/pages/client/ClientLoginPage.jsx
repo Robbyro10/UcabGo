@@ -19,12 +19,12 @@ export const ClientLoginPage = () => {
     <div
       className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,30,255))",
+        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,150,255))",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
-        style={{ margin: "15vh", width: "400px" }}
+        style={{ margin: "50px", width: "400px" }}
       >
         <div className="text-center m-3">
           <img
@@ -35,50 +35,50 @@ export const ClientLoginPage = () => {
         </div>
         <h2 className="text-center">Bienvenido a UcabGO</h2>
         <br />
-        <div className="p-3">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-group">
-              <label>Correo UCAB</label>
-              <input
-                className="form-control"
-                type="email"
-                {...register("email", {
-                  required: true,
-                  pattern: /ucab.edu.ve/,
-                })}
-              />
-            </div>
-            {errors.email?.type === "required" && (
-              <p className="text-danger">El correo es obligatorio</p>
-            )}
-            {errors.email?.type === "pattern" && (
-              <p className="text-danger">No es un correo de la UCAB</p>
-            )}
 
-            <div className="form-group">
-              <label>Contraseña</label>
-              <input
-                className="form-control"
-                type="password"
-                {...register("password", { required: true })}
-              />
-            </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>Correo UCAB</label>
+            <input
+              className="form-control"
+              type="email"
+              {...register("email", {
+                required: true,
+                pattern: /ucab.edu.ve/,
+              })}
+            />
+          </div>
+          {errors.email?.type === "required" && (
+            <p className="text-danger">El correo es obligatorio</p>
+          )}
+          {errors.email?.type === "pattern" && (
+            <p className="text-danger">No es un correo de la UCAB</p>
+          )}
 
-            <br />
-            <br />
-            <button
-              className="btn border-0 mb-3 w-100 text-white font-weight-bold"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, rgb(3,120,255), rgb(3,70,255))",
-              }}
-              type="submit"
-              value="submit"
-            >
-              Ingresar
-            </button>
-          </form>
-        </div>
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              className="form-control"
+              type="password"
+              {...register("password", { required: true })}
+            />
+          </div>
+
+          <br />
+          <br />
+          <button
+            className="btn border-0 mb-3 w-100 text-white font-weight-bold"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgb(3,187,255), rgb(3,140,255))",
+            }}
+            type="submit"
+            value="submit"
+          >
+            Ingresar
+          </button>
+        </form>
+
         <div className="text-center">
           <p>
             <a href="/register" style={{ color: "black" }}>

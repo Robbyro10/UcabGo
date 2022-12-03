@@ -19,13 +19,13 @@ export const StoreLoginPage = () => {
     <div
       className="w-100 h-100"
       style={{
-        backgroundImage: "linear-gradient(rgb(78,95,255), rgb(78,20,255))",
+        backgroundImage: "linear-gradient(rgb(48, 27, 152), rgb(48, 70, 152))",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
         style={{
-          margin: "20vh",
+          margin: "50px",
           width: "400px",
         }}
       >
@@ -63,7 +63,7 @@ export const StoreLoginPage = () => {
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
               backgroundImage:
-                "linear-gradient(90deg, rgb(78,95,255), rgb(78,10,255))",
+                "linear-gradient(60deg, rgb(48, 27, 152), rgb(48, 40, 152))",
             }}
             type="submit"
             value="submit"

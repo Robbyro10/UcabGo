@@ -30,7 +30,7 @@ export const ClientRegisterPage = () => {
     <div
       className="w-100"
       style={{
-        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,30,255))",
+        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,150,255))",
         height: "1000px",
       }}
     >
@@ -49,7 +49,7 @@ export const ClientRegisterPage = () => {
         <div className="p-3">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
-              <label>Nombre y Apellido</label>
+              <label>Nombre de Usuario</label>
               <input
                 className="form-control"
                 type="text"
@@ -147,7 +147,7 @@ export const ClientRegisterPage = () => {
               className="btn border-0 mb-3 w-100 text-white font-weight-bold"
               style={{
                 backgroundImage:
-                  "linear-gradient(90deg, rgb(3,120,255), rgb(3,70,255))",
+                  "linear-gradient(90deg, rgb(3,187,255), rgb(3,140,255))",
               }}
               type="submit"
               value="submit"
