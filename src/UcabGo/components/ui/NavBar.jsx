@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useSWR from "swr";
@@ -10,6 +12,15 @@ export const NavBar = () => {
   );
   const orderUrl = `/orders/${user.uid}`;
   const catalogUrl = `/store/${user.uid}`;
+
+  const [color, setColor] = useState("");
+  useEffect(() => {
+    if (user.type === "clients") {
+      setColor("#0f1d34");
+    } else {
+      setColor("hsl(144,93%,7%)");
+    }
+  }, []);
 
   const handleLogout = () => {
     Swal.fire({
@@ -30,8 +41,8 @@ export const NavBar = () => {
         <p>Cargando...</p>
       ) : (
         <nav
-          className="navbar navbar-dark bg-dark mb-4 px-4 fixed-top"
-          style={{ opacity: "0.96" }}
+          className="navbar navbar-dark mb-4 px-4 fixed-top"
+          style={{ opacity: "0.96", background: color }}
         >
           <div className="container-fluid">
             <span className="navbar-brand">
