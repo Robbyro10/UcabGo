@@ -17,16 +17,23 @@ export const AdminLoginPage = () => {
 
   return (
     <div
-      className="w-100 h-100"
+      className="w-100 h-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(#000B18, #02386E)",
+        backgroundImage: "linear-gradient(rgb(255,197,38), rgb(255,130,38))",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
         style={{ margin: "150px", width: "400px" }}
       >
-        <h2>Ingreso Administrador</h2>
+        <div className="text-center m-3">
+          <img
+            src="/assets/circleYellow.png"
+            style={{ width: "50px" }}
+            alt="ucabGo logo"
+          />
+        </div>
+        <h2 className="text-center">Ingreso Administrador</h2>
         <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -53,9 +60,10 @@ export const AdminLoginPage = () => {
           <br />
           <br />
           <button
-            className="btn border-0 mb-3 w-100 text-white font-weight-bold"
+            className="btn border-0 mb-3 w-100 font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #000B18, #02386E)",
+              backgroundImage:
+                "linear-gradient(45deg, rgb(255,197,38), rgb(255,150,38))",
             }}
             type="submit"
             value="submit"

@@ -30,7 +30,7 @@ export const ClientRegisterPage = () => {
     <div
       className="w-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
+        backgroundImage: "linear-gradient(rgb(64,180,229), rgb(64,140,229))",
         height: "1000px",
       }}
     >
@@ -40,8 +40,8 @@ export const ClientRegisterPage = () => {
       >
         <div className="text-center m-3">
           <img
-            src="/assets/cart.png"
-            style={{ width: "40px" }}
+            src="/assets/circleBlue.png"
+            style={{ width: "50px" }}
             alt="ucabGo logo"
           />
         </div>
@@ -146,7 +146,8 @@ export const ClientRegisterPage = () => {
             <button
               className="btn border-0 mb-3 w-100 text-white font-weight-bold"
               style={{
-                backgroundImage: "linear-gradient(45deg, #4b6cb7, #182848)",
+                backgroundImage:
+                  "linear-gradient(60deg, rgb(64,150,229), rgb(64,120,229))",
               }}
               type="submit"
               value="submit"
