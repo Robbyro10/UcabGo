@@ -40,9 +40,10 @@ export const StoreRegisterPage = () => {
 
   return (
     <div
-      className="w-100"
+      className="w-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(rgb(48, 27, 152), rgb(48, 70, 152))",
+        backgroundImage: "linear-gradient(#44a08d, #093637)",
+        height: "1000px",
       }}
     >
       <div
@@ -223,8 +224,7 @@ export const StoreRegisterPage = () => {
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage:
-                "linear-gradient(60deg, rgb(48, 27, 152), rgb(48, 40, 152))",
+              backgroundImage: "linear-gradient(60deg, #44a08d, #093637)",
             }}
             type="submit"
             value="submit"

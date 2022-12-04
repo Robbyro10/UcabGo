@@ -17,14 +17,14 @@ export const ClientLoginPage = () => {
 
   return (
     <div
-      className="w-100 h-100"
+      className="w-100 h-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,150,255))",
+        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
       }}
     >
       <div
         className="container mx-auto bg-white p-4 rounded"
-        style={{ margin: "50px", width: "400px" }}
+        style={{ width: "400px" }}
       >
         <div className="text-center m-3">
           <img
@@ -69,8 +69,7 @@ export const ClientLoginPage = () => {
           <button
             className="btn border-0 mb-3 w-100 text-white font-weight-bold"
             style={{
-              backgroundImage:
-                "linear-gradient(90deg, rgb(3,187,255), rgb(3,140,255))",
+              backgroundImage: "linear-gradient(90deg, #4b6cb7, #182848)",
             }}
             type="submit"
             value="submit"

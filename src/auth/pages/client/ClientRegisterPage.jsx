@@ -28,9 +28,9 @@ export const ClientRegisterPage = () => {
 
   return (
     <div
-      className="w-100"
+      className="w-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(rgb(3,187,255), rgb(3,150,255))",
+        backgroundImage: "linear-gradient(#4b6cb7, #182848)",
         height: "1000px",
       }}
     >
@@ -146,8 +146,7 @@ export const ClientRegisterPage = () => {
             <button
               className="btn border-0 mb-3 w-100 text-white font-weight-bold"
               style={{
-                backgroundImage:
-                  "linear-gradient(90deg, rgb(3,187,255), rgb(3,140,255))",
+                backgroundImage: "linear-gradient(45deg, #4b6cb7, #182848)",
               }}
               type="submit"
               value="submit"
