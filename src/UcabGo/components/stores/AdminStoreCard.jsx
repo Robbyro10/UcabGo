@@ -10,27 +10,38 @@ export const AdminStoreCard = ({
   email,
   location,
   _id,
+  active,
 }) => {
-  //   const { startDeleteStore, setActiveStore } = useUcabGoStore();
+  const { deleteStore, activateStore } = useUcabGoStore();
 
-  const store = { _id, name, phone, desc, email, img, rif, location };
-
-  const handleDelete = () => {
-    Swal.fire({
-      title: "¿Seguro?",
-      confirmButtonText: "Eliminar",
-      showDenyButton: true,
-      denyButtonText: `Cancelar`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // setActiveStore({ store });
-        // startDeleteStore(_id);
-      }
-    });
+  const handleClick = () => {
+    if (active) {
+      Swal.fire({
+        title: "¿Desactivar el Establecimiento?",
+        confirmButtonText: "Desactivar",
+        showDenyButton: true,
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteStore(_id);
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "¿Activar al Establecimiento?",
+        confirmButtonText: "Activar",
+        showDenyButton: true,
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          activateStore(_id);
+        }
+      });
+    }
   };
 
   return (
-    <li className="list-group-item">
+    <li className={"list-group-item " + (!active ? "text-muted" : "")}>
       <div className="row">
         <div className="col">
           <i className="fa-solid fa-store"></i> &nbsp;
@@ -58,8 +69,8 @@ export const AdminStoreCard = ({
           />
         </div>
         <div className="col-fluid">
-          <button className="btn mr-2" onClick={handleDelete}>
-            <i className="fa-solid fa-trash"></i>
+          <button className="btn mr-2" onClick={handleClick}>
+            <i className="fa-solid fa-power-off"></i>
           </button>
         </div>
       </div>

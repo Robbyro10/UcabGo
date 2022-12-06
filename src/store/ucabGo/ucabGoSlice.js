@@ -78,6 +78,25 @@ export const ucabGoSlice = createSlice({
         return client;
       })
     },
+    onDeleteStore: ( state, {payload} ) => {
+      state.stores = state.stores.map( store => {
+        if (store._id === payload) {
+          store.active = false;
+          return store;
+        }
+        return store;
+      })
+      
+    },
+    onActivateStore: ( state, {payload} ) => {
+      state.stores = state.stores.map( store => {
+        if (store._id === payload) {
+          store.active = true;
+          return store;
+        }
+        return store;
+      })
+    },
     onDeleteOrder: (state, {payload}) => { // TODO fix this
       state.orders = state.orders.filter( order => order.id !== payload) 
     },
@@ -110,6 +129,8 @@ export const {
   onDeleteProduct,
   onDeleteClient,
   onActivateClient,
+  onDeleteStore,
+  onActivateStore,
   onDeleteOrder, 
   onLoadStores, 
   onLoadProducts, 
