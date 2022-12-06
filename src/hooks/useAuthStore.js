@@ -26,7 +26,7 @@ export const useAuthStore = (type = 'clients') => {
                 desc: data.desc, img: data.img, location: data.location}));
             
         } catch (error) {
-            Swal.fire('Error!', 'Credenciales incorrectas', 'error');
+            Swal.fire('Error!', error.response.data.msg, 'error');
             
             dispatch( onLogout('Credenciales incorrectas'));
             setTimeout(() => {
@@ -42,7 +42,6 @@ export const useAuthStore = (type = 'clients') => {
 
             const { data } = await ucabGoApi.post(`/${type}/new`, {email, password, name, phone, desc, rif, location, img});
             localStorage.setItem('token', data.token );
-            // localStorage.setItem('token-init-date', new Date().getTime() );
             localStorage.setItem('type', type );
             dispatch( onLogin({ name: data.name, uid: data.uid, 
                 type, email: data.email, 
@@ -84,10 +83,7 @@ export const useAuthStore = (type = 'clients') => {
 
         try {
             const { data } = await ucabGoApi.get(`/${type}/renew`);
-            
-            // TODO talvez deba ser eliminado
-            // localStorage.setItem('token', data.token);
-            // localStorage.setItem('token-init-date', new Date().getTime() );
+
             dispatch( onLogin({ 
                 name: data.name, uid: data.uid, 
                 type, email: data.email, 

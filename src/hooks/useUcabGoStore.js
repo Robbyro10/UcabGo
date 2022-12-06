@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import Swal from "sweetalert2";
 import { ucabGoApi } from "../api";
-import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients, onDeleteOrder, onUpdateOrder } from "../store/ucabGo/ucabGoSlice";
+import { onAddNewProduct, onDeleteProduct, onLoadProducts, onLoadStores, onLoadOrders, onDispatchOrder, onSetActiveProduct, onUpdateProduct, onAddNewOrder, onLoadClients, onDeleteOrder, onUpdateOrder, onDeleteClient, onActivateClient } from "../store/ucabGo/ucabGoSlice";
 
 export const useUcabGoStore = () => {
 
@@ -89,6 +89,30 @@ export const useUcabGoStore = () => {
       }
     }
 
+    const deleteClient = async( clientId ) => {
+      try {
+
+        await ucabGoApi.delete(`/clients/${clientId}`);
+        dispatch(onDeleteClient(clientId));
+
+      } catch (error) {
+        console.log(error);
+        Swal.fire('Error al Eliminar', error.response.data.msg, 'error');
+      }
+    }
+
+    const activateClient = async( clientId ) => {
+      try {
+
+        await ucabGoApi.patch(`/clients/activate/${clientId}`);
+        dispatch(onActivateClient(clientId));
+
+      } catch (error) {
+        console.log(error);
+        Swal.fire('Error al Activar', error.response.data.msg, 'error');
+      }
+    }
+
     const startLoadingProducts = async () => {
       try {
 
@@ -153,6 +177,8 @@ export const useUcabGoStore = () => {
     startSavingOrder,
     dispatchOrder,
     startDeleteProduct,
+    deleteClient,
+    activateClient,
     startDeleteOrder,
     startLoadingProducts,
     startLoadingStores,

@@ -8,14 +8,16 @@ export const StoreList = () => {
     startLoadingStores();
   }, []);
 
+  const activeStores = stores.filter((store) => store.active === true);
+
   return (
     <>
       {!stores ? (
         <h1>Cargando...</h1>
       ) : (
-        <div className="container animate__animated animate__fadeIn">
+        <div className="animate__animated animate__fadeIn">
           <div className="row">
-            {stores.map((store) => (
+            {activeStores.map((store) => (
               <StoreCard key={store._id} {...store} />
             ))}
           </div>

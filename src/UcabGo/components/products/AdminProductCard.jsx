@@ -8,7 +8,7 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
 
   const handleDelete = () => {
     Swal.fire({
-      title: "¿Seguro?",
+      title: "¿Eliminar Producto?",
       confirmButtonText: "Eliminar",
       showDenyButton: true,
       denyButtonText: `Cancelar`,

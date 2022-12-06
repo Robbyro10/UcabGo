@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore } from "../../../hooks/useAuthStore";
 
@@ -17,16 +17,19 @@ export const PasswordPage = () => {
 
   const { changePassword } = useAuthStore(user.type);
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     if (data.password !== data.password2) {
       Swal.fire("Error", "Las contraseñas no son iguales", "error");
       return;
     }
     data = {
-        password: data.password
-    }
-    changePassword(data)
-    Swal.fire('¡Listo!', 'Contraseña actualizada exitosamente.', 'success');
+      password: data.password,
+    };
+    changePassword(data);
+    Swal.fire("¡Listo!", "Contraseña actualizada exitosamente.", "success");
+    navigate("/profile");
   };
   return (
     <>
@@ -69,11 +72,7 @@ export const PasswordPage = () => {
         )}
 
         <br />
-        <button
-          className="btn btn-primary mb-3"
-          type="submit"
-          value="submit"
-        >
+        <button className="btn btn-primary mb-3" type="submit" value="submit">
           Guardar Cambios
         </button>
       </form>

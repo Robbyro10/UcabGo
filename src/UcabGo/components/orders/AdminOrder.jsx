@@ -1,6 +1,6 @@
-import React from "react";
-import { appendErrors } from "react-hook-form";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
+import { useUcabGoStore } from "../../../hooks";
 
 export const AdminOrder = ({
   appearance,
@@ -15,7 +15,14 @@ export const AdminOrder = ({
   quantity,
   product,
   user,
+  clients,
+  stores,
 }) => {
+  const client = clients.find((client) => client._id === user);
+  const store = stores.find((store) => store._id === product.store);
+
+  const { startDeleteOrder } = useUcabGoStore();
+
   const handleDelete = () => {
     Swal.fire({
       title: "¿Seguro?",
@@ -24,11 +31,9 @@ export const AdminOrder = ({
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        // setActiveProduct({ product });
-        // startDeleteProduct(id);
+        startDeleteOrder(id);
       }
     });
-    console.log("Order soft deleted");
   };
 
   return (
@@ -59,9 +64,9 @@ export const AdminOrder = ({
           <p>{day}</p>
 
           <p className="text-muted">
-            <small>{user}</small>
+            <small>{client.name}</small>
           </p>
-          <p>{product.store}</p>
+          <p>{store.name}</p>
         </div>
         <div className="col-fluid">
           <button className="btn" onClick={handleDelete}>
