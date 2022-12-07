@@ -32,7 +32,13 @@ export const StoreRegisterPage = () => {
       Swal.fire("Error en registro", "Contraseñas no coinciden", "error");
       return;
     } else {
-      Swal.fire("Registro Exitoso", "Espere unos segundos.", "success");
+      Swal.fire({
+        icon: "success",
+        title: "Registro exitoso!",
+        text: "Espere un momento",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
 
     uploadImg(data);

@@ -18,11 +18,19 @@ export const AdminOrdersPage = () => {
     startLoadingStores();
   }, [orders.length]);
 
+  let sortedOrders = [...orders];
+
+  sortedOrders.sort(function (a, b) {
+    if (a.user.name.toLowerCase() < b.user.name.toLowerCase()) return -1;
+    if (a.user.name.toLowerCase() > b.user.name.toLowerCase()) return 1;
+    return 0;
+  });
+
   return (
     <div className="mt-3" style={{ paddingLeft: "240px" }}>
       <h1>Pedidos</h1>
       <ul className="list-group">
-        {orders.map((order) => (
+        {sortedOrders.map((order) => (
           <AdminOrder
             key={order.id}
             {...order}

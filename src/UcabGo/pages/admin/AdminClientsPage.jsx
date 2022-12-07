@@ -8,11 +8,19 @@ export const AdminClientsPage = () => {
     startLoadingClients();
   }, [clients.length]);
 
+  let sortedClients = [...clients];
+
+  sortedClients.sort(function (a, b) {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+    return 0;
+  });
+
   return (
     <div style={{ paddingLeft: "240px" }}>
       <h1 className="mt-3">Establecimientos</h1>
       <ul className="list-group mt-4">
-        {clients.map((client) => (
+        {sortedClients.map((client) => (
           <AdminClientCard key={client._id} {...client} />
         ))}
       </ul>

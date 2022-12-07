@@ -18,7 +18,6 @@ export const AdminOrder = ({
   clients,
   stores,
 }) => {
-  const client = clients.find((client) => client._id === user);
   const store = stores.find((store) => store._id === product.store);
 
   const { startDeleteOrder } = useUcabGoStore();
@@ -64,7 +63,7 @@ export const AdminOrder = ({
           <p>{day}</p>
 
           <p className="text-muted">
-            <small>{client.name}</small>
+            <small>{user.name}</small>
           </p>
           <p>{store.name}</p>
         </div>

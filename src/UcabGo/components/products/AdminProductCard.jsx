@@ -35,7 +35,7 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
         </div>
         <div className="col-4">
           <img
-            className="img-fluid img-thumbnail"
+            className="img-fluid rounded"
             style={{ maxHeight: "170px" }}
             src={img}
             alt={desc}
