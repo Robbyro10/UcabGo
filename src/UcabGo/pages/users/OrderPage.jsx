@@ -23,7 +23,7 @@ export const OrderPage = () => {
             <div className="card mb-3">
               <img
                 className="card-img-top"
-                src="/docs/assets/Zellelogo.svg.png"
+                src="/assets/Zellelogo.svg.png"
                 alt="zelle logo"
               />
               <div className="card-body">

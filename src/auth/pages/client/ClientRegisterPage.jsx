@@ -40,7 +40,7 @@ export const ClientRegisterPage = () => {
       >
         <div className="text-center m-3">
           <img
-            src="docs/assets/circleBlue.png"
+            src="/assets/circleBlue.png"
             style={{ width: "50px" }}
             alt="ucabGo logo"
           />

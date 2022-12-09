@@ -21,7 +21,7 @@ export const OrderList = () => {
           <br />
           <img
             style={{ height: "10vh", opacity: "0.6" }}
-            src="docs/assets/sad.png"
+            src="/assets/sad.png"
             alt="sad face"
           />
         </div>
