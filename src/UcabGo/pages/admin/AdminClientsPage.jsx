@@ -18,7 +18,7 @@ export const AdminClientsPage = () => {
 
   return (
     <div style={{ paddingLeft: "240px" }}>
-      <h1 className="mt-3">Establecimientos</h1>
+      <h1 className="mt-3">Clientes ({sortedClients.length})</h1>
       <ul className="list-group mt-4">
         {sortedClients.map((client) => (
           <AdminClientCard key={client._id} {...client} />

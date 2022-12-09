@@ -18,7 +18,7 @@ export const AdminStoresPage = () => {
 
   return (
     <div style={{ paddingLeft: "240px" }}>
-      <h1 className="mt-3">Establecimientos</h1>
+      <h1 className="mt-3">Establecimientos ({sortedStores.length})</h1>
       <ul className="list-group mt-4">
         {sortedStores.map((store) => (
           <AdminStoreCard key={store._id} {...store} />

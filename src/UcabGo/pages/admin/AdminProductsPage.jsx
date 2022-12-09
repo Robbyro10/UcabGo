@@ -19,7 +19,7 @@ export const AdminProductsPage = () => {
 
   return (
     <div className="mt-3" style={{ paddingLeft: "240px" }}>
-      <h1>Productos</h1>
+      <h1>Productos ({sortedProducts.length})</h1>
       <StoreModal />
       <ul className="list-group mt-4">
         {sortedProducts.map((product) => (

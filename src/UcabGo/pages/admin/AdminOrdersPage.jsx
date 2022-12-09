@@ -28,7 +28,7 @@ export const AdminOrdersPage = () => {
 
   return (
     <div className="mt-3" style={{ paddingLeft: "240px" }}>
-      <h1>Pedidos</h1>
+      <h1>Pedidos ({sortedOrders.length})</h1>
       <ul className="list-group">
         {sortedOrders.map((order) => (
           <AdminOrder
