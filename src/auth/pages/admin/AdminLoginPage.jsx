@@ -28,7 +28,7 @@ export const AdminLoginPage = () => {
       >
         <div className="text-center m-3">
           <img
-            src="/assets/circleYellow.png"
+            src="docs/assets/circleYellow.png"
             style={{ width: "50px" }}
             alt="ucabGo logo"
           />

@@ -9,7 +9,7 @@ export const OrderPage = () => {
   const { data, error } = useSWR(`${VITE_API_URL}/products/${id}`, fetcher);
 
   return (
-    <div style={{paddingTop: "80px"}}>
+    <div style={{ paddingTop: "80px" }}>
       <h1>¡Casi Listo!</h1>
       <hr />
       {!data ? (
@@ -23,7 +23,7 @@ export const OrderPage = () => {
             <div className="card mb-3">
               <img
                 className="card-img-top"
-                src="/assets/Zellelogo.svg.png"
+                src="/docs/assets/Zellelogo.svg.png"
                 alt="zelle logo"
               />
               <div className="card-body">

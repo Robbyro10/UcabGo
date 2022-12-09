@@ -28,7 +28,7 @@ export const ClientLoginPage = () => {
       >
         <div className="text-center m-3">
           <img
-            src="/assets/circleBlue.png"
+            src="docs/assets/circleBlue.png"
             style={{ width: "50px" }}
             alt="ucabGo logo"
           />

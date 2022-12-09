@@ -58,7 +58,7 @@ export const StoreRegisterPage = () => {
       >
         <div className="text-center m-3">
           <img
-            src="/assets/circleGreen.png"
+            src="docs/assets/circleGreen.png"
             style={{ width: "50px" }}
             alt="ucabGo logo"
           />
