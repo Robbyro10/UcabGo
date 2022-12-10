@@ -11,11 +11,13 @@ export const ClientOrderPage = () => {
   useEffect(() => {
     startLoadingOrders();
   }, []);
+
   const pendingOrders = orders.filter(
-    (order) => order.user == user.uid && order.status == "Pendiente"
+    (order) => order.user._id == user.uid && order.status == "Pendiente"
   );
+
   const dispatchedOrders = orders.filter(
-    (order) => order.user == user.uid && order.status == "Despachado"
+    (order) => order.user._id == user.uid && order.status == "Despachado"
   );
 
   return (

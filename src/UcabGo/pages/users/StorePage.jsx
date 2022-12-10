@@ -31,17 +31,17 @@ export const StorePage = () => {
           <hr />
           <div className="row">
             <div className="col">
-              <h6>
+              <p>
                 <i className="fa-sharp fa-solid fa-location-dot"></i>
                 &nbsp;&nbsp;
                 {data.store.location}
-              </h6>
+              </p>
             </div>
             <div className="col">
-              <h6>
+              <p>
                 <i className="fa-solid fa-phone"></i>&nbsp;&nbsp;
                 {data.store.phone}
-              </h6>
+              </p>
             </div>
             <div className="col">
               <p>

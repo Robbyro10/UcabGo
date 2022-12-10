@@ -5,8 +5,7 @@ import { StoreModal } from "../ui/StoreModal";
 
 export const ProductCard = ({ id, name, price, desc, img, store }) => {
   const { openProductModal } = useUiStore();
-  const { setActiveProduct, startDeleteProduct, activeProduct } =
-    useUcabGoStore();
+  const { setActiveProduct, startDeleteProduct } = useUcabGoStore();
   const { user } = useAuthStore();
   const product = { id, name, price, desc, img, store };
 

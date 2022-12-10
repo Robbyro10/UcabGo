@@ -11,7 +11,6 @@ const initialState = {
     orders: [],
     clients: [],
     activeProduct: null,
-    activeOrder: null,
 }
 
 export const ucabGoSlice = createSlice({
