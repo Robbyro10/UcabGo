@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAuthStore, useUcabGoStore } from "../../../hooks";
+import { useAuthStore } from "../../../hooks";
 import { OrderList } from "../../components/orders";
 import { StoreList } from "../../components/stores";
 

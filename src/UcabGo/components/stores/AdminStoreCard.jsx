@@ -61,13 +61,25 @@ export const AdminStoreCard = ({
           <small className="text-muted">Id: {_id}</small>
         </div>
         <div className="col-4">
-          <img
-            className="img-fluid w-100 rounded"
-            style={{ maxHeight: "170px", objectFit: "cover" }}
-            src={img}
-            alt={desc}
-          />
+          {!active ? (
+            <div style={{ filter: "grayscale(100%)" }}>
+              <img
+                className="img-fluid w-100 rounded"
+                style={{ maxHeight: "170px", objectFit: "cover" }}
+                src={img}
+                alt={desc}
+              />
+            </div>
+          ) : (
+            <img
+              className="img-fluid w-100 rounded"
+              style={{ maxHeight: "170px", objectFit: "cover" }}
+              src={img}
+              alt={desc}
+            />
+          )}
         </div>
+
         <div className="col-fluid">
           <button className="btn mr-2" onClick={handleClick}>
             <i className="fa-solid fa-power-off"></i>

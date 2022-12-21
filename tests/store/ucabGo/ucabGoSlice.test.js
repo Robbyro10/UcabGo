@@ -1,10 +1,8 @@
-
 import { onAddNewProduct, onDeleteProduct, onLoadProducts, onSetActiveProduct, onUpdateProduct, ucabGoSlice } from "../../../src/store/ucabGo/ucabGoSlice"
 import { appWithActiveProductState, appWithProductsState, initialState, products } from "../../__fixtures__/ucabGoStates";
 
 describe('tests in ucabGoSlice', () => { 
     test('should return default state', () => { 
-        // const state = ucabGoSlice.getInitialState();
         expect(ucabGoSlice.getInitialState()).toEqual(initialState)
     });
 
@@ -41,12 +39,12 @@ describe('tests in ucabGoSlice', () => {
         const state = ucabGoSlice.reducer(appWithActiveProductState, onDeleteProduct());
         expect(state.products).not.toContain(products[0])
         expect(state.activeProduct).toBe(null)
-     })
+    })
 
-     test('should load products', () => { 
+    test('should load products', () => { 
         const state = ucabGoSlice.reducer(initialState, onLoadProducts(products));
         expect(state.isLoadingProducts).toBeFalsy();
         expect(state.products).toEqual(products)
-      })
+    })
 
  })

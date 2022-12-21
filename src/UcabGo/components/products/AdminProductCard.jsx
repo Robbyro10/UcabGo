@@ -36,7 +36,10 @@ export const AdminProductCard = ({ name, desc, store, price, img, id }) => {
         <div className="col-4">
           <img
             className="img-fluid w-100 rounded"
-            style={{ maxHeight: "170px", objectFit: "cover" }}
+            style={{
+              maxHeight: "170px",
+              objectFit: "cover",
+            }}
             src={img}
             alt={desc}
           />
