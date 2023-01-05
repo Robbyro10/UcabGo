@@ -24,7 +24,6 @@ export const AdminRegisterPage = () => {
       return;
     }
 
-    //TODO: Arreglar img
     startRegister({
       email,
       password,
@@ -34,16 +33,23 @@ export const AdminRegisterPage = () => {
 
   return (
     <div
-      className="w-100"
+      className="w-100 h-100 d-flex align-items-center"
       style={{
-        backgroundImage: "linear-gradient(#000B18, #02386E)",
+        backgroundImage: "linear-gradient(rgb(255,197,38), rgb(255,130,38))",
       }}
     >
       <div
-        className="container mx-auto p-4 rounded"
-        style={{ margin: "90px", background: "white", width: "450px" }}
+        className="container mx-auto bg-white p-4 rounded"
+        style={{ margin: "150px", width: "400px" }}
       >
-        <h1>Registro Administrador</h1>
+        <div className="text-center m-3">
+          <img
+            src="/assets/circleYellow.png"
+            style={{ width: "50px" }}
+            alt="ucabGo logo"
+          />
+        </div>
+        <h2 className="text-center">Registro Administrador</h2>
         <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -51,17 +57,12 @@ export const AdminRegisterPage = () => {
             <input
               className="form-control"
               type="text"
-              {...register("name", { required: true, maxLength: 20 })}
+              {...register("name", { required: true })}
             />
-            {errors.name?.type === "required" && (
-              <p className="text-danger">El nombre es obligatorio</p>
-            )}
-            {errors.name?.type === "maxLength" && (
-              <p className="text-danger">
-                El nombre debe tener menos de 20 caracteres
-              </p>
-            )}
           </div>
+          {errors.name?.type === "required" && (
+            <p className="text-warning">Nombre es requerido</p>
+          )}
 
           <div className="form-group">
             <label>Correo</label>
@@ -71,56 +72,34 @@ export const AdminRegisterPage = () => {
               {...register("email", { required: true })}
             />
           </div>
+          {errors.email?.type === "required" && (
+            <p className="text-warning">No es un correo</p>
+          )}
 
           <div className="form-group">
             <label>Contraseña</label>
             <input
               className="form-control"
               type="password"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                maxLength: 15,
-              })}
+              {...register("password", { required: true })}
             />
           </div>
-          {errors.password?.type === "required" && (
-            <p className="text-danger">La contraseña es obligatoria</p>
-          )}
-          {errors.password?.type === "minLength" && (
-            <p className="text-danger">Mínimo 6 caracteres</p>
-          )}
-          {errors.password?.type === "maxLength" && (
-            <p className="text-danger">Máximo 15 caracteres</p>
-          )}
-
           <div className="form-group">
-            <label>Repita su contraseña</label>
+            <label>Repita la Contraseña</label>
             <input
               className="form-control"
               type="password"
-              {...register("password2", {
-                required: true,
-                minLength: 6,
-                maxLength: 15,
-              })}
+              {...register("password2", { required: true })}
             />
           </div>
-          {errors.password2?.type === "required" && (
-            <p className="text-danger">Repita su contrasña</p>
-          )}
-          {errors.password2?.type === "minLength" && (
-            <p className="text-danger">Mínimo 6 caracteres</p>
-          )}
-          {errors.password2?.type === "maxLength" && (
-            <p className="text-danger">Máximo 15 caracteres</p>
-          )}
+
           <br />
           <br />
           <button
-            className="btn border-0 mb-3 w-100 text-white font-weight-bold"
+            className="btn border-0 mb-3 w-100 font-weight-bold"
             style={{
-              backgroundImage: "linear-gradient(90deg, #000B18, #02386E)",
+              backgroundImage:
+                "linear-gradient(45deg, rgb(255,197,38), rgb(255,150,38))",
             }}
             type="submit"
             value="submit"
@@ -130,8 +109,8 @@ export const AdminRegisterPage = () => {
         </form>
         <div className="text-center">
           <p>
-            <a href="/loginadmin" style={{ color: "black" }}>
-              Ya tengo cuenta
+            <a href="/login" style={{ color: "black" }}>
+              Soy Cliente
             </a>
           </p>
           <a href="/loginstore" style={{ color: "black" }}>

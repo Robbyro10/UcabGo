@@ -46,7 +46,7 @@ export const StoreRegisterPage = () => {
 
   return (
     <div
-      className="w-100 d-flex align-items-center"
+      className="w-100 h-100 d-flex align-items-center"
       style={{
         backgroundImage: "linear-gradient(rgb(4,119,50), rgb(4,80,50))",
         height: "1000px",
@@ -236,7 +236,7 @@ export const StoreRegisterPage = () => {
             type="submit"
             value="submit"
           >
-            Enviar
+            Crear Cuenta
           </button>
         </form>
 

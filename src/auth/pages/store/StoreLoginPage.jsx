@@ -68,7 +68,7 @@ export const StoreLoginPage = () => {
             type="submit"
             value="submit"
           >
-            Enviar
+            Ingresar
           </button>
         </form>
         <p className="text-center">

@@ -38,7 +38,7 @@ export const ProfilePage = () => {
       .then((response) => {
         const imgUrl = response.data.url;
         data.img = imgUrl;
-        console.log(data);
+        // console.log(data);
         updateUser(data);
       });
   };

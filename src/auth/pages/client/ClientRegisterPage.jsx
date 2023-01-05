@@ -28,7 +28,7 @@ export const ClientRegisterPage = () => {
 
   return (
     <div
-      className="w-100 d-flex align-items-center"
+      className="w-100 h-100 d-flex align-items-center"
       style={{
         backgroundImage: "linear-gradient(rgb(64,180,229), rgb(64,140,229))",
         height: "1000px",
