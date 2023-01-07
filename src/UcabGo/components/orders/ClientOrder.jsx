@@ -45,6 +45,7 @@ export const ClientOrder = ({
     }).then((result) => {
       if (result.isConfirmed) {
         setIsEdit(false);
+
         data.id = id;
         startSavingOrder(data);
       }
@@ -146,25 +147,25 @@ export const ClientOrder = ({
                     readOnly={!isEdit}
                     {...register("notes")}
                   />
-                  {isEdit && (
-                    <>
-                      <br />
-                      <button
-                        type="submit"
-                        value="submit"
-                        onClick={handleSubmit}
-                        className="btn btn-success mr-1"
-                      >
-                        Guardar
-                      </button>
-                      <button
-                        onClick={() => setIsEdit(!isEdit)}
-                        className="btn btn-danger"
-                      >
-                        Cancelar
-                      </button>
-                    </>
-                  )}
+                </div>
+              )}
+              {isEdit && (
+                <div className="col">
+                  <br />
+                  <button
+                    type="submit"
+                    value="submit"
+                    onClick={handleSubmit}
+                    className="btn btn-success mr-1 mb-1"
+                  >
+                    Guardar
+                  </button>
+                  <button
+                    onClick={() => setIsEdit(!isEdit)}
+                    className="btn btn-danger mb-1"
+                  >
+                    Cancelar
+                  </button>
                 </div>
               )}
             </div>

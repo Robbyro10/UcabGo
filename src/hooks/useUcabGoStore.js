@@ -26,7 +26,6 @@ export const useUcabGoStore = () => {
         // creating
         const { data } = await ucabGoApi.post('/products', product);
         dispatch(onAddNewProduct({ ...product, id: data.product.id, user }));
-        // location.reload()
 
       } catch (error) {
         console.log(error);
@@ -40,6 +39,8 @@ export const useUcabGoStore = () => {
           // Updating
           await ucabGoApi.put(`/orders/${order.id}`, order);
           dispatch(onUpdateOrder({order}));
+          location.reload()
+
           return;
         } 
         // creating

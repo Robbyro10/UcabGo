@@ -140,10 +140,15 @@ export const StoreModal = ({ store }) => {
             type="number"
             className="form-control"
             placeholder="Precio"
-            {...register("price", { required: true })}
+            {...register("price", { required: true, min: 1 })}
           />
           {errors.price?.type === "required" && (
             <p className="text-danger">El precio es obligatorio</p>
+          )}
+          {errors.price?.type === "min" && (
+            <p className="text-danger">
+              El precio debe ser mayor o igual que 1
+            </p>
           )}
         </div>
 

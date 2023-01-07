@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import { useUcabGoStore } from "../../../hooks";
 
 export const ClientOrderList = ({ orders }) => {
-  const { stores, startLoadingStores } = useUcabGoStore();
+  const { stores, startLoadingStores, startLoadingOrders } = useUcabGoStore();
 
   useEffect(() => {
     startLoadingStores();
+    // startLoadingOrders();
   }, []);
 
   return (
